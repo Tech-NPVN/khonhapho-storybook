@@ -1,0 +1,14 @@
+{
+  "conventionalCommits.scopes": [
+    "app",
+    "components",
+    "core",
+    "deps"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.formatOnSave": true,
+  "css.lint.unknownAtRules": "ignore"
+}
