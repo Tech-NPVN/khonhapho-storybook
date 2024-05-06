@@ -12,6 +12,7 @@ const meta: Meta<typeof Button> = {
     color: '',
     backgroundColor: '',
     size: 'sm',
+    isLoading: false,
   },
   argTypes: {
     variant: {
@@ -23,6 +24,7 @@ const meta: Meta<typeof Button> = {
         },
       },
       control: { type: 'select' },
+      description: 'Enum Type Variant',
     },
     children: {
       type: { name: 'string', required: true },
@@ -36,12 +38,16 @@ const meta: Meta<typeof Button> = {
         },
       },
       control: { type: 'radio' },
+      description: 'Size Of Element',
     },
     color: {
       description: 'Text Color',
     },
     backgroundColor: {
       description: 'Background Color',
+    },
+    isLoading: {
+      description: 'Loading progress',
     },
   },
 };
