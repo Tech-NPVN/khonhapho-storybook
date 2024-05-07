@@ -25,6 +25,7 @@ const buttonStyles = cva(
   },
 );
 
+
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonStyles> & {
     isLoading?: boolean;
@@ -87,3 +88,4 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
   },
 );
+
