@@ -60,7 +60,7 @@ export const Default: Story = {
   args: {
     variant: 'default',
     size: 'sm',
-    children: 'Button',
+    children: 'Button Default',
   },
 };
 
@@ -68,7 +68,7 @@ export const Outline: Story = {
   args: {
     variant: 'outline',
     size: 'sm',
-    children: 'Button',
+    children: 'Button Outline',
   },
 };
 
@@ -76,7 +76,7 @@ export const Ghost: Story = {
   args: {
     variant: 'ghost',
     size: 'sm',
-    children: 'Button',
+    children: 'Button Ghost',
   },
 };
 
@@ -84,6 +84,6 @@ export const Link: Story = {
   args: {
     variant: 'link',
     size: 'sm',
-    children: 'Button',
+    children: 'Button Link',
   },
 };
