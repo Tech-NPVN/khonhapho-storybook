@@ -27,19 +27,18 @@ const avatarStyles = cva(
 type AvatarProps = React.ComponentProps<"button"> & VariantProps<typeof avatarStyles>
     & {
         alt: string;
-        shape: 'circle' | 'square';
-        children: ReactNode;
-        src: string | ReactNode;
-        width?: number;
-        height?: number;
+        shape?: 'circle' | 'square';
+        src: string;
+        width: number;
+        height: number;
     }
 
-export const Avatar = ({ className, size, alt, shape, src, width, height, children }: AvatarProps) => {
+export const Avatar = ({ className, alt, shape, src, width, height }: AvatarProps) => {
     return (
         <div>
             {src && (
                 <img
-                    className={cn(avatarStyles({ className, size, shape }))}
+                    className={cn(avatarStyles({ className, shape }))}
                     alt={alt}
                     src={src as string}
                     style={{ width: `${width}px`, height: `${height}px` }}

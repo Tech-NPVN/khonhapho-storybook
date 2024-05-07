@@ -17,15 +17,29 @@ const meta: Meta<typeof Avatar> = {
                 }
             }
         },
-        size: {
-            options: ['sm','lg','default'],
-            control:{
-                type: 'select',
-            
+        width:{
+            table:{
+                defaultValue: { summary: '50' },
+                type: {
+                    summary: 'number',
+                }
             }
         },
-        width: {
-
+        height:{
+            table:{
+                defaultValue: { summary: '50' },
+                type: {
+                    summary: 'number',
+                }
+            }
+        },
+        alt:{
+            table:{
+                defaultValue: { summary: 'avatar' },
+                type: {
+                    summary:'string',
+                }
+            }
         }
     },
     tags: ['autodocs'],
@@ -37,11 +51,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        size: 'default',
-        shape: 'square',
-        // children: '123',
+        shape: 'circle',
         src: 'https://img.docnhanh.vn/images/uploads/2022/11/17/the-thao/messi-khoc.jpg',
-        // width: '100px',
-        // height: '100px'
+        width: 50,
+        height: 50
     },
 };
