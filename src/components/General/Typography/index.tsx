@@ -23,7 +23,7 @@ const typographyStyles = cva('', {
 type TypographyProps = React.HTMLAttributes<HTMLElement> &
   VariantProps<typeof typographyStyles> & {
     variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p';
-    children: React.ReactNode | string;
+    children: string;
     color?: string;
   };
 

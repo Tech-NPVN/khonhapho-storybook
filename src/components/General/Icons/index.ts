@@ -44,4 +44,4 @@ export * from './StarIcon';
 export * from './SuitableIcon';
 export * from './ThreeDotsIcon';
 export * from './UserIcon';
-export * from './WarnningReverceIcon';
+export * from './WarningReverceIcon';
