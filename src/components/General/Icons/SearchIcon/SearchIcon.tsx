@@ -1,8 +1,8 @@
 import SvgIcon, { TypeIcon } from '../SvgIcon';
 
-const SearchIcon = ({ color = '#333', width, height, viewBox }: TypeIcon) => {
+const SearchIcon = ({ color = '#333', width, height, viewBox, className = '' }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox}>
+    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"
