@@ -1,8 +1,14 @@
 import SvgIcon, { TypeIcon } from '../SvgIcon';
 
-const DoubleArrowUpIcon = ({ color = '#333', width, height, viewBox }: TypeIcon) => {
+const DoubleArrowUpIcon = ({
+  color = '#333',
+  width,
+  height,
+  viewBox,
+  className = '',
+}: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox}>
+    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
       <path
         d="M11.8744 8L12.8942 8C12.9826 8 13.0315 7.91912 12.9774 7.8645L8.33182 3.12922C8.29252 3.08898 8.2422 3.05643 8.1847 3.03403C8.12719 3.01164 8.06402 3 8 3C7.93598 3 7.87281 3.01164 7.8153 3.03403C7.7578 3.05643 7.70748 3.08898 7.66818 3.12922L3.02264 7.8645C2.96855 7.92017 3.01737 8 3.10576 8L4.12564 8C4.19029 8 4.2523 7.97584 4.29189 7.93592L7.99934 4.15442L11.7081 7.93592C11.7477 7.97584 11.8097 8 11.8744 8Z"
         fill={color}

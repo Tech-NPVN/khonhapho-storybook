@@ -7,6 +7,12 @@ import { AnglePrevIcon } from './AnglePrevIcon';
 import { AngleUpIcon } from './AngleUpIcon';
 import { ArrowDownArrowUpIcon } from './ArrowDownArrowUpIcon';
 import { ArrowsExchangeIcon } from './ArrowsExchangeIcon';
+import { ArrowsRotateIcon } from './ArrowsRotateIcon';
+import { ArrowsUpToLineIcon } from './ArrowsUpToLineIcon';
+import BirthdayIcon from './BirthdayIcon/BirthdayIcon';
+import { BuildingIcon } from './BuildingIcon';
+import { CameraIcon } from './CameraIcon';
+import { CheckIcon } from './CheckIcon';
 import { CircleCheckIcon } from './CircleCheckIcon';
 import { ClockIcon } from './ClockIcon';
 import { CloseIcon } from './CloseIcon';
@@ -14,14 +20,21 @@ import { CommentIcon } from './CommentIcon';
 import { CopyIcon } from './CopyIcon';
 import { CounterClockwiseClock } from './CounterClockwiseClock';
 import { DarkIcon } from './DarkIcon';
+import { DeleteIcon } from './DeleteIcon';
 import { DetailIcon } from './DetailIcon';
+import { DoubleArrowDownIcon } from './DoubleArrowDownIcon';
 import { DoubleArrowUpIcon } from './DoubleArrowUpIcon';
 import { DownSolidIcon } from './DownSolidIcon';
+import { EditSolidIcon } from './EditSolidIcon';
+import { EmailIcon } from './EmailIcon';
 import { ExternalLinkAltIcon } from './ExternalLinkAltIcon';
 import { EyeIcon } from './EyeIcon';
+import { EyeOffIcon } from './EyeOffIcon';
 import { EyeSlashIcon } from './EyeSlashIcon';
 import { EyeSolidIcon } from './EyeSolidIcon';
 import { FacebookIcon } from './FacebookIcon';
+import { FacebookSolidIcon } from './FacebookSolidIcon';
+import { GitBranchIcon } from './GitBranchIcon';
 import { HeartIcon } from './HeartIcon';
 import { Icons } from './Icons';
 import { LightIcon } from './LightIcon';
@@ -35,6 +48,7 @@ import { NoteIcon } from './NoteIcon';
 import { NotificationIcon } from './NotificationIcon';
 import { PatchCheckFillIcon } from './PatchCheckFillIcon';
 import { PhoneEnabledIcon } from './PhoneEnabledIcon';
+import { PhoneIcon } from './PhoneIcon';
 import { PinIcon } from './PinIcon';
 import { PinSolidIcon } from './PinSolidIcon';
 import { ReportIcon } from './ReportIcon';
@@ -110,6 +124,10 @@ const items = [
   {
     icon: <DoubleArrowUpIcon />,
     name: 'DoubleArrowUpIcon',
+  },
+  {
+    icon: <DoubleArrowDownIcon />,
+    name: 'DoubleArrowDownIcon',
   },
   {
     icon: <DownSolidIcon />,
@@ -230,6 +248,60 @@ const items = [
   {
     icon: <WarningReverceIcon />,
     name: 'WarningReverceIcon',
+  },
+  {
+    icon: <ArrowsUpToLineIcon />,
+    name: 'ArrowsUpToLineIcon',
+  },
+
+  {
+    icon: <GitBranchIcon />,
+    name: 'GitBranchIcon',
+  },
+  {
+    icon: <BuildingIcon />,
+    name: 'BuildingIcon',
+  },
+  {
+    icon: <EmailIcon />,
+    name: 'EmailIcon',
+  },
+  {
+    icon: <PhoneIcon />,
+    name: 'PhoneIcon',
+  },
+  {
+    icon: <BirthdayIcon />,
+    name: 'BirthdayIcon',
+  },
+  {
+    icon: <CameraIcon />,
+    name: 'CameraIcon',
+  },
+  {
+    icon: <FacebookSolidIcon />,
+    name: 'FacebookSolidIcon',
+  },
+  {
+    icon: <EditSolidIcon />,
+    name: 'EditSolidIcon',
+  },
+  {
+    icon: <EyeOffIcon />,
+    name: 'EyeOffIcon',
+  },
+  {
+    icon: <DeleteIcon />,
+    name: 'DeleteIcon',
+  },
+
+  {
+    icon: <ArrowsRotateIcon />,
+    name: 'ArrowsRotateIcon',
+  },
+  {
+    icon: <CheckIcon />,
+    name: 'CheckIcon',
   },
 ];
 
