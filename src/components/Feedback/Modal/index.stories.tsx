@@ -44,7 +44,7 @@ const meta: Meta<typeof Modal> = {
                 }
             }
         },
-        
+
         width: {
             table: {
                 defaultValue: {
@@ -76,7 +76,6 @@ const meta: Meta<typeof Modal> = {
                 }
             }
         },
-
     },
     tags: ['autodocs'],
 };
