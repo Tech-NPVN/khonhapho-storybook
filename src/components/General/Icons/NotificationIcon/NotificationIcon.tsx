@@ -1,11 +1,18 @@
 import SvgIcon, { TypeIcon } from '../SvgIcon';
 
-const NotificationIcon = ({ color = '#333', width, height, viewBox = '0 0 20 20' }: TypeIcon) => {
+const NotificationIcon = ({
+  color = '#333',
+  width,
+  height,
+  viewBox = '0 0 20 20',
+  className = '',
+}: TypeIcon) => {
   return (
     <SvgIcon
       width={width}
       height={height}
       viewBox={viewBox}
+      className={className}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
