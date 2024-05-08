@@ -44,6 +44,7 @@ const meta: Meta<typeof Modal> = {
                 }
             }
         },
+        
         width: {
             table: {
                 defaultValue: {

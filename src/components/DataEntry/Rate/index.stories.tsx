@@ -13,6 +13,7 @@ const meta: Meta<typeof Rate> = {
                 defaultValue: { summary: '3.7' },
             }
         }
+        
     },
     
     tags: ['autodocs'],

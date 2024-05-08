@@ -19,6 +19,7 @@ const meta: Meta<typeof Tag> = {
                 defaultValue: { summary: '#e7e7e7' }
             }
         }
+        
     },
     args: {
         // 👇 Create an action that appears when the onClick event is fired
