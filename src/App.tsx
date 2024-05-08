@@ -1,22 +1,32 @@
-import { Avatar } from './components/DataDisplay/Avatar';
-import { Rate } from './components/DataEntry/Rate';
-import { Button } from './components/General';
+import { Tabs } from './components/DataDisplay';
 
 const App = () => {
   return (
-    <>
-      <Button
-        onClick={(e) => {
-          console.log(e);
-        }}
-      >
-        hello
-
-      </Button>
-
-      <Avatar alt='avatar' height={200} width={200} src='https://img.docnhanh.vn/images/uploads/2022/11/17/the-thao/messi-khoc.jpg' onClick={() => alert('me')} />
-      <Rate rating={3.35} onClick={() => alert('me')}/>
-    </>
+    <Tabs
+      variantTab="fillGray"
+      tabs={[
+        {
+          name: 'Tab 1',
+          key: 'a',
+          children: <>AAAA</>,
+        },
+        {
+          name: 'Tab 2',
+          key: 'b',
+          children: <>BBBB</>,
+        },
+        {
+          name: 'Tab 3',
+          key: 'c',
+          children: <>C</>,
+        },
+        {
+          name: 'Tab 4',
+          key: 'd',
+          children: <>D</>,
+        },
+      ]}
+    />
   );
 };
 

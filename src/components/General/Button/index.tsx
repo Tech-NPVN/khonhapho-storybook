@@ -7,10 +7,9 @@ const buttonStyles = cva(
   {
     variants: {
       variant: {
-        default: 'bg-green text-white hover:bg-primary/90',
-        outline: 'border border-green text-green hover:bg-accent hover:text-accent-foreground',
-        secondary: 'hover:bg-secondary/80',
-        ghost: 'text-green hover:bg-accent hover:text-accent-foreground',
+        default: 'bg-green text-white hover:bg-green/80',
+        outline: 'border border-green text-green hover:bg-green/10',
+        ghost: 'text-green hover:bg-accent hover:bg-green/10',
         link: 'bg-transparent underline-offset-4 hover:text-green hover:underline',
       },
       size: {
@@ -24,7 +23,6 @@ const buttonStyles = cva(
     },
   },
 );
-
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonStyles> & {
@@ -88,4 +86,3 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
   },
 );
-
