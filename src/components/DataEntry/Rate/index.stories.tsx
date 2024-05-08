@@ -10,7 +10,7 @@ const meta: Meta<typeof Rate> = {
     argTypes:{
         rating: {
             table: {
-                defaultValue: { summary: '3.7' },
+                defaultValue: { summary: '3.6' },
             }
         }
 
@@ -24,6 +24,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
    args:{
-    rating:3.7
+    rating:3.6
    }
 };

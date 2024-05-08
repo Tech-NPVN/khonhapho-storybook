@@ -72,7 +72,7 @@ const meta: Meta<typeof Modal> = {
         children:{
             table:{
                 defaultValue: {
-                    summary: 'Test',
+                    summary: 'Testt',
                 }
             }
         },
