@@ -44,6 +44,7 @@ const meta: Meta<typeof Modal> = {
                 }
             }
         },
+
         width: {
             table: {
                 defaultValue: {
@@ -71,11 +72,10 @@ const meta: Meta<typeof Modal> = {
         children:{
             table:{
                 defaultValue: {
-                    summary: 'Test',
+                    summary: 'Testt',
                 }
             }
         },
-
     },
     tags: ['autodocs'],
 };
