@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Tag } from '.';
+import { action } from '@storybook/addon-actions';
 
 const meta: Meta<typeof Tag> = {
     title: 'Data Display/Tag',
@@ -10,14 +11,18 @@ const meta: Meta<typeof Tag> = {
     argTypes: {
         color: {
             table: {
-                defaultValue: { summary: '#FFFFFF' },
+                defaultValue: { summary: '#000000' },
             }
         },
-        backgroundColor:{
-            table:{
-                defaultValue:{summary:'#197D16'}
+        backgroundColor: {
+            table: {
+                defaultValue: { summary: '#e7e7e7' }
             }
         }
+    },
+    args: {
+        // 👇 Create an action that appears when the onClick event is fired
+        onClick: action('on-click'),
     },
     tags: ['autodocs'],
 };
@@ -28,9 +33,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     args: {
-        color:'#FFFFFF',
-        children:'tag tag tag',
-        backgroundColor:'#197D16',
-        closeIcon:true,
+        color: '#000000',
+        children: 'label',
+        backgroundColor: '#e7e7e7',
+        closeable: true,
     },
 };
