@@ -1,11 +1,6 @@
 import SvgIcon, { TypeIcon } from '../SvgIcon';
 
-const WarnningReverceIcon = ({
-  color = '#333',
-  width,
-  height,
-  viewBox = '0 0 64 64',
-}: TypeIcon) => {
+const WarningReverceIcon = ({ color = '#333', width, height, viewBox = '0 0 64 64' }: TypeIcon) => {
   return (
     <SvgIcon width={width} height={height} viewBox={viewBox}>
       <path
@@ -16,4 +11,4 @@ const WarnningReverceIcon = ({
   );
 };
 
-export default WarnningReverceIcon;
+export default WarningReverceIcon;
