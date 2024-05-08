@@ -72,7 +72,7 @@ export const Tabs = ({ tabs, variantTab = 'underline', ...buttonProps }: TabsPro
           </Tab>
         ))}
       </TabList>
-      <TabPanels className="mt-2 px-4 py-2">{tabs[tabIndex].children}</TabPanels>
+      <TabPanels className="px-4 py-2 mt-2">{tabs[tabIndex].children}</TabPanels>
     </TabGroup>
   );
 };
