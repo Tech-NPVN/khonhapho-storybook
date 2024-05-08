@@ -2,16 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+@layer components {
+  .icons {
+    @apply grid text-center;
+    grid-auto-rows: auto;
+    grid-auto-columns: max-content;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
 }
 
-.modal-animation {
-    animation: fadeIn ease-in 0.3s;
-}
