@@ -1,18 +1,7 @@
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { z } from 'zod';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Input,
-  InputFormPassword,
-} from './components/DataEntry';
-import { AlarmClock, Button } from './components/General';
+import { InputFormPassword } from './components/DataEntry';
+import { Upload } from './components/DataEntry/Upload';
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -24,44 +13,31 @@ const FormSchema = z.object({
 });
 
 const App = () => {
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolver(FormSchema),
-    defaultValues: {
-      username: '',
-      password: '',
-    },
-  });
+  const [previewImage, setPreviewImage] = useState('');
+  const [urlImage, setUrlImage] = useState('');
+  console.log('🚀 ~ App ~ urlImage:', urlImage);
+
+  const handleChange = async (e: any) => {
+    const file = e.target.files[0];
+    e.target.value = null;
+    setPreviewImage(URL.createObjectURL(file));
+
+    setUrlImage('');
+  };
+
+  const handleDeleteImage = async () => {
+    setPreviewImage('');
+  };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit((data) => console.log(data))}>
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field, fieldState: { error } }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input
-                  {...field}
-                  placeholder="Username"
-                  className={`${error && 'border-red'}`}
-                  suffixIcon={<AlarmClock />}
-                  prefixIcon={<AlarmClock />}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <InputFormPassword name="password" label="Password" />
-
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form>
-
+    <>
+      <Upload previewImage={previewImage} onChange={handleChange} onClick={handleDeleteImage} />
+    </>
   );
+};
+
+export const Password = () => {
+  return <InputFormPassword name="password" label="Password" />;
 };
 
 export default App;

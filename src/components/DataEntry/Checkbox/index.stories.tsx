@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { CheckBox } from '.';
 
 const meta: Meta<typeof CheckBox> = {
-  title: 'Data Entry/CheckBoxCustom',
+  title: 'Data Entry/CheckBox',
   component: CheckBox,
   tags: ['autodocs'],
   args: {
