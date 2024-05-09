@@ -60,7 +60,7 @@ export const Modal = ({ className, children, width, height, closedIcon, cancelTe
                         leaveFrom="opacity-100 transform-[scale(100%)]"
                         leaveTo="opacity-0 transform-[scale(95%)]"
                     >
-                        <Dialog onClose={() => console.log(123)} className="w-[100px]" onClick={(e: any) => e.stopPropagation()}>
+                        <Dialog onClose={handleCloseModal} className="w-[100px]" onClick={(e: any) => e.stopPropagation()}>
                             <DialogPanel>
                                 <div className={` fixed top-0 left-0 w-full h-full  bg-[rgba(0,0,0,0.5)] z-10
                     ${centered ? 'flex flex-col justify-center items-center' : 'flex flex-col items-center pt-20'}`} >

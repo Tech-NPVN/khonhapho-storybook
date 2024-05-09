@@ -18,11 +18,16 @@ const meta: Meta<typeof Tag> = {
             table: {
                 defaultValue: { summary: '#e7e7e7' }
             }
+        },
+        iconSize: {
+            table: {
+                defaultValue: { summary: '12' }
+            }
         }
     },
     args: {
         // 👇 Create an action that appears when the onClick event is fired
-        onClick: action('on-click'),
+  
     },
     tags: ['autodocs'],
 };
@@ -37,5 +42,6 @@ export const Default: Story = {
         children: 'tag label',
         backgroundColor: '#e7e7e7',
         closeable: true,
+        iconSize:'12'
     },
 };
