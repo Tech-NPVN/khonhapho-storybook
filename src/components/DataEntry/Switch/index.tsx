@@ -6,8 +6,8 @@ import { Fragment } from 'react';
 const switchStyles = cva('group inline-flex h-6 w-11 items-center rounded-full', {
   variants: {
     variant: {
-      checked: 'text-green hover:bg-accent hover:text-accent-foreground',
-      disabled: 'bg-transparent underline-offset-4 hover:text-green hover:underline',
+      checked: 'text-primaryButtonLight hover:bg-accent hover:text-accent-foreground',
+      disabled: 'bg-transparent underline-offset-4 hover:text-primaryButtonLight hover:underline',
     },
   },
   defaultVariants: {},
