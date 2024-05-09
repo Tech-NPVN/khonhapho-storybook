@@ -70,7 +70,7 @@ export const FormExample: Story = {
           onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}
           className="min-w-[400px]"
         >
-          <h3 className="text-2xl font-bold mb-5">Login</h3>
+          <h3 className="mb-5 text-2xl font-bold">Login</h3>
           <InputForm
             name="username"
             label="Username"
