@@ -26,23 +26,29 @@ export const Basic: Story = {
     disabled: false,
     name: '',
     onChange: () => {},
+    sizeInput: 'normal',
+  },
+  argTypes: {
+    sizeInput: {
+      options: ['small', 'normal', 'large'],
+      table: {
+        defaultValue: { summary: 'normal' },
+        type: {
+          summary: 'small | normal | large',
+        },
+      },
+      control: { type: 'radio' },
+    },
   },
 };
 
-export const PrefixIcon: Story = {
-  args: {
-    prefixIcon: <UserIcon />,
-    className: 'min-w-[400px]',
-    placeholder: 'Username',
-  },
-};
-
-export const SuffixIcon: Story = {
-  args: {
-    suffixIcon: <LockIcon />,
-    className: 'min-w-[400px]',
-    placeholder: 'Password',
-  },
+export const PrefixAndSuffixIcon: Story = {
+  render: () => (
+    <div className="min-w-[400px] flex flex-col gap-5">
+      <Input prefixIcon={<UserIcon />} placeholder="Username" />
+      <Input suffixIcon={<LockIcon />} placeholder="Password" />
+    </div>
+  ),
 };
 
 export const FormExample: Story = {
@@ -77,6 +83,7 @@ export const FormExample: Story = {
             className="mb-5"
             placeholder="Username"
             prefixIcon={<UserIcon />}
+            required
           />
           <InputFormPassword
             name="password"
@@ -84,6 +91,7 @@ export const FormExample: Story = {
             className="mb-8"
             placeholder="Password"
             prefixIcon={<LockIcon />}
+            required
           />
 
           <div className="w-full">

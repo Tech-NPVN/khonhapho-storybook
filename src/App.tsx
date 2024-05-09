@@ -1,4 +1,3 @@
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -45,7 +44,7 @@ const App = () => {
                 <Input
                   {...field}
                   placeholder="Username"
-                  className={`${error && 'border-red'}`}
+                  className={`${error && 'border-errorLight'}`}
                   suffixIcon={<AlarmClock />}
                   prefixIcon={<AlarmClock />}
                 />
@@ -60,7 +59,6 @@ const App = () => {
         <Button type="submit">Submit</Button>
       </form>
     </Form>
-
   );
 };
 
