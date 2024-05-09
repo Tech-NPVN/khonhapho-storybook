@@ -1,13 +1,36 @@
 import { AddIcon, DeleteIcon, Typography } from '@/components/General';
 
-type UploadType = {
-  onChange?: (value: any) => void;
+type UploadType = React.InputHTMLAttributes<InputEvent> & {
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   previewImage: string;
-  onClick?: (value: any) => void;
-  multiple?: boolean;
+  onClick?: (event: any) => void;
+  setPreviewImage: React.Dispatch<React.SetStateAction<string>>;
+  setUrlImage: any;
 };
 
-export const Upload = ({ onChange, previewImage, onClick }: UploadType) => {
+export const Upload = ({
+  onChange,
+  previewImage,
+  setPreviewImage,
+  setUrlImage,
+  multiple = false,
+  onClick,
+}: UploadType) => {
+  const handleOnDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleOnDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+
+  const handleOnDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    setPreviewImage(URL.createObjectURL(file));
+    setUrlImage(file);
+  };
+
   return (
     <div className="flex gap-2">
       {previewImage && (
@@ -25,14 +48,21 @@ export const Upload = ({ onChange, previewImage, onClick }: UploadType) => {
         </div>
       )}
       <div className="cursor-pointer flex items-center justify-center border border-dashed w-[200px] h-[200px] rounded-lg relative overflow-hidden group">
-        <label htmlFor="avatar" className="absolute inset-0 cursor-pointer">
+        <label
+          htmlFor="avatar"
+          className="absolute inset-0 cursor-pointer"
+          onDragOver={handleOnDragOver}
+          onDragLeave={handleOnDragLeave}
+          onDrop={handleOnDrop}
+        >
           <input
             type="file"
             name="avatar"
             id="avatar"
+            multiple={multiple}
             placeholder="Enter your avatar"
             onChange={onChange}
-            className="hidden "
+            className="hidden"
           />
         </label>
         <div className="flex flex-col items-center gap-4">

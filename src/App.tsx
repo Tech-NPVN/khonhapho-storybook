@@ -1,16 +1,6 @@
 import { useState } from 'react';
-import { z } from 'zod';
 import { InputFormPassword } from './components/DataEntry';
 import { Upload } from './components/DataEntry/Upload';
-
-const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
-  }),
-  password: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
-  }),
-});
 
 const App = () => {
   const [previewImage, setPreviewImage] = useState('');
@@ -21,17 +11,24 @@ const App = () => {
     const file = e.target.files[0];
     e.target.value = null;
     setPreviewImage(URL.createObjectURL(file));
-
-    setUrlImage('');
+    setUrlImage(file);
   };
 
   const handleDeleteImage = async () => {
     setPreviewImage('');
+    setUrlImage('');
   };
 
   return (
     <>
-      <Upload previewImage={previewImage} onChange={handleChange} onClick={handleDeleteImage} />
+      <Upload
+        previewImage={previewImage}
+        onChange={handleChange}
+        onClick={handleDeleteImage}
+        multiple={true}
+        setPreviewImage={setPreviewImage}
+        setUrlImage={setUrlImage}
+      />
     </>
   );
 };
