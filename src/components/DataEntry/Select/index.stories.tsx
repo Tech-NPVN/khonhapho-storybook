@@ -7,7 +7,7 @@ const OPTIONS = [
   { value: 'Select 4', label: 'Select 4' },
 ];
 const meta: Meta<typeof Select> = {
-  title: 'DataEntry/Select',
+  title: 'Data Entry/Select',
   component: Select,
   parameters: {
     layout: 'centered',
