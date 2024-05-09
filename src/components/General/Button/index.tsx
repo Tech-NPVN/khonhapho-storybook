@@ -7,10 +7,11 @@ const buttonStyles = cva(
   {
     variants: {
       variant: {
-        default: 'bg-green text-white hover:bg-green/80',
-        outline: 'border border-green text-green hover:bg-green/10',
-        ghost: 'text-green hover:bg-accent hover:bg-green/10',
-        link: 'bg-transparent underline-offset-4 hover:text-green hover:underline',
+        default: 'bg-primaryButtonLight text-white hover:bg-primaryButtonLight/80',
+        outline:
+          'border border-primaryButtonLight text-primaryButtonLight hover:bg-primaryButtonLight/10',
+        ghost: 'text-primaryButtonLight hover:bg-accent hover:bg-primaryButtonLight/10',
+        link: 'bg-transparent underline-offset-4 hover:text-primaryButtonLight hover:underline',
       },
       size: {
         sm: 'h-10 rounded-md px-4',
