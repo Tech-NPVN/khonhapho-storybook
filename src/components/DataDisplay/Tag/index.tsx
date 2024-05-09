@@ -1,7 +1,7 @@
 import { Button, CloseIcon } from '@/components/General';
 import { cn } from '@/utils';
 import { VariantProps, cva } from 'class-variance-authority';
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 
 const tagStyles = cva(
     'rounded px-4 py-1 text-[16px] flex items-center justify-center w-fit bg-[#e7e7e7] text-[#000000]',
