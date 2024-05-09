@@ -19,11 +19,7 @@ const meta: Meta<typeof Tag> = {
                 defaultValue: { summary: '#e7e7e7' }
             }
         },
-        iconSize: {
-            table: {
-                defaultValue: { summary: '12' }
-            }
-        }
+      
     },
     args: {
         // 👇 Create an action that appears when the onClick event is fired
@@ -42,6 +38,5 @@ export const Default: Story = {
         children: 'tag label',
         backgroundColor: '#e7e7e7',
         closeable: true,
-        iconSize:'12'
     },
 };
