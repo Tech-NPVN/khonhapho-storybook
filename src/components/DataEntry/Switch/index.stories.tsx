@@ -9,6 +9,7 @@ const meta: Meta<typeof Switch> = {
   },
   args: {
     disabled: false,
+    defaultChecked: false,
   },
   argTypes: {
     isChecked: {
