@@ -3,10 +3,14 @@ import { CheckBox } from '.';
 
 const meta: Meta<typeof CheckBox> = {
 <<<<<<< HEAD
+<<<<<<< HEAD
   title: 'Data Entry/CheckBox',
 =======
   title: 'Data Entry/Checkbox',
 >>>>>>> e5f5b92b1e022c497b37fcd2249e6aa7bbb7071f
+=======
+  title: 'Data Entry/Checkbox',
+>>>>>>> 47b4e8628fb5944a20ac272495318d76ed3ee5fa
   component: CheckBox,
   tags: ['autodocs'],
   args: {
