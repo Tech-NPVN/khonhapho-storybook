@@ -77,7 +77,8 @@ export const FormExample: Story = {
           className="min-w-[400px]"
         >
           <h3 className="mb-5 text-2xl font-bold">Login</h3>
-          <InputForm
+
+          <InputForm<z.infer<typeof LoginFormSchema>>
             name="username"
             label="Username"
             className="mb-5"
@@ -85,7 +86,8 @@ export const FormExample: Story = {
             prefixIcon={<UserIcon />}
             required
           />
-          <InputFormPassword
+
+          <InputFormPassword<z.infer<typeof LoginFormSchema>>
             name="password"
             label="Password"
             className="mb-8"

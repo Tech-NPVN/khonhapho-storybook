@@ -120,7 +120,14 @@ const FormDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLPara
   ({ className, ...props }, ref) => {
     const { formDescriptionId } = useFormField();
 
-    return <p ref={ref} id={formDescriptionId} className={cn('text-sm', className)} {...props} />;
+    return (
+      <p
+        ref={ref}
+        id={formDescriptionId}
+        className={cn('text-[13px] font-medium opacity-80', className)}
+        {...props}
+      />
+    );
   },
 );
 FormDescription.displayName = 'FormDescription';
