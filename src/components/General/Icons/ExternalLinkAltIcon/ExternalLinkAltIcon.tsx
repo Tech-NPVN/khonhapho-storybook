@@ -5,9 +5,10 @@ const ExternalLinkAltIcon = ({
   width,
   height,
   viewBox = '0 0 10 10',
+  className = '',
 }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox}>
+    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
       <path
         d="M9 7V8.25C9 8.66421 8.66421 9 8.25 9H1V1.75C1 1.33579 1.33579 1 1.75 1H3"
         stroke={color}

@@ -1,8 +1,14 @@
 import SvgIcon, { TypeIcon } from '../SvgIcon';
 
-const ArrowsExchangeIcon = ({ color = '#333', width, height, viewBox }: TypeIcon) => {
+const ArrowsExchangeIcon = ({
+  color = '#333',
+  width,
+  height,
+  viewBox,
+  className = '',
+}: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox}>
+    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
       <path
         d="M1 5H12.6694C12.7683 5 12.8072 4.87168 12.7249 4.81679L6.99967 1"
         stroke={color}

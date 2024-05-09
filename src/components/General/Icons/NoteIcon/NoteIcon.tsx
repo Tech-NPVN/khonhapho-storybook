@@ -1,8 +1,8 @@
 import SvgIcon, { TypeIcon } from '../SvgIcon';
 
-const NoteIcon = ({ color = '#333', width, height, viewBox }: TypeIcon) => {
+const NoteIcon = ({ color = '#333', width, height, viewBox, className = '' }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox}>
+    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
       <g clipPath="url(#clip0_757_77883)">
         <rect x="8.5" y="8.5" width="15" height="15" stroke={color} />
       </g>

@@ -5,9 +5,10 @@ const ArrowDownArrowUpIcon = ({
   width,
   height,
   viewBox = '0 0 16 18',
+  className = '',
 }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox}>
+    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
       <path
         d="M4.14645 17.3536C4.34171 17.5488 4.65829 17.5488 4.85355 17.3536L8.03553 14.1716C8.2308 13.9763 8.2308 13.6597 8.03553 13.4645C7.84027 13.2692 7.52369 13.2692 7.32843 13.4645L4.5 16.2929L1.67157 13.4645C1.47631 13.2692 1.15973 13.2692 0.964466 13.4645C0.769204 13.6597 0.769204 13.9763 0.964466 14.1716L4.14645 17.3536ZM4 1V17H5V1H4Z"
         fill={color}

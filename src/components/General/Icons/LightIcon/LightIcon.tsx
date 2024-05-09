@@ -1,8 +1,14 @@
 import SvgIcon, { TypeIcon } from '../SvgIcon';
 
-const LightIcon = ({ color = '#333', width, height, viewBox = '0 0 16 16' }: TypeIcon) => {
+const LightIcon = ({
+  color = '#333',
+  width,
+  height,
+  viewBox = '0 0 16 16',
+  className = '',
+}: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox}>
+    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

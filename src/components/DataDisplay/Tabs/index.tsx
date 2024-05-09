@@ -8,12 +8,13 @@ const buttonTabStyles = cva(
   {
     variants: {
       variant: {
-        underline: 'border-b-2 border-transparent hover:text-green rounded-none',
-        underlineSelected: 'border-b-2 border-green text-green rounded-none',
+        underline: 'border-b-2 border-transparent hover:text-primaryButtonLight rounded-none',
+        underlineSelected:
+          'border-b-2 border-primaryButtonLight text-primaryButtonLight rounded-none',
         fillGray: 'px-[56px]',
         fillGraySelected: 'px-[56px] bg-[#F3F4F6]',
         fillGreen: 'px-[56px]',
-        fillGreenSelected: 'px-[56px] bg-green text-white',
+        fillGreenSelected: 'px-[56px] bg-primaryButtonLight text-white',
       },
     },
     defaultVariants: {
