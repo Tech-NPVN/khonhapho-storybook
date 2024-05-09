@@ -27,7 +27,13 @@ type TypographyProps = React.HTMLAttributes<HTMLElement> &
     color?: string;
   };
 
-const Typography = ({ variant = 'h1', className, color, children, ...props }: TypographyProps) => {
+export const Typography = ({
+  variant = 'h1',
+  className,
+  color,
+  children,
+  ...props
+}: TypographyProps) => {
   const Tag = variant;
 
   return (
@@ -36,5 +42,3 @@ const Typography = ({ variant = 'h1', className, color, children, ...props }: Ty
     </Tag>
   );
 };
-
-export default Typography;
