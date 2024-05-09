@@ -1,9 +1,9 @@
 import { CheckIcon } from '@/components/General';
 import { cn } from '@/utils';
-import { Checkbox, CheckboxProps, Field, Label } from '@headlessui/react';
+import { Checkbox as CheckboxHeadless, CheckboxProps, Field, Label } from '@headlessui/react';
 import { cva, VariantProps } from 'class-variance-authority';
 
-const checkBoxCustomStyles = cva('group block size-4 rounded border', {
+const checkBoxStyles = cva('group block size-4 rounded border', {
   variants: {
     variant: {
       default:
@@ -19,30 +19,30 @@ const checkBoxCustomStyles = cva('group block size-4 rounded border', {
   },
 });
 
-type CheckBoxCustomType = CheckboxProps &
-  VariantProps<typeof checkBoxCustomStyles> & {
+type CheckBoxType = CheckboxProps &
+  VariantProps<typeof checkBoxStyles> & {
     label?: string;
   };
 
-export const CheckBoxCustom = ({
+export const CheckBox = ({
   label = '',
   className,
   onChange,
   variant,
   checked,
   ...props
-}: CheckBoxCustomType) => {
+}: CheckBoxType) => {
   return (
     <Field className="flex items-center gap-2">
-      <Checkbox
+      <CheckboxHeadless
         name={label}
         onChange={onChange}
         checked={checked}
-        className={cn(checkBoxCustomStyles({ className, variant }))}
+        className={cn(checkBoxStyles({ className, variant }))}
         {...props}
       >
         <CheckIcon className="hidden group-data-[checked]:block" width="15" height="13" />
-      </Checkbox>
+      </CheckboxHeadless>
       <Label>{label}</Label>
     </Field>
   );
