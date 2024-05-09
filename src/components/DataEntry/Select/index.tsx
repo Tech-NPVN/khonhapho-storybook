@@ -114,7 +114,7 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
                       {selected ? (
                         <span
                           className={clsx(
-                            selected ? 'text-green' : 'hidden',
+                            selected ? 'text-primaryButtonLight' : 'hidden',
                             'absolute inset-y-0 right-0 flex items-center pr-4 ',
                           )}
                         >

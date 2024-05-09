@@ -35,10 +35,22 @@ const meta: Meta<typeof Tabs> = {
       control: {
         step: 1,
       },
+      table: {
+        type: {
+          detail: `interface TabRenderProps {
+            name: string | ReactNode;
+            key: string;
+            children: ReactNode;
+            disabled?: boolean;
+          }`,
+        },
+      },
     },
     variantTab: {
       table: {
-        type: { summary: 'underline | fillGray | fillGreen' },
+        type: {
+          summary: 'underline | fillGray | fillGreen',
+        },
       },
     },
   },

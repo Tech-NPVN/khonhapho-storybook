@@ -26,23 +26,29 @@ export const Basic: Story = {
     disabled: false,
     name: '',
     onChange: () => {},
+    sizeInput: 'normal',
+  },
+  argTypes: {
+    sizeInput: {
+      options: ['small', 'normal', 'large'],
+      table: {
+        defaultValue: { summary: 'normal' },
+        type: {
+          summary: 'small | normal | large',
+        },
+      },
+      control: { type: 'radio' },
+    },
   },
 };
 
-export const PrefixIcon: Story = {
-  args: {
-    prefixIcon: <UserIcon />,
-    className: 'min-w-[400px]',
-    placeholder: 'Username',
-  },
-};
-
-export const SuffixIcon: Story = {
-  args: {
-    suffixIcon: <LockIcon />,
-    className: 'min-w-[400px]',
-    placeholder: 'Password',
-  },
+export const PrefixAndSuffixIcon: Story = {
+  render: () => (
+    <div className="min-w-[400px] flex flex-col gap-5">
+      <Input prefixIcon={<UserIcon />} placeholder="Username" />
+      <Input suffixIcon={<LockIcon />} placeholder="Password" />
+    </div>
+  ),
 };
 
 export const FormExample: Story = {
@@ -70,20 +76,24 @@ export const FormExample: Story = {
           onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}
           className="min-w-[400px]"
         >
-          <h3 className="text-2xl font-bold mb-5">Login</h3>
-          <InputForm
+          <h3 className="mb-5 text-2xl font-bold">Login</h3>
+
+          <InputForm<z.infer<typeof LoginFormSchema>>
             name="username"
             label="Username"
             className="mb-5"
             placeholder="Username"
             prefixIcon={<UserIcon />}
+            required
           />
-          <InputFormPassword
+
+          <InputFormPassword<z.infer<typeof LoginFormSchema>>
             name="password"
             label="Password"
             className="mb-8"
             placeholder="Password"
             prefixIcon={<LockIcon />}
+            required
           />
 
           <div className="w-full">
