@@ -34,7 +34,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {
         color: '#000000',
-        children: 'label',
+        children: 'tag label',
         backgroundColor: '#e7e7e7',
         closeable: true,
     },
