@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Breadcrumb, HomeIcon, ItemBreadcrumb } from '.';
+import { Breadcrumb, ItemBreadcrumb } from '.';
 
 const breadcrumbs: ItemBreadcrumb[] = [
-  { label: 'Home', href: '/', icon: <HomeIcon /> },
+  { label: 'Home', href: '/' },
   { label: 'Docs', href: '/docs' },
   { label: 'Breadcrumbs', href: '/breadcrumbs' },
 ];
