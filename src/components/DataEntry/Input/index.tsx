@@ -7,7 +7,7 @@ import { FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../Form';
 
 const inputStyles = cva(
-  'flex items-center gap-2 w-full rounded-xl border transition-all duration-300 bg-transparent text-sm focus-within:border-primaryButtonLight focus-within:ring- ring-opacity-50',
+  'flex items-center gap-2 w-full rounded-xl border transition-all duration-300 bg-transparent text-sm focus-within:border-primaryButtonLight ring-opacity-50',
   {
     variants: {
       sizeInput: {
@@ -72,7 +72,7 @@ export const InputFormPassword = <T extends FieldValues>({
   ...props
 }: InputFormPasswordProps<T>) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const { control } = useFormContext();
+  const { control } = useFormContext<T>();
 
   return (
     <FormField
@@ -89,7 +89,7 @@ export const InputFormPassword = <T extends FieldValues>({
           <FormControl>
             <Input
               type={showPassword ? 'text' : 'password'}
-              className={`${error && 'border-primaryButtonLight'}`}
+              className={`${error && 'border-errorLight'}`}
               prefixIcon={prefixIcon}
               suffixIcon={
                 <button type="button" onClick={() => setShowPassword(!showPassword)}>
@@ -122,7 +122,7 @@ export const InputForm = <T extends FieldValues>({
   required,
   ...props
 }: InputFormProps<T>) => {
-  const { control } = useFormContext();
+  const { control } = useFormContext<T>();
 
   return (
     <FormField
@@ -138,7 +138,7 @@ export const InputForm = <T extends FieldValues>({
           )}
           <FormControl>
             <Input
-              className={`${error && 'border-primaryButtonLight'}`}
+              className={`${error && 'border-errorLight'}`}
               prefixIcon={prefixIcon}
               suffixIcon={suffixIcon}
               {...field}
