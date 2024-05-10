@@ -15,6 +15,7 @@ const meta: Meta<typeof CheckBox> = {
     variant: 'default',
     label: 'Label',
     checked: false,
+    disabled: false,
   },
   argTypes: {
     variant: {
@@ -51,6 +52,9 @@ export const Default: Story = {
   },
 };
 
+/**
+ * You can control the checkbox with the `checked` and `onChange` props:
+ */
 export const Controlled: Story = {
   render: () => {
     const CheckboxControlled = () => {

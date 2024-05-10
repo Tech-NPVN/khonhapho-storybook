@@ -87,3 +87,25 @@ export const Link: Story = {
     children: 'Button Link',
   },
 };
+
+/**
+ * You can set loading effect for button by using props `isLoading`
+ */
+export const Loading: Story = {
+  render: () => {
+    return (
+      <div className="flex gap-8">
+        <Button isLoading>Loading</Button>
+        <Button isLoading variant="outline">
+          Loading
+        </Button>
+        <Button isLoading variant="ghost">
+          Loading
+        </Button>
+        <Button isLoading variant="link">
+          Loading
+        </Button>
+      </div>
+    );
+  },
+};
