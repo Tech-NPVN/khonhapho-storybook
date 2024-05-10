@@ -1,6 +1,11 @@
+import { Button, Typography } from '@/components/General';
+import { zodResolver } from '@hookform/resolvers/zod';
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
-import Radio from '.';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import Radio, { RadioForm, radioOptions } from '.';
+import { Form } from '../Form';
 
 const meta: Meta<typeof Radio> = {
   title: 'Data Entry/Radio',
@@ -18,7 +23,7 @@ const RADIOS = [
   {
     value: '1',
     label: 'One',
-    checked: false,
+    checked: true,
   },
   {
     value: '2',
@@ -72,5 +77,53 @@ export const Demo: Story = {
         ))}
       </>
     );
+  },
+};
+export const FormExample: Story = {
+  render: () => {
+    const FormSchema = z.object({
+      item: z.object(
+        {
+          value: z.string(),
+          label: z.string(),
+        },
+        { message: '1111' },
+      ),
+    });
+
+    const RadioFormExample = () => {
+      const form = useForm<z.infer<typeof FormSchema>>({
+        resolver: zodResolver(FormSchema),
+        defaultValues: {
+          item: RADIOS[0],
+        },
+      });
+
+      return (
+        <Form {...form}>
+          <form
+            className="w-96"
+            onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}
+          >
+            <div className="border rounded px-5 py-3">
+              <Typography variant="h5" className="mb-3">
+                Demo radio
+              </Typography>
+              <RadioForm<z.infer<typeof FormSchema>>
+                name="item"
+                options={radioOptions}
+                description="Select the items you want to display."
+              />
+            </div>
+
+            <Button type="submit" className="mt-5">
+              Submit
+            </Button>
+          </form>
+        </Form>
+      );
+    };
+
+    return <RadioFormExample />;
   },
 };
