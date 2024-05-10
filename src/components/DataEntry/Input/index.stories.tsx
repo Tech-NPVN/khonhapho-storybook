@@ -62,47 +62,51 @@ export const FormExample: Story = {
       }),
     });
 
-    const form = useForm<z.infer<typeof LoginFormSchema>>({
-      resolver: zodResolver(LoginFormSchema),
-      defaultValues: {
-        username: '',
-        password: '',
-      },
-    });
+    const LoginFormExample = () => {
+      const form = useForm<z.infer<typeof LoginFormSchema>>({
+        resolver: zodResolver(LoginFormSchema),
+        defaultValues: {
+          username: '',
+          password: '',
+        },
+      });
 
-    return (
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}
-          className="min-w-[400px]"
-        >
-          <h3 className="mb-5 text-2xl font-bold">Login</h3>
+      return (
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}
+            className="min-w-[400px]"
+          >
+            <h3 className="mb-5 text-2xl font-bold">Login</h3>
 
-          <InputForm<z.infer<typeof LoginFormSchema>>
-            name="username"
-            label="Username"
-            className="mb-5"
-            placeholder="Username"
-            prefixIcon={<UserIcon />}
-            required
-          />
+            <InputForm<z.infer<typeof LoginFormSchema>>
+              name="username"
+              label="Username"
+              className="mb-5"
+              placeholder="Username"
+              prefixIcon={<UserIcon />}
+              required
+            />
 
-          <InputFormPassword<z.infer<typeof LoginFormSchema>>
-            name="password"
-            label="Password"
-            className="mb-8"
-            placeholder="Password"
-            prefixIcon={<LockIcon />}
-            required
-          />
+            <InputFormPassword<z.infer<typeof LoginFormSchema>>
+              name="password"
+              label="Password"
+              className="mb-8"
+              placeholder="Password"
+              prefixIcon={<LockIcon />}
+              required
+            />
 
-          <div className="w-full">
-            <Button type="submit" className="w-full">
-              Submit
-            </Button>
-          </div>
-        </form>
-      </Form>
-    );
+            <div className="w-full">
+              <Button type="submit" className="w-full">
+                Submit
+              </Button>
+            </div>
+          </form>
+        </Form>
+      );
+    };
+
+    return <LoginFormExample />;
   },
 };
