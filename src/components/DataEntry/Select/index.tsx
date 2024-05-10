@@ -38,7 +38,14 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
     >
       {({ open }) => (
         <div className={clsx('relative w-full', props.disabled ? 'opacity-50' : '')}>
-          <ListboxButton className="relative min-w-11 w-full h-full cursor-default rounded-md bg-white pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
+          <ListboxButton
+            onClick={(e) => {
+              // console.log(e.currentTarget.tagName ==);
+              // e.preventDefault();
+              // e.stopPropagation();
+            }}
+            className="relative min-w-11 w-full h-full cursor-default rounded-md bg-white pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
+          >
             {!props.multiple && !Array.isArray(value) && (
               <div className="flex w-full items-center h-full flex-wrap py-2">
                 <div className="ml-1 block truncate my-[2px]">
@@ -61,6 +68,11 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
                     className="my-[2px] h-[36px] rounded-md py-0 text-sm mx-[2px] px-2"
                     children={option.label}
                     closeable
+                    onClose={() => {
+                      const index = value.indexOf(option);
+                      value.splice(index, 1);
+                      onChange && onChange(value);
+                    }}
                   />
                 ))}
               </div>
@@ -97,7 +109,7 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
                   value={op}
                   disabled={op.disabled}
                 >
-                  {({ selected, active }) => (
+                  {({ selected }) => (
                     <>
                       <div className="flex items-center ">
                         <span
