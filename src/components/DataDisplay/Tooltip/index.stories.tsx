@@ -1,25 +1,18 @@
-import { AlarmClock, Button } from '@/components/General';
+import { Button } from '@/components/General';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Dropdown, DropdownRenderProps } from '.';
+import { Tooltip } from '.';
 
-const Items: DropdownRenderProps[] = [
-  { key: '1', label: <a href="/">Xem/Sửa tài khoản</a> },
-  { key: '2', label: 'Cấp lại mật khẩu', icon: <AlarmClock /> },
-  { key: '3', label: 'Thay đổi chức danh', icon: <AlarmClock />, disabled: true },
-];
-
-const meta: Meta<typeof Dropdown> = {
-  title: 'Navigation/Dropdown',
-  component: Dropdown,
+const meta: Meta<typeof Tooltip> = {
+  title: 'Data Display/Tooltip',
+  component: Tooltip,
   parameters: {
     layout: 'centered',
   },
   args: {
-    items: Items,
     placement: 'bottom',
     trigger: 'mouseenter',
-    children: <Button>Dropdown</Button>,
-    delay: [0, 400],
+    children: <Button>Tooltip</Button>,
+    title: 'Hello Pro',
   },
   argTypes: {
     placement: {
@@ -40,7 +33,7 @@ const meta: Meta<typeof Dropdown> = {
     delay: {
       table: {
         type: {
-          summary: '[0, 400]',
+          summary: '[]',
         },
       },
     },
