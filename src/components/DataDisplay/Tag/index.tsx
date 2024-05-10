@@ -25,7 +25,7 @@ export const Tag = ({
   children,
   className,
   onClose,
-  
+
   backgroundColor,
   closeable,
   iconSize = '12',
@@ -36,7 +36,13 @@ export const Tag = ({
     <div className={cn(tagStyles({ className }))} style={{ color, backgroundColor }} {...props}>
       <span>{children}</span>
       {closeable && (
-        <Button className="px-0 bg-transparent hover:bg-transparent" onClick={onClose}>
+        <Button
+          className="px-0 bg-transparent hover:bg-transparent"
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose?.();
+          }}
+        >
           <CloseIcon
             width={iconSize}
             height={iconSize}
