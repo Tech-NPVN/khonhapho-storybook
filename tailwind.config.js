@@ -34,6 +34,20 @@ export default {
         linkDark: '#69C3F4',
         linkHoverDark: '#A2DEFF',
       },
+      keyframes: {
+        slideDown: {
+          '0%': { opacity: '0', transform: 'translateY(-1rem)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        slideUp: {
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+          '0%': { opacity: '0', transform: 'translateY(-1rem)' },
+        },
+      },
+      animation: {
+        slideDown: 'slideDown 0.3s ease-in-out forwards',
+        slideUp: 'slideUp 0.3s ease-in-out forwards',
+      },
     },
   },
   plugins: [],
