@@ -14,5 +14,36 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {},
+  args: {
+    label: 'Default',
+    value: '',
+    checked: false,
+    disabled: false,
+    className: '',
+    defaultChecked: false,
+    name: '',
+  },
+  argTypes: {
+    checked: {
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+      },
+    },
+    disabled: {
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+      },
+    },
+    defaultChecked: {
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+      },
+    },
+  },
 };
