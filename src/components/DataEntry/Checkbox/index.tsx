@@ -77,7 +77,7 @@ export const CheckboxForm = <T extends FieldValues>({
   // displayValue = 'value',
   ...props
 }: CheckboxFormProps<T>) => {
-  const { control } = useFormContext();
+  const { control } = useFormContext<T>();
 
   return (
     <FormField

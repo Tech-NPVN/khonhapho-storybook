@@ -3,17 +3,20 @@ import Tippy from '@tippyjs/react/headless';
 import { VariantProps, cva } from 'class-variance-authority';
 import { ReactElement, ReactNode } from 'react';
 
-const dropdownStyles = cva('flex items-center w-full p-2 text-[#000] rounded-[4px] bg-white', {
-  variants: {
-    variant: {
-      default: 'hover:bg-[rgba(229,230,232,1)]',
-      disabled: 'cursor-default opacity-30 pointer-events-none',
+const dropdownStyles = cva(
+  'flex items-center w-full p-2 text-[#000] rounded-[4px] bg-white transition-colors ease-in-out duration-200',
+  {
+    variants: {
+      variant: {
+        default: 'hover:bg-[rgba(229,230,232,1)]',
+        disabled: 'cursor-default opacity-30 pointer-events-none',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
     },
   },
-  defaultVariants: {
-    variant: 'default',
-  },
-});
+);
 
 export type DropdownRenderProps = {
   key: string;
@@ -72,7 +75,7 @@ export const Dropdown = ({
   const renderResult = (attrs: any) => (
     <div
       className={cn(
-        'rounded-lg min-w-[160px] p-1 bg-[#fff] shadow-[0_4px_15px_0_rgba(0,0,0,0.06)]',
+        `rounded-lg min-w-[160px] p-1 bg-[#fff] shadow-[0_4px_15px_0_rgba(0,0,0,0.06)] animate-slideDown`,
       )}
       tabIndex="-1"
       {...attrs}

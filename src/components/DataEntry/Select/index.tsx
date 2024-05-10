@@ -7,7 +7,10 @@ import {
   Transition,
 } from '@headlessui/react';
 import clsx from 'clsx';
-import { Fragment } from 'react';
+import { Fragment, ReactNode } from 'react';
+import { FieldPath, FieldValues, useFormContext } from 'react-hook-form';
+import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../Form';
+import { RequiredSymbolLabel } from '../Input';
 
 interface IOption {
   value: string;
@@ -62,18 +65,15 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
             )}
             {props.multiple && Array.isArray(value) && value.length > 0 && (
               <div className="flex w-full items-center h-full flex-wrap py-[2px]">
-                {value?.map((option) => (
+                {value?.map((option, i) => (
                   <Tag
                     key={option.value}
                     className="my-[2px] h-[36px] rounded-md py-0 text-sm mx-[2px] px-2"
-                    children={option.label}
                     closeable
-                    onClose={() => {
-                      const index = value.indexOf(option);
-                      value.splice(index, 1);
-                      onChange && onChange(value);
-                    }}
-                  />
+                    onClose={() => onChange?.(value.filter((_, index) => index !== i))}
+                  >
+                    {option.label}
+                  </Tag>
                 ))}
               </div>
             )}
@@ -98,11 +98,11 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
               {options?.map((op) => (
                 <ListboxOption
                   key={op.value}
-                  className={({ selected, active }) =>
+                  className={({ selected, focus }) =>
                     clsx(
                       selected ? 'bg-[#afbfac] text-black' : 'text-gray-900',
                       'relative cursor-default select-none py-2 pl-2 mx-1 pr-8  rounded-lg my-[2px]',
-                      active && !selected ? 'bg-black/5' : '',
+                      focus && !selected ? 'bg-black/5' : '',
                       op.disabled ? 'opacity-50' : '',
                     )
                   }
@@ -164,5 +164,45 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
         </div>
       )}
     </Listbox>
+  );
+};
+
+type SelectFormProps<T extends FieldValues> = ISelect & {
+  name: FieldPath<T>;
+  label?: string;
+  description?: string | ReactNode;
+  required?: boolean;
+};
+
+export const SelectForm = <T extends FieldValues>({
+  name,
+  label,
+  description,
+  className,
+  required,
+  ...props
+}: SelectFormProps<T>) => {
+  const { control } = useFormContext<T>();
+
+  return (
+    <FormField
+      control={control}
+      name={name}
+      render={({ field, fieldState: { error } }) => (
+        <FormItem>
+          {label && (
+            <FormLabel>
+              {required && <RequiredSymbolLabel />}
+              {label}
+            </FormLabel>
+          )}
+          <FormControl>
+            <Select className={`${error && 'border-errorLight'}`} {...field} {...props} />
+          </FormControl>
+          {description && <FormDescription>{description}</FormDescription>}
+          <FormMessage />
+        </FormItem>
+      )}
+    />
   );
 };

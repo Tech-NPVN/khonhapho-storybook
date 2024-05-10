@@ -16,6 +16,7 @@ type ModalProps = HTMLAttributes<HTMLDivElement> & {
   width?: number;
   height?: number;
   children?: ReactNode;
+  disableInteractOutside?: boolean;
 };
 
 export const Modal = ({
@@ -31,6 +32,7 @@ export const Modal = ({
   title,
   footer = false,
   onCancel,
+  disableInteractOutside,
   centered,
   ...props
 }: ModalProps) => {
@@ -67,7 +69,7 @@ export const Modal = ({
                   <div
                     className="bg-[white] w-1/2 min-h-[150px]  px-8 py-3 rounded-xl relative"
                     style={{ width, height }}
-                    ref={modalRef}
+                    {...(!disableInteractOutside ? { ref: modalRef } : null)}
                   >
                     <div className="flex flex-col justify-between h-full">
                       <div className={`mt-4 ${title ? 'mb-4' : 'mb-12'}`}>
