@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Modal } from '.';
-import { Button} from '@/components/General';
+import { Button } from '@/components/General';
 import { useState } from 'react';
-
 
 const meta: Meta<typeof Modal> = {
   title: 'Feedback/Modal',
@@ -70,6 +69,13 @@ const meta: Meta<typeof Modal> = {
         },
       },
     },
+    disableInteractOutside: {
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+      },
+    },
     children: {
       table: {
         defaultValue: {
@@ -95,21 +101,28 @@ export const Default: Story = {
     title: 'Dialog',
     children: `Test`,
     open: false,
+    disableInteractOutside: true,
   },
 };
 
 export const Example: Story = {
   render: () => {
     const [isShowModal, setIsShowModal] = useState<boolean>(false);
-  
+
     return (
       <div>
         <Button onClick={() => setIsShowModal(true)}>Open Modal</Button>
-        <Modal open={isShowModal} onCancel={() => setIsShowModal(false)} footer={true} title='Dialog Hay Modal?'>
-            <p>Test Modal</p>
-            <p>Test Modal</p>
-            <p>Test Dialog</p>
-            <p>Test Dialog</p>
+        <Modal
+          open={isShowModal}
+          onCancel={() => setIsShowModal(false)}
+          footer={true}
+          title="Dialog Hay Modal?"
+          disableInteractOutside={true}
+        >
+          <p>Test Modal</p>
+          <p>Test Modal</p>
+          <p>Test Dialog</p>
+          <p>Test Dialog</p>
         </Modal>
       </div>
     );
