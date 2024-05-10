@@ -25,6 +25,7 @@ export const Tag = ({
   children,
   className,
   onClose,
+  
   backgroundColor,
   closeable,
   iconSize = '12',
