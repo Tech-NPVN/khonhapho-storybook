@@ -1,3 +1,4 @@
+import { Tag } from '@/components/DataDisplay/Tag';
 import {
   Listbox,
   ListboxButton,
@@ -27,14 +28,6 @@ interface ISelect {
 }
 
 export const Select = ({ className, options, value, onChange, ...props }: ISelect) => {
-  // const [query, setQuery] = useState('');
-  // const filteredOptions =
-  //   query === ''
-  //     ? options
-  //     : options.filter((option) => {
-  //         return option.label.toLowerCase().includes(query.toLowerCase());
-  //       });
-
   return (
     <Listbox
       disabled={props.disabled}
@@ -44,28 +37,34 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
       {...props}
     >
       {({ open }) => (
-        <div className={clsx('relative w-full min-w-11', props.disabled ? 'opacity-50' : '')}>
-          <ListboxButton className="relative w-full h-full cursor-default rounded-md bg-white pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
-            <div className="flex items-center h-full flex-wrap py-2">
-              {!props.multiple && !Array.isArray(value) && (
+        <div className={clsx('relative w-full', props.disabled ? 'opacity-50' : '')}>
+          <ListboxButton className="relative min-w-11 w-full h-full cursor-default rounded-md bg-white pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
+            {!props.multiple && !Array.isArray(value) && (
+              <div className="flex w-full items-center h-full flex-wrap py-2">
                 <div className="ml-1 block truncate my-[2px]">
                   {value?.label ?? (props.placeholder ? props.placeholder : 'Chọn một lựa chọn')}
                 </div>
-              )}
-              {props.multiple && Array.isArray(value) && value.length == 0 && (
+              </div>
+            )}
+            {props.multiple && Array.isArray(value) && value.length == 0 && (
+              <div className="flex w-full items-center h-full flex-wrap py-2">
                 <div className="ml-1 block truncate my-[2px]">
                   {props.placeholder ? props.placeholder : 'Chọn nhiều lựa chọn'}
                 </div>
-              )}
-              {props.multiple &&
-                Array.isArray(value) &&
-                value.length > 0 &&
-                value?.map((option) => (
-                  <div className="bg-black/30 m-[2px] px-2 rounded" key={option.value}>
-                    {option.label}
-                  </div>
+              </div>
+            )}
+            {props.multiple && Array.isArray(value) && value.length > 0 && (
+              <div className="flex w-full items-center h-full flex-wrap py-[2px]">
+                {value?.map((option) => (
+                  <Tag
+                    key={option.value}
+                    className="my-[2px] h-[36px] rounded-md py-0 text-sm mx-[2px] px-2"
+                    children={option.label}
+                    closeable
+                  />
                 ))}
-            </div>
+              </div>
+            )}
 
             <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
               <svg width={14} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -83,7 +82,7 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
             leaveTo="opacity-0"
             enterFrom="h-0"
           >
-            <ListboxOptions className="absolute z-50 mt-1 max-h-96 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm transition-all duration-300 ease-linear">
+            <ListboxOptions className="absolute z-50 mt-1 max-h-72 h-min w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm transition-all duration-300 ease-linear">
               {options?.map((op) => (
                 <ListboxOption
                   key={op.value}

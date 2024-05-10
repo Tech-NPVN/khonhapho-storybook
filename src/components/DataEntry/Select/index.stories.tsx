@@ -1,11 +1,29 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { Select } from '.';
+
+interface IOption {
+  value: string;
+  label: string;
+  disabled?: boolean;
+}
+
 const OPTIONS = [
-  { value: 'Select 1', label: 'Select 1' },
-  { value: 'Select 2', label: 'Select 2' },
-  { value: 'Disabled', label: 'Disabled', disabled: true },
-  { value: 'Select 4', label: 'Select 4' },
-];
+  { value: 'Nguyễn Phương Nam', label: 'Nguyễn Phương Nam' },
+  { value: 'Nguyễn Đăng Trung', label: 'Nguyễn Đăng Trung' },
+  { value: 'Lương Quang Trọng', label: 'Lương Quang Trọng', disabled: true },
+  { value: 'Hoàng Văn Anh', label: 'Hoàng Văn Anh' },
+  { value: 'Nguyễn Lâm Chúc', label: 'Nguyễn Lâm Chúc' },
+  { value: 'Hà Bảo Khiêm', label: 'Hà Bảo Khiêm' },
+  { value: 'Phạm Anh Tuấn', label: 'Phạm Anh Tuấn' },
+  { value: 'Nguyễn Đức An', label: 'Nguyễn Đức An' },
+  { value: 'Nguyễn Bình Minh', label: 'Nguyễn Bình Minh' },
+  { value: 'Nguyễn Thu Hiền', label: 'Nguyễn Thu Hiền' },
+  { value: 'Đặng Thị Quỳnh Anh', label: 'Đặng Thị Quỳnh Anh' },
+  { value: 'Nguyễn Thu Hà', label: 'Nguyễn Thu Hà' },
+  { value: 'Nguyễn Khánh Linh', label: 'Nguyễn Khánh Linh' },
+] as IOption[];
+
 const meta: Meta<typeof Select> = {
   title: 'Data Entry/Select',
   component: Select,
@@ -91,27 +109,22 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    className: '',
-    isLoading: false,
-    multiple: false,
-    disabled: false,
-    options: OPTIONS,
-    onChange: () => {
-      console.log('onChange');
-    },
+  render: () => {
+    const [selected, setSelected] = useState<IOption>();
+    return (
+      <div className="min-h-80 w-52">
+        <Select options={OPTIONS} value={selected} onChange={setSelected} />
+      </div>
+    );
   },
 };
 export const Multiple: Story = {
-  args: {
-    className: '',
-    isLoading: false,
-    multiple: true,
-    disabled: false,
-    options: OPTIONS,
-    value: [OPTIONS[0], OPTIONS[1]],
-    onChange: () => {
-      console.log('onChange');
-    },
+  render: () => {
+    const [selected, setSelected] = useState<IOption[]>([]);
+    return (
+      <div className="min-h-80 w-96">
+        <Select options={OPTIONS} value={selected} onChange={setSelected} multiple />
+      </div>
+    );
   },
 };
