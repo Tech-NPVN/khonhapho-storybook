@@ -5,11 +5,9 @@ export const AuthLayout = () => {
   return (
     <div>
       <Header />
-      <div className="grid grid-cols-12 ">
-        <div className="col-span-2 hidden md:block">
-          <Sidebar />
-        </div>
-        <main className="col-span-10 bg-[#F3F4F6] dark:bg-[#000] flex justify-center pt-4 h-screen md:h-full w-screen md:w-full">
+      <div className="flex mt-[65px]">
+        <Sidebar />
+        <main className="lg:w-[calc(100vw_-_250px)] relative w-screen mx-auto px-0 lg:p-4 ml-0 lg:ml-[250px]">
           <Outlet />
         </main>
       </div>
