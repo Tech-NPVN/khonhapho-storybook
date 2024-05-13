@@ -1,3 +1,7 @@
 export const Home = () => {
-  return <>Home</>;
+  return (
+    <div className="bg-white" data-mode="dark">
+      Home
+    </div>
+  );
 };
