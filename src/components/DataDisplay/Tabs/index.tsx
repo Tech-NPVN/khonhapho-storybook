@@ -11,9 +11,9 @@ const buttonTabStyles = cva(
         underline: 'border-b-2 border-transparent hover:text-primaryButtonLight rounded-none',
         underlineSelected:
           'border-b-2 border-primaryButtonLight text-primaryButtonLight rounded-none',
-        fillGray: 'px-[56px]',
+        fillGray: 'px-[56px] ',
         fillGraySelected: 'px-[56px] bg-[#F3F4F6]',
-        fillGreen: 'px-[56px]',
+        fillGreen: 'text-textSecondaryLight px-[56px]',
         fillGreenSelected: 'px-[56px] bg-primaryButtonLight text-white',
       },
     },
@@ -64,6 +64,7 @@ export const Tabs = ({ tabs, variantTab = 'underline', ...buttonProps }: TabsPro
                     variant: selected ? `${variantTab}Selected` : variantTab,
                     className,
                   }),
+                  'font-semibold',
                 )}
                 {...props}
               >
