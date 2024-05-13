@@ -7,7 +7,7 @@ import { FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../Form';
 
 const inputStyles = cva(
-  'flex items-center gap-2 w-full rounded-xl border transition-all duration-300 bg-transparent text-sm focus-within:border-primaryButtonLight ring-opacity-50',
+  'flex items-center gap-2 w-full rounded-xl border transition-all duration-300 bg-transparent dark:border-textSecondaryDark dark:bg-secondaryColorDark dark:[&>svg>path]:fill-white dark:[&>button>svg>path]:fill-white text-sm focus-within:border-primaryButtonLight ring-opacity-50',
   {
     variants: {
       sizeInput: {
@@ -42,7 +42,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <InputHeadless
           type={type}
           ref={ref}
-          className={cn('w-full focus:outline-none bg-transparent', {
+          className={cn('w-full focus:outline-none bg-transparent dark:text-white', {
             'pointer-events-none': disabled,
           })}
           {...props}
@@ -60,6 +60,7 @@ type InputFormPasswordProps<T extends FieldValues> = InputHTMLAttributes<HTMLInp
   description?: string | ReactNode;
   className?: string;
   prefixIcon?: ReactNode;
+  sizeInput?: 'small' | 'normal' | 'large' | null;
 };
 
 export const InputFormPassword = <T extends FieldValues>({
@@ -68,6 +69,7 @@ export const InputFormPassword = <T extends FieldValues>({
   description,
   className,
   prefixIcon,
+  sizeInput,
   required,
   ...props
 }: InputFormPasswordProps<T>) => {
@@ -79,7 +81,7 @@ export const InputFormPassword = <T extends FieldValues>({
       control={control}
       name={name}
       render={({ field, fieldState: { error } }) => (
-        <FormItem className={className}>
+        <FormItem>
           {label && (
             <FormLabel>
               {required && <RequiredSymbolLabel />}
@@ -89,8 +91,9 @@ export const InputFormPassword = <T extends FieldValues>({
           <FormControl>
             <Input
               type={showPassword ? 'text' : 'password'}
-              className={`${error && 'border-errorLight'}`}
+              className={`${error && '!border-errorLight !dark:border-errorDark'} ${className}`}
               prefixIcon={prefixIcon}
+              sizeInput={sizeInput}
               suffixIcon={
                 <button type="button" onClick={() => setShowPassword(!showPassword)}>
                   {showPassword ? <EyeIcon /> : <EyeSlashIcon />}
@@ -110,6 +113,7 @@ export const InputFormPassword = <T extends FieldValues>({
 
 type InputFormProps<T extends FieldValues> = InputFormPasswordProps<T> & {
   suffixIcon?: ReactNode;
+  sizeInput?: 'small' | 'normal' | 'large' | null;
 };
 
 export const InputForm = <T extends FieldValues>({
@@ -119,6 +123,7 @@ export const InputForm = <T extends FieldValues>({
   className,
   prefixIcon,
   suffixIcon,
+  sizeInput,
   required,
   ...props
 }: InputFormProps<T>) => {
@@ -129,7 +134,7 @@ export const InputForm = <T extends FieldValues>({
       control={control}
       name={name}
       render={({ field, fieldState: { error } }) => (
-        <FormItem className={className}>
+        <FormItem>
           {label && (
             <FormLabel>
               {required && <RequiredSymbolLabel />}
@@ -138,9 +143,10 @@ export const InputForm = <T extends FieldValues>({
           )}
           <FormControl>
             <Input
-              className={`${error && 'border-errorLight'}`}
+              className={`${error && '!border-errorLight !dark:border-errorDark'} ${className}`}
               prefixIcon={prefixIcon}
               suffixIcon={suffixIcon}
+              sizeInput={sizeInput}
               {...field}
               {...props}
             />
