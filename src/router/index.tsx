@@ -1,17 +1,27 @@
-import { Login, SignUp } from '@/pages/Auth';
+import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Warehouse } from '@/pages/Dashboard';
-import { AuthLayout } from '@/pages/Layout';
+import { AuthLayout, NoAuthLayout } from '@/pages/Layout';
 import { createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
   {
-    path: 'login',
-    element: <Login />,
+    element: <NoAuthLayout />,
+    children: [
+      {
+        path: 'login',
+        element: <Login />,
+      },
+      {
+        path: 'sign-up',
+        element: <SignUp />,
+      },
+      {
+        path: 'forgot-password',
+        element: <ForgotPassword />,
+      },
+    ],
   },
-  {
-    path: 'sign-up',
-    element: <SignUp />,
-  },
+
   {
     path: '/',
     element: <AuthLayout />,
