@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  darkMode: ['selector', '[data-mode="dark"]', 'class'],
+  darkMode: ['class'],
   theme: {
     extend: {
       colors: {
@@ -48,6 +48,7 @@ export default {
         slideDown: 'slideDown 0.3s ease-in-out forwards',
         slideUp: 'slideUp 0.3s ease-in-out forwards',
       },
+      important: true,
     },
   },
   plugins: [],

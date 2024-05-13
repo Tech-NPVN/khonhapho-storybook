@@ -8,7 +8,8 @@ const buttonTabStyles = cva(
   {
     variants: {
       variant: {
-        underline: 'border-b-2 border-transparent hover:text-primaryButtonLight rounded-none',
+        underline:
+          'border-b-2 border-transparent hover:text-primaryButtonLight rounded-none dark:text-white',
         underlineSelected:
           'border-b-2 border-primaryButtonLight text-primaryButtonLight rounded-none',
         fillGray: 'px-[56px]',
@@ -44,17 +45,17 @@ export const Tabs = ({ tabs, variantTab = 'underline', ...buttonProps }: TabsPro
   const getTabListCn = useMemo(() => {
     switch (variantTab) {
       case 'underline':
-        return 'border-b border-gray-200 gap-8 px-4';
+        return 'border-b border-gray-200 dark:border-white/10 gap-8';
       case 'fillGray':
-        return 'bg-[#E5E6E8] p-2 rounded-lg';
+        return 'bg-[#E5E6E8]  rounded-lg';
       case 'fillGreen':
-        return 'bg-white p-2 rounded-lg';
+        return 'bg-white rounded-lg';
     }
   }, [variantTab]);
 
   return (
     <TabGroup selectedIndex={tabIndex} onChange={setTabIndex}>
-      <TabList className={`flex w-max ${getTabListCn}`}>
+      <TabList className={`flex ${getTabListCn}`}>
         {tabs.map((tab) => (
           <Tab as={Fragment} key={tab.key}>
             {({ selected }) => (
@@ -73,7 +74,7 @@ export const Tabs = ({ tabs, variantTab = 'underline', ...buttonProps }: TabsPro
           </Tab>
         ))}
       </TabList>
-      <TabPanels className="px-4 py-2 mt-2">{tabs[tabIndex].children}</TabPanels>
+      <TabPanels>{tabs[tabIndex].children}</TabPanels>
     </TabGroup>
   );
 };

@@ -5,10 +5,12 @@ export const AuthLayout = () => {
   return (
     <div>
       <Header />
-      <Sidebar />
-      <main>
-        <Outlet />
-      </main>
+      <div className="flex mt-[65px]">
+        <Sidebar />
+        <main className="lg:w-[calc(100vw_-_250px)] relative w-screen mx-auto px-0 lg:p-4 ml-0 lg:ml-[250px]">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 };
