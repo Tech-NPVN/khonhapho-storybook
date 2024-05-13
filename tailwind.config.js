@@ -48,6 +48,7 @@ export default {
         slideDown: 'slideDown 0.3s ease-in-out forwards',
         slideUp: 'slideUp 0.3s ease-in-out forwards',
       },
+      important: true,
     },
   },
   plugins: [],
