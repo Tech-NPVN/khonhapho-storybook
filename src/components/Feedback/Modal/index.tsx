@@ -17,6 +17,7 @@ type ModalProps = HTMLAttributes<HTMLDivElement> & {
   height?: number;
   children?: ReactNode;
   disableInteractOutside?: boolean;
+  styleTitle?: string;
 };
 
 export const Modal = ({
@@ -34,6 +35,7 @@ export const Modal = ({
   onCancel,
   disableInteractOutside,
   centered,
+  styleTitle,
   ...props
 }: ModalProps) => {
   const handleCloseModal = () => {
@@ -63,18 +65,21 @@ export const Modal = ({
             >
               <DialogPanel>
                 <div
-                  className={` fixed top-0 left-0 w-full h-full  bg-[rgba(0,0,0,0.5)] z-10
+                  className={` fixed top-0 left-0 w-full  bg-[rgba(0,0,0,0.5)] z-10 overflow-auto	h-full
                     ${centered ? 'flex flex-col justify-center items-center' : 'flex flex-col items-center pt-20'}`}
                 >
                   <div
-                    className="bg-[white] w-1/2 min-h-[150px]  px-8 py-3 rounded-xl relative"
+                    className="bg-[white] w-1/2  h-fit px-8 py-3 rounded-xl relative"
                     style={{ width, height }}
                     {...(!disableInteractOutside ? { ref: modalRef } : null)}
                   >
                     <div className="flex flex-col justify-between h-full">
                       <div className={`mt-4 ${title ? 'mb-4' : 'mb-12'}`}>
                         {title && (
-                          <DialogTitle as="h3" className="text-base font-medium text-black">
+                          <DialogTitle
+                            as="h3"
+                            className={`text-base font-medium text-black w-fit ${styleTitle}`}
+                          >
                             {title || 'Dialog Title'}
                           </DialogTitle>
                         )}
@@ -86,15 +91,18 @@ export const Modal = ({
                       {footer && (
                         <div className="mt-4">
                           <hr></hr>
-                          <div className="flex justify-end gap-2 mt-4">
+                          <div className="flex justify-end gap-2 mt-4 ">
                             <Button
                               onClick={handleCloseModal}
                               backgroundColor="white"
-                              className="border text-black"
+                              className="border text-black w-15 "
                             >
                               {cancelText || 'Đóng'}
                             </Button>
-                            <Button onClick={onOk} className="border bg-[green] text-[#FFFFFF]">
+                            <Button
+                              onClick={onOk}
+                              className="border bg-[green] text-[#FFFFFF] w-15 "
+                            >
                               {okText || 'Thêm'}{' '}
                             </Button>
                           </div>
