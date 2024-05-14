@@ -5,6 +5,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        secondaryColorLightD2: '#F3F4F6',
         primaryColorLight: '#ffffff',
         primaryButtonLight: '#197D16',
         primaryButtonHoverLight: '#188C15',
@@ -28,6 +29,7 @@ export default {
         tertiaryColorDark: '#ffffff',
         dividerDark: '#6B6C6D',
         infoDark: '#1677ff',
+        secondaryColorDarkD2: '#18191A',
         errorDark: '#ff4d4f',
         successDark: '#36d399',
         warningDark: '#fbbd23',

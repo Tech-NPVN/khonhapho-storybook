@@ -51,7 +51,7 @@ export const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 right-0 flex items-center justify-between w-full px-4 border-b bg-primaryColorLight dark:bg-primaryColorDark border-dividerLight dark:border-dividerDark">
+    <header className="fixed top-0 right-0 z-10 flex items-center justify-between w-full px-4 border-b bg-primaryColorLight dark:bg-primaryColorDark border-dividerLight dark:border-dividerDark">
       <Link to={'/'}>
         <img src="/images/logo.png" alt="logo" className="object-cover w-10 h-10" />
       </Link>
