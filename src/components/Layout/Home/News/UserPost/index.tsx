@@ -2,6 +2,7 @@ import { Avatar } from '@/components/DataDisplay';
 import { Input } from '@/components/DataEntry';
 import {
   CommentIcon,
+  CopyIcon,
   EyeIcon,
   HeartIcon,
   MessageIcon,
@@ -9,8 +10,16 @@ import {
   SendIcon,
   ShareIcon,
 } from '@/components/General';
+import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/react';
 
-const UserPost = () => {
+type Props = {
+  isShowComment: boolean;
+  setIsShowComment: (value: boolean) => void;
+};
+
+const UserPost = (props: Props) => {
+  const { isShowComment, setIsShowComment } = props;
+
   return (
     <div className="mt-6 bg-[#FFFFFF] dark:bg-primaryColorDark dark:text-textPrimaryDark min-h-[426px] rounded-md px-6 py-6">
       <div className="flex items-center gap-2">
@@ -75,22 +84,54 @@ const UserPost = () => {
         </div>
       </div>
 
-      <div className="mt-2 border flex items-center border-[#D9D9D9] h-[46px] border-r-0	 border-l-0	">
-        <button className="flex items-center gap-2  justify-center w-[50%]">
-          <HeartIcon />
-          <p>Thích</p>
-        </button>
+      <ul className="mt-2 border flex items-center  border-[#D9D9D9] h-[46px] border-r-0	 border-l-0	w-full">
+        <li style={{ width: '33%' }}>
+          <button className="flex items-center gap-2  justify-center h-[32px] py-2 px-4 w-full">
+            <HeartIcon color="#F95E73" />
+            <p>Thích</p>
+          </button>
+        </li>
 
-        <button className="flex items-center gap-2 justify-center w-[50%]">
-          <CommentIcon />
-          <p>Bình luận</p>
-        </button>
+        <li style={{ width: '33%' }}>
+          <button
+            className="flex items-center gap-2 justify-center h-[32px] w-full"
+            onClick={() => setIsShowComment(true)}
+          >
+            <CommentIcon />
+            <p>Bình luận</p>
+          </button>
+        </li>
 
-        <button className="flex items-center gap-2 justify-center w-[50%]">
-          <ShareIcon />
-          <p>Chia sẻ</p>
-        </button>
-      </div>
+        <li style={{ width: '33%' }}>
+          <Popover className="relative">
+            <PopoverButton className="flex items-center justify-center gap-2 h-[32px] py-2 px-4 w-full">
+              <ShareIcon />
+              <p>Chia sẻ</p>
+            </PopoverButton>
+            <Transition
+              enter="transition ease-out duration-200"
+              enterFrom="opacity-0 translate-y-1"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition ease-in duration-150"
+              leaveFrom="opacity-100 translate-y-0"
+              leaveTo="opacity-0 translate-y-1"
+            >
+              <PopoverPanel anchor="bottom" className="flex flex-col mt-2 shadow-xl">
+                <div
+                  className="bg-white py-2 px-4 flex items-center gap-4 rounded-md cursor-pointer w-[300px] shadow-2xl"
+                  style={{
+                    boxShadow:
+                      '0 6px 16px 0 rgba(0, 0, 0, 0.08),0 3px 6px -4px rgba(0, 0, 0, 0.12),0 9px 28px 8px rgba(0, 0, 0, 0.05)',
+                  }}
+                >
+                  <CopyIcon />
+                  <p className="text-[14px]">Sao chép liên kết</p>
+                </div>
+              </PopoverPanel>
+            </Transition>
+          </Popover>
+        </li>
+      </ul>
 
       <div className="flex gap-2 mt-4">
         <Avatar

@@ -69,16 +69,17 @@ export const Modal = ({
                     ${centered ? 'flex flex-col justify-center items-center' : 'flex flex-col items-center pt-20'}`}
                 >
                   <div
-                    className="bg-[white] w-1/2  h-fit px-8 py-3 rounded-xl relative"
+                    className=" w-1/2  h-fit px-8 py-3 mb-12 rounded-xl relative bg-primaryColorLight dark:bg-primaryColorDark"
                     style={{ width, height }}
                     {...(!disableInteractOutside ? { ref: modalRef } : null)}
                   >
-                    <div className="flex flex-col justify-between h-full">
+                    <div className="flex flex-col  h-full">
+                      {/* Title */}
                       <div className={`mt-4 ${title ? 'mb-4' : 'mb-12'}`}>
                         {title && (
                           <DialogTitle
                             as="h3"
-                            className={`text-base font-medium text-black w-fit ${styleTitle}`}
+                            className={`text-base font-medium text-black w-fit uppercase ${styleTitle}`}
                           >
                             {title || 'Dialog Title'}
                           </DialogTitle>
@@ -87,10 +88,14 @@ export const Modal = ({
                           <CloseIcon />
                         </button>
                       </div>
+
+                      {/* End Title */}
+
+                      <hr className='-mx-8' ></hr>
                       {children}
                       {footer && (
-                        <div className="mt-4">
-                          <hr></hr>
+                        <div className="mt-4 flex flex-col h-full justify-end">
+                          <hr className='-mx-8'></hr>
                           <div className="flex justify-end gap-2 mt-4 ">
                             <Button
                               onClick={handleCloseModal}
