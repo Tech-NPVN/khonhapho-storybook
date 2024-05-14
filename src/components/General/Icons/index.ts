@@ -9,6 +9,7 @@ export * from './ArrowsExchangeIcon';
 export * from './ArrowsRotateIcon';
 export * from './ArrowsUpToLineIcon';
 export * from './BirthdayIcon';
+export * from './BuildingIcon';
 export * from './CameraIcon';
 export * from './CheckIcon';
 export * from './CircleCheckIcon';

@@ -28,7 +28,7 @@ export const Header = ({ setOpenNavBarMobile }: Props) => {
     {
       name: 'Trang cá nhân',
       icon: <AlarmClock />,
-      href: '/',
+      href: '/user/profile',
     },
     {
       name: 'Kho tài nguyên',
