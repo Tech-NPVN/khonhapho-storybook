@@ -1,6 +1,5 @@
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
-import { Home, Warehouse } from '@/pages/Dashboard';
-import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
+import { Home, User, Warehouse } from '@/pages/Dashboard';
 import { AuthLayout, NoAuthLayout } from '@/pages/Layout';
 import { createBrowserRouter } from 'react-router-dom';
 
@@ -42,6 +41,10 @@ export const router = createBrowserRouter([
             element: <WarehouseForm />,
           },
         ],
+      },
+      {
+        path: 'user/:id',
+        element: <User />,
       },
     ],
   },

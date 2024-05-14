@@ -1,6 +1,11 @@
 import { DarkIcon, LightIcon } from '@/components/General';
 
-export const DarkAndLight = ({ theme = 'light', onToggleDarkAndLight = () => {} }) => {
+interface Props {
+  theme?: string;
+  onToggleDarkAndLight?: () => void;
+}
+
+export const DarkAndLight = ({ theme = 'light', onToggleDarkAndLight }: Props) => {
   return (
     <div className="p-3 transition-colors rounded-lg bg-color-bg hover:bg-secondaryColorLightD2 hover:dark:bg-secondaryColorDark">
       <div className="flex items-center justify-between" onClick={onToggleDarkAndLight}>

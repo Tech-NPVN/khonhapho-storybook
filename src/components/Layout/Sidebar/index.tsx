@@ -1,3 +1,4 @@
+import { CloseIcon } from '@/components/General';
 import { useMode } from '@/hooks/useMode';
 import React from 'react';
 import { DarkAndLight } from './DarkAndLight';
@@ -14,7 +15,12 @@ export type TItemMenu = TItem & {
   subMenu?: TItem[];
 };
 
-export const Sidebar = () => {
+interface Props {
+  openNavBarMobile?: boolean;
+  setOpenNavBarMobile?: (value: boolean) => void;
+}
+
+export const Sidebar = ({ openNavBarMobile = false, setOpenNavBarMobile }: Props) => {
   const { theme, toggleTheme } = useMode();
 
   const listMenu: TItemMenu[] = [
@@ -142,11 +148,21 @@ export const Sidebar = () => {
   ];
 
   return (
-    <div className="w-[250px] fixed top-[65px] bottom-0 dark:bg-primaryColorDark bg-primaryColorLight flex flex-col">
-      <div className="h-[calc(100%_-_88px])] p-4 overflow-y-auto dark:text-white text-secondaryColorDark flex-1">
-        <ul>{listMenu?.map((item) => <MenuList item={item} />)}</ul>
+    <div
+      className={`lg:w-[250px] lg:top-[63px] bottom-0 dark:bg-primaryColorDark lg:p-4 p-0 bg-primaryColorLight flex-col lg:flex lg:left-0 nav-mobile ${openNavBarMobile ? 'block' : ''}`}
+    >
+      <div className="lg:h-[calc(100%_-_88px])] p-0 lg:overflow-y-auto overflow-hidden dark:text-white text-secondaryColorDark flex-1">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-secondaryColorDark lg:hidden">
+          <div onClick={() => setOpenNavBarMobile && setOpenNavBarMobile(false)}>
+            <CloseIcon />
+          </div>
+          <DarkAndLight theme={theme as string} onToggleDarkAndLight={toggleTheme} />
+        </div>
+        <ul className="h-[calc(100vh_-85px)] p-6 overflow-y-auto lg:h-auto lg:overflow-hidden lg:p-0">
+          {listMenu?.map((item) => <MenuList item={item} key={item.id} />)}
+        </ul>
       </div>
-      <div className="p-4 h-[88px]">
+      <div className="p-4 h-[88px] lg:block hidden">
         <DarkAndLight theme={theme as string} onToggleDarkAndLight={toggleTheme} />
       </div>
     </div>

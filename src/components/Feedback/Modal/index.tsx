@@ -1,5 +1,5 @@
 import { Button, CloseIcon } from '@/components/General';
-import { HTMLAttributes, ReactNode, useEffect, useRef } from 'react';
+import { HTMLAttributes, ReactNode, useRef } from 'react';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import { useOutsideClickClose } from '@/hooks/useOutsideClickClose';
 
@@ -17,6 +17,7 @@ type ModalProps = HTMLAttributes<HTMLDivElement> & {
   height?: number;
   children?: ReactNode;
   disableInteractOutside?: boolean;
+  styleTitle?: string;
 };
 
 export const Modal = ({
@@ -34,6 +35,7 @@ export const Modal = ({
   onCancel,
   disableInteractOutside,
   centered,
+  styleTitle = 'textPrimaryLight dark:text-textPrimaryDark',
   ...props
 }: ModalProps) => {
   const handleCloseModal = () => {
@@ -45,7 +47,7 @@ export const Modal = ({
   useOutsideClickClose(modalRef, handleCloseModal);
 
   return (
-    <div>
+    <div {...props}>
       {open && (
         <Transition appear show={open}>
           <TransitionChild
@@ -63,18 +65,22 @@ export const Modal = ({
             >
               <DialogPanel>
                 <div
-                  className={` fixed top-0 left-0 w-full h-full  bg-[rgba(0,0,0,0.5)] z-10
+                  className={` fixed top-0 left-0 w-full  bg-[rgba(0,0,0,0.5)] z-10 overflow-auto	h-full
                     ${centered ? 'flex flex-col justify-center items-center' : 'flex flex-col items-center pt-20'}`}
                 >
                   <div
-                    className="bg-[white] w-1/2 min-h-[150px]  px-8 py-3 rounded-xl relative"
+                    className=" w-1/2  h-fit px-8 py-3 mb-12 rounded-xl relative bg-primaryColorLight dark:bg-primaryColorDark"
                     style={{ width, height }}
                     {...(!disableInteractOutside ? { ref: modalRef } : null)}
                   >
-                    <div className="flex flex-col justify-between h-full">
+                    <div className="flex flex-col  h-full">
+                      {/* Title */}
                       <div className={`mt-4 ${title ? 'mb-4' : 'mb-12'}`}>
                         {title && (
-                          <DialogTitle as="h3" className="text-base font-medium text-black">
+                          <DialogTitle
+                            as="h3"
+                            className={`text-base font-medium text-black w-fit uppercase ${styleTitle}`}
+                          >
                             {title || 'Dialog Title'}
                           </DialogTitle>
                         )}
@@ -82,19 +88,26 @@ export const Modal = ({
                           <CloseIcon />
                         </button>
                       </div>
+
+                      {/* End Title */}
+
+                      <hr className="-mx-8"></hr>
                       {children}
                       {footer && (
-                        <div className="mt-4">
-                          <hr></hr>
-                          <div className="flex justify-end gap-2 mt-4">
+                        <div className="mt-4 flex flex-col h-full justify-end">
+                          <hr className="-mx-8"></hr>
+                          <div className="flex justify-end gap-2 mt-4 ">
                             <Button
                               onClick={handleCloseModal}
                               backgroundColor="white"
-                              className="border text-black"
+                              className="border text-black w-15 "
                             >
                               {cancelText || 'Đóng'}
                             </Button>
-                            <Button onClick={onOk} className="border bg-[green] text-[#FFFFFF]">
+                            <Button
+                              onClick={onOk}
+                              className="border bg-[green] text-[#FFFFFF] w-15 "
+                            >
                               {okText || 'Thêm'}{' '}
                             </Button>
                           </div>
