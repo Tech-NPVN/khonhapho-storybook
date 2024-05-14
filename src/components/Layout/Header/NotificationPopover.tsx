@@ -233,7 +233,7 @@ export const NotificationPopover = ({ listNotifications }: TNotificationPopover)
       >
         <PopoverPanel
           anchor="bottom end"
-          className="rounded-xl text-sm  bg-primaryColorLight dark:bg-secondaryColorDark !top-[60px] shadow-lg p-3 border border-dividerLight/25 h-[calc(var(--window-height)-64px)] lg:h-[80vh] min-w-[375px]"
+          className="rounded-xl text-sm  bg-primaryColorLight dark:bg-secondaryColorDark !top-[55px] z-20 shadow-lg p-3 border border-dividerLight/25 h-full lg:h-[80vh] lg:min-w-[375px] min-w-full"
         >
           <Typography
             variant="h2"
