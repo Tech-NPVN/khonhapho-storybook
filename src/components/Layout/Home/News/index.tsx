@@ -157,7 +157,7 @@ const NewsHome = () => {
         onCancel={() => setIsShowComment(false)}
         title="Bình luận"
         className=""
-        styleTitle="textPrimaryLight dark:text-textPrimaryDark"
+        // styleTitle="textPrimaryLight dark:text-textPrimaryDark"
       >
         {Array(8)
           .fill(0)
