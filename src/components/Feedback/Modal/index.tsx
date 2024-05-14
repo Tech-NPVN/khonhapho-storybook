@@ -35,7 +35,7 @@ export const Modal = ({
   onCancel,
   disableInteractOutside,
   centered,
-  styleTitle,
+  styleTitle = 'textPrimaryLight dark:text-textPrimaryDark',
   ...props
 }: ModalProps) => {
   const handleCloseModal = () => {
@@ -47,7 +47,7 @@ export const Modal = ({
   useOutsideClickClose(modalRef, handleCloseModal);
 
   return (
-    <div>
+    <div {...props}>
       {open && (
         <Transition appear show={open}>
           <TransitionChild
@@ -91,11 +91,11 @@ export const Modal = ({
 
                       {/* End Title */}
 
-                      <hr className='-mx-8' ></hr>
+                      <hr className="-mx-8"></hr>
                       {children}
                       {footer && (
                         <div className="mt-4 flex flex-col h-full justify-end">
-                          <hr className='-mx-8'></hr>
+                          <hr className="-mx-8"></hr>
                           <div className="flex justify-end gap-2 mt-4 ">
                             <Button
                               onClick={handleCloseModal}
