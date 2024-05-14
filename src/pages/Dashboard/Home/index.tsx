@@ -11,7 +11,7 @@ export const Home = () => {
     {
       name: 'BẠN QUAN TÂM',
       key: 'tab-2',
-      children: <></>,
+      children: <div className="h-full md:w-[920px]"></div>,
     },
   ];
 

@@ -2,7 +2,12 @@ import SvgIcon, { TypeIcon } from '../SvgIcon';
 
 const BirthdayIcon = ({ color = '#333', width, height, viewBox, className = '' }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
+    <SvgIcon
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      className={`dark:[&>path]:stroke-white  ${className}`}
+    >
       <path
         d="M11.8992 2.70508H2.09922C1.32602 2.70508 0.699219 3.33188 0.699219 4.10508V13.9051C0.699219 14.6783 1.32602 15.3051 2.09922 15.3051H11.8992C12.6724 15.3051 13.2992 14.6783 13.2992 13.9051V4.10508C13.2992 3.33188 12.6724 2.70508 11.8992 2.70508Z"
         stroke={color}

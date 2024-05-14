@@ -2,7 +2,12 @@ import SvgIcon, { TypeIcon } from '../SvgIcon';
 
 const GitBranchIcon = ({ color = '#333', width, height, viewBox, className = '' }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
+    <SvgIcon
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      className={`dark:[&>path]:stroke-white  ${className}`}
+    >
       <path d="M2.5 4.80469V11.8047" stroke={color} strokeLinecap="round" strokeLinejoin="round" />
       <path
         d="M9.5 8.30469C10.4665 8.30469 11.25 7.52119 11.25 6.55469C11.25 5.58819 10.4665 4.80469 9.5 4.80469C8.5335 4.80469 7.75 5.58819 7.75 6.55469C7.75 7.52119 8.5335 8.30469 9.5 8.30469Z"
