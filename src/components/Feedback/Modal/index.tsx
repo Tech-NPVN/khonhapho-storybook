@@ -1,5 +1,5 @@
 import { Button, CloseIcon } from '@/components/General';
-import { HTMLAttributes, ReactNode, useEffect, useRef } from 'react';
+import { HTMLAttributes, ReactNode, useRef } from 'react';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import { useOutsideClickClose } from '@/hooks/useOutsideClickClose';
 
