@@ -15,7 +15,7 @@ export const Progress = ({
   percent = 44,
   showInfo = false,
   textDirection = 'before',
-  strokeColor='#FBBD23',
+  strokeColor = '#FBBD23',
 }: ProgressProps) => {
   const widthPercent = (percent: number) => {
     if (percent > 100) return width;
@@ -32,9 +32,12 @@ export const Progress = ({
       <div className="relative">
         <div
           className={`px-2 rounded-md absolute top-0 left-0 h-full overflow-hidden`}
-          style={{ width: widthPercent(percent as number), backgroundColor: strokeColor }}
+          style={{ width: widthPercent(percent), backgroundColor: strokeColor }}
         ></div>
-        <div className="bg-[#D9D9D9] px-2 h-[8px] rounded-md" style={{ width }}></div>
+        <div
+          className="bg-dividerLight dark:bg-textSecondaryDark px-2 h-[8px] rounded-md"
+          style={{ width }}
+        ></div>
       </div>
       {showInfo && <span>{percent}%</span>}
     </div>

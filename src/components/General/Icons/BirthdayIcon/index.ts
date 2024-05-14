@@ -1,1 +1,1 @@
-export { default as v } from './BirthdayIcon';
+export { default as BirthdayIcon } from './BirthdayIcon';

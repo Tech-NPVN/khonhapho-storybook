@@ -25,7 +25,7 @@ export const Header = () => {
     {
       name: 'Trang cá nhân',
       icon: <AlarmClock />,
-      href: '/',
+      href: '/user/profile',
     },
     {
       name: 'Kho tài nguyên',
