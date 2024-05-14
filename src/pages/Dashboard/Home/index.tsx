@@ -6,11 +6,7 @@ export const Home = () => {
     {
       name: 'BẢNG TIN',
       key: 'tab-1',
-      children: (
-        <>
-          <NewsHome />
-        </>
-      ),
+      children: <NewsHome />,
     },
     {
       name: 'BẠN QUAN TÂM',
@@ -20,10 +16,8 @@ export const Home = () => {
   ];
 
   return (
-    <div className="h-full md:w-[920px] " data-mode="dark">
-      <div className=" max-w-[400px] relative">
-        <Tabs tabs={HOME_TABS} variantTab="fillGreen" />
-      </div>
+    <div className="mx-auto max-w-[920px]">
+      <Tabs tabs={HOME_TABS} variantTab="fillGreen" />
     </div>
   );
 };

@@ -14,8 +14,8 @@ const buttonTabStyles = cva(
           'border-b-2 border-primaryButtonLight text-primaryButtonLight rounded-none',
         fillGray: 'px-[56px] ',
         fillGraySelected: 'px-[56px] bg-[#F3F4F6]',
-        fillGreen: 'text-textSecondaryLight px-[56px]',
-        fillGreenSelected: 'px-[56px] bg-primaryButtonLight text-white',
+        fillGreen: 'text-textSecondaryLight px-[56px] dark:text-textSecondaryDark font-semibold',
+        fillGreenSelected: 'px-[56px] bg-primaryButtonLight dark:bg-textSecondaryDark text-white',
       },
     },
     defaultVariants: {
@@ -49,12 +49,12 @@ export const Tabs = ({ tabs, variantTab = 'underline', ...buttonProps }: TabsPro
       case 'fillGray':
         return 'bg-[#E5E6E8]  rounded-lg';
       case 'fillGreen':
-        return 'bg-white rounded-lg';
+        return 'bg-white w-max rounded-lg dark:bg-primaryColorDark';
     }
   }, [variantTab]);
 
   return (
-    <TabGroup selectedIndex={tabIndex} onChange={setTabIndex}>
+    <TabGroup as={Fragment} selectedIndex={tabIndex} onChange={setTabIndex}>
       <TabList className={`flex ${getTabListCn}`}>
         {tabs.map((tab) => (
           <Tab as={Fragment} key={tab.key}>
