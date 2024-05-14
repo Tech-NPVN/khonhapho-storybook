@@ -29,7 +29,10 @@ export const AvatarPopover = ({ listItems }: TAvatarPopover) => {
           <ul className="p-1">
             {listItems?.map((item) => {
               return (
-                <li className="flex items-center gap-3 py-1.5 px-3 hover:bg-secondaryColorDark/25 hover:dark:bg-dividerDark rounded dark:text-primaryColorLight text-primaryColorDark">
+                <li
+                  key={item.name}
+                  className="flex items-center gap-3 py-1.5 px-3 hover:bg-secondaryColorDark/25 hover:dark:bg-dividerDark rounded dark:text-primaryColorLight text-primaryColorDark"
+                >
                   <span>{item.icon}</span>
                   <Link to={item.href} className="flex-1">
                     {item.name}

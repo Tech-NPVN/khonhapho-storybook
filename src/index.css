@@ -12,3 +12,17 @@
     grid-row-gap: 20px;
   }
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply rounded-md bg-secondaryColorDark/35 dark:bg-secondaryColorLight;
+}

@@ -77,57 +77,57 @@ const NewsHome = () => {
         <h2 className="text-[#000] dark:text-[#fff]">Đáng chú ý</h2>
 
         <div className="flex gap-4 overflow-hidden">
-          {data.map((item, index) => {
+          {data.map((item) => {
             return (
-              <>
-                <div className="mt-3 px-3 py-4 bg-white dark:bg-primaryColorDark min-w-[320px] h-[278px] rounded-md">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <Avatar alt="avatar" height={40} width={40} src={item.avatarSrc} />
-                      <div className="">
-                        <h3 className="text-[14px] text-[#000] dark:text-textPrimaryDark">
-                          {item.name}
-                        </h3>
-                        <div className="flex gap-2 items-center text-textSecondaryLight dark:text-textSecondaryDark text-[14px]">
-                          <span>{item.time} giờ trước</span>
-                          <span>·</span>
-                          <span>Quy định và Hướng dẫn</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 ">
-                      <p className="text-textPrimaryLight dark:text-textPrimaryDark font-semibold text-[16px]">
-                        Tôi có khách cần mua gấp, kính nhờ anh chị em tìm hộ giúp tôi. Tiêu chí
-                        khách:
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-1 dark:text-textPrimaryDark">
-                      {item.criteria.map((criteria, index) => (
-                        <div key={index}>
-                          <span className="text-textPrimaryLight dark:text-textPrimaryDark font-semibold text-[16px]">
-                            {criteria.label}
-                          </span>
-                          <span>{criteria.value}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <hr className="my-2 "></hr>
-                    <div className="flex items-center">
-                      <div className="flex items-center gap-2  justify-center w-[50%]">
-                        <HeartIcon />
-                        <p className="dark:text-textSecondaryDark">Thích</p>
-                      </div>
-
-                      <div className="flex items-center gap-2 justify-center w-[50%]">
-                        <CommentIcon />
-                        <p className="dark:text-textSecondaryDark">Bình luận</p>
+              <div
+                className="mt-3 px-3 py-4 bg-white dark:bg-primaryColorDark min-w-[320px] h-[278px] rounded-md"
+                key={item.id}
+              >
+                <div>
+                  <div className="flex items-center gap-2">
+                    <Avatar alt="avatar" height={40} width={40} src={item.avatarSrc} />
+                    <div className="">
+                      <h3 className="text-[14px] text-[#000] dark:text-textPrimaryDark">
+                        {item.name}
+                      </h3>
+                      <div className="flex gap-2 items-center text-textSecondaryLight dark:text-textSecondaryDark text-[14px]">
+                        <span>{item.time} giờ trước</span>
+                        <span>·</span>
+                        <span>Quy định và Hướng dẫn</span>
                       </div>
                     </div>
                   </div>
+
+                  <div className="mt-4 ">
+                    <p className="text-textPrimaryLight dark:text-textPrimaryDark font-semibold text-[16px]">
+                      Tôi có khách cần mua gấp, kính nhờ anh chị em tìm hộ giúp tôi. Tiêu chí khách:
+                    </p>
+                  </div>
+                  <div className="flex flex-col gap-1 dark:text-textPrimaryDark">
+                    {item.criteria.map((criteria, index) => (
+                      <div key={index}>
+                        <span className="text-textPrimaryLight dark:text-textPrimaryDark font-semibold text-[16px]">
+                          {criteria.label}
+                        </span>
+                        <span>{criteria.value}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <hr className="my-2 "></hr>
+                  <div className="flex items-center">
+                    <div className="flex items-center gap-2  justify-center w-[50%]">
+                      <HeartIcon />
+                      <p className="dark:text-textSecondaryDark">Thích</p>
+                    </div>
+
+                    <div className="flex items-center gap-2 justify-center w-[50%]">
+                      <CommentIcon />
+                      <p className="dark:text-textSecondaryDark">Bình luận</p>
+                    </div>
+                  </div>
                 </div>
-              </>
+              </div>
             );
           })}
         </div>
