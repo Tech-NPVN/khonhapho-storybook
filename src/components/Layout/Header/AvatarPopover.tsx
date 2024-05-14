@@ -24,7 +24,7 @@ export const AvatarPopover = ({ listItems }: TAvatarPopover) => {
       >
         <PopoverPanel
           anchor="bottom end"
-          className="rounded-xl text-sm  bg-primaryColorLight dark:bg-secondaryColorDark min-w-[300px] !top-[60px] shadow-lg border border-dividerLight/25"
+          className="rounded-xl text-sm  bg-primaryColorLight dark:bg-secondaryColorDark !top-[55px] z-20 shadow-lg border border-dividerLight/25 min-w-[250px]"
         >
           <ul className="p-1">
             {listItems?.map((item) => {
