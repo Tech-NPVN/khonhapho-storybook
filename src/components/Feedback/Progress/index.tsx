@@ -34,7 +34,10 @@ export const Progress = ({
           className={`px-2 rounded-md absolute top-0 left-0 h-full overflow-hidden`}
           style={{ width: widthPercent(percent), backgroundColor: strokeColor }}
         ></div>
-        <div className="bg-[#D9D9D9] px-2 h-[8px] rounded-md" style={{ width }}></div>
+        <div
+          className="bg-dividerLight dark:bg-textSecondaryDark px-2 h-[8px] rounded-md"
+          style={{ width }}
+        ></div>
       </div>
       {showInfo && <span>{percent}%</span>}
     </div>

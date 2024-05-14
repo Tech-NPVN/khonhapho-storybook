@@ -2,7 +2,7 @@ import { Button, MessageIcon, Typography } from '@/components/General';
 
 const UserMain = () => {
   return (
-    <div className="relative w-full">
+    <div className="relative w-fulf">
       <img src="/nhapho-wallpaper.png" alt="nhapho-wallpaper" />
       <div className="flex bg-white dark:bg-primaryColorDark p-5 gap-5 relative rounded-bl-md rounded-br-md">
         <div className="shrink-0 -top-6 w-40 h-40 rounded-full ring-4 ring-white overflow-hidden absolute">
@@ -33,7 +33,7 @@ const UserMain = () => {
                 />
               </svg>
 
-              <Typography variant="h4" className="text-[#0D7490]">
+              <Typography variant="h4" className="!text-[#0D7490]">
                 Nhà Phố Việt Nam
               </Typography>
             </div>
@@ -54,7 +54,7 @@ const UserMain = () => {
               }
               variant="defaultBlue"
             >
-              Message
+              Messager
             </Button>
           </div>
         </div>

@@ -14,8 +14,7 @@ const buttonStyles = cva(
         ghost: 'text-primaryButtonLight bg-transparent hover:primaryButtonHoverLight',
         link: 'bg-transparent underline-offset-4 hover:text-primaryButtonLight hover:underline',
         // Blue
-        defaultBlue:
-          'bg-linkLight dark:bg-linkHoverDark text-white hover:bg-linkHoverLight dark:hover:bg-linkHoverDark',
+        defaultBlue: 'bg-linkLight text-white hover:bg-linkHoverLight',
         outlineBlue:
           'border border-linkLight dark:border-linkDark text-linkLight dark:text-linkDark hover:bg-linkHoverLight dark:hover:bg-linkHoverDark',
         ghostBlue:

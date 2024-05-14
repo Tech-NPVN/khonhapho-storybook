@@ -2,7 +2,12 @@ import SvgIcon, { TypeIcon } from '../SvgIcon';
 
 const BuildingIcon = ({ color = '#333', width, height, viewBox, className = '' }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
+    <SvgIcon
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      className={`dark:[&>path]:stroke-white  ${className}`}
+    >
       <rect x="6.16406" y="0.804688" width="8.33333" height="13" rx="0.5" stroke={color} />
       <circle cx="9.55122" cy="2.63715" r="0.777778" fill={color} />
       <circle cx="12.6645" cy="2.63715" r="0.777778" fill={color} />
