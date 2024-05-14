@@ -23,10 +23,10 @@ interface ISelect {
   // isSearchable?: boolean;
   // isClearable?: boolean;
   disabled?: boolean;
-  options?: IOption[] | null;
+  options?: IOption[];
   placeholder?: string;
   multiple?: boolean;
-  value?: IOption | IOption[] | null;
+  value?: IOption | IOption[];
   onChange?: (any: any) => void;
 }
 
@@ -36,19 +36,15 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
       disabled={props.disabled}
       multiple={props.multiple}
       value={value}
-      onChange={onChange}
+      onChange={(value) => {
+        console.log(value);
+        onChange?.(value);
+      }}
       {...props}
     >
       {({ open }) => (
         <div className={clsx('relative w-full', props.disabled ? 'opacity-50' : '')}>
-          <ListboxButton
-            onClick={(e) => {
-              // console.log(e.currentTarget.tagName ==);
-              // e.preventDefault();
-              // e.stopPropagation();
-            }}
-            className="relative min-w-11 w-full h-full cursor-default rounded-md bg-white pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6"
-          >
+          <ListboxButton className="relative min-w-11 w-full h-full cursor-default rounded-md bg-white pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
             {!props.multiple && !Array.isArray(value) && (
               <div className="flex w-full items-center h-full flex-wrap py-2">
                 <div className="ml-1 block truncate my-[2px]">
@@ -56,7 +52,7 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
                 </div>
               </div>
             )}
-            {props.multiple && Array.isArray(value) && value.length == 0 && (
+            {props.multiple && (!value || (Array.isArray(value) && value.length == 0)) && (
               <div className="flex w-full items-center h-full flex-wrap py-2">
                 <div className="ml-1 block truncate my-[2px]">
                   {props.placeholder ? props.placeholder : 'Chọn nhiều lựa chọn'}
@@ -68,7 +64,7 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
                 {value?.map((option, i) => (
                   <Tag
                     key={option.value}
-                    className="my-[2px] h-[36px] rounded-md py-0 text-sm mx-[2px] px-2"
+                    className="my-[2px] h-[36px] rounded-md py-0 text-sm mx-[2px] px-2 text-nowrap"
                     closeable
                     onClose={() => onChange?.(value.filter((_, index) => index !== i))}
                   >
@@ -109,39 +105,40 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
                   value={op}
                   disabled={op.disabled}
                 >
-                  {({ selected }) => (
-                    <>
-                      <div className="flex items-center ">
-                        <span
-                          className={clsx(
-                            selected ? 'font-semibold' : 'font-normal',
-                            'ml-1 block truncate',
-                          )}
-                        >
-                          {op.label}
-                        </span>
-                      </div>
-
-                      {selected ? (
-                        <span
-                          className={clsx(
-                            selected ? 'text-primaryButtonLight' : 'hidden',
-                            'absolute inset-y-0 right-0 flex items-center pr-4 ',
-                          )}
-                        >
-                          <svg
-                            className="absolute right-3"
-                            width={12}
-                            fill={selected ? 'green' : 'transparent'}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 448 512"
-                          >
-                            <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
-                          </svg>
-                        </span>
-                      ) : null}
-                    </>
-                  )}
+                  <div className="flex items-center ">
+                    <span
+                      className={clsx(
+                        Array.isArray(value) && value?.find((val) => val.value === op.value)
+                          ? 'font-semibold'
+                          : 'font-normal',
+                        'ml-1 block truncate',
+                      )}
+                    >
+                      {op.label}
+                    </span>
+                  </div>
+                  <span
+                    className={clsx(
+                      Array.isArray(value) && value?.find((val) => val.value === op.value)
+                        ? 'text-primaryButtonLight'
+                        : 'hidden',
+                      'absolute inset-y-0 right-0 flex items-center pr-4 ',
+                    )}
+                  >
+                    <svg
+                      className="absolute right-3"
+                      width={12}
+                      fill={
+                        Array.isArray(value) && value?.find((val) => val.value === op.value)
+                          ? 'green'
+                          : 'transparent'
+                      }
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                    >
+                      <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
+                    </svg>
+                  </span>
                 </ListboxOption>
               ))}
               {!options && (
