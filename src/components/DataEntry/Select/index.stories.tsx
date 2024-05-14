@@ -36,9 +36,7 @@ const meta: Meta<typeof Select> = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-  args: {
-    value: null,
-  },
+  args: {},
   argTypes: {
     options: {
       description: '',
@@ -118,8 +116,19 @@ export const Default: Story = {
     const SelectSingle = () => {
       const [selected, setSelected] = useState<IOption>();
       return (
-        <div className="min-h-80 w-52">
-          <Select options={OPTIONS} value={selected} onChange={setSelected} />
+        <div
+          className="min-h-80 w-52"
+          onClick={(e) => {
+            console.log(e);
+          }}
+        >
+          <Select
+            options={OPTIONS}
+            value={selected}
+            onChange={(abc) => {
+              abc;
+            }}
+          />
         </div>
       );
     };
@@ -181,15 +190,18 @@ export const FormExample: Story = {
 export const FormSelectMultipleExample: Story = {
   render: () => {
     const FormSchema = z.object({
-      items: z.array(
-        z.object({
-          value: z.string(),
-          label: z.string(),
-          disable: z.boolean().optional(),
+      items: z
+        .array(
+          z.object({
+            value: z.string(),
+            label: z.string(),
+            disable: z.boolean().optional(),
+          }),
+        )
+        .refine((value) => value.length > 0, {
+          message: 'Vui lọng chọn ít nhất một lựa chọn',
         }),
-      ),
     });
-
     const SelectMultipleForm = () => {
       const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -204,7 +216,15 @@ export const FormSelectMultipleExample: Story = {
             onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}
             className="min-w-[400px] min-h-80"
           >
-            <SelectForm<z.infer<typeof FormSchema>> name="items" options={OPTIONS} multiple />
+            <SelectForm<z.infer<typeof FormSchema>>
+              name="items"
+              value={form.watch('items')}
+              options={OPTIONS}
+              // onChange={(value) => {
+              //   console.log(value);
+              // }}
+              multiple
+            />
             <Button type="submit" className="mt-5">
               Submit
             </Button>
