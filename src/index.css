@@ -13,7 +13,7 @@
   }
 
   .nav-mobile {
-    @apply fixed w-[98%] z-[1000] dark:bg-secondaryColorDark bg-secondaryColorLight top-0 right-0 hidden m-0;
+    @apply fixed w-[98%] z-10 dark:bg-secondaryColorDark bg-secondaryColorLight top-0 right-0 hidden m-0;
   }
 }
 
