@@ -52,6 +52,10 @@ export const router = createBrowserRouter([
         path: '/message',
         element: <MessagePage />,
       },
+      {
+        path: 'user/collection',
+        element: <></>,
+      },
     ],
   },
 ]);

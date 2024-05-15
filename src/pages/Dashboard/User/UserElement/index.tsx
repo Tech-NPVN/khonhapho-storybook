@@ -8,8 +8,8 @@ type UserElementProps = {
 
 const UserElement = ({ title, children }: UserElementProps) => {
   return (
-    <div className="rounded-md bg-white dark:bg-primaryColorDark">
-      <Typography variant="h3" className="px-6 py-4">
+    <div className="rounded-md bg-white dark:bg-primaryColorDark w-full">
+      <Typography variant="h3" className="px-6 py-4 max-md:text-base">
         {title}
       </Typography>
       <hr className="w-full h-[0.5px] bg-textSecondaryDark dark:opacity-20" />
