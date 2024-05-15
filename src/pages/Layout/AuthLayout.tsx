@@ -16,7 +16,7 @@ export const AuthLayout = () => {
           theme={theme as string}
           toggleTheme={toggleTheme}
         />
-        <main className="lg:w-[calc(100vw_-_250px)] relative w-screen mx-auto px-3 pt-6 lg:p-4 ml-0 lg:ml-[250px] bg-secondaryColorLightD2 dark:bg-secondaryColorDarkD2">
+        <main className="lg:w-[calc(100vw_-_250px)] min-h-100vh relative w-screen mx-auto px-3 pt-6 lg:p-4 ml-0 lg:ml-[250px] bg-secondaryColorLightD2 dark:bg-secondaryColorDarkD2">
           <Outlet />
         </main>
       </div>
