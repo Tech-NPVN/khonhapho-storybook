@@ -12,7 +12,7 @@ import { FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../Form';
 import { RequiredSymbolLabel } from '../Input';
 
-interface IOption {
+export interface IOption {
   value: string;
   label: string;
   disabled?: boolean;
@@ -30,31 +30,37 @@ interface ISelect {
   onChange?: (any: any) => void;
 }
 
-export const Select = ({ className, options, value, onChange, ...props }: ISelect) => {
+export const Select = ({ options, value, onChange, ...props }: ISelect) => {
   return (
     <Listbox
       disabled={props.disabled}
       multiple={props.multiple}
       value={value}
       onChange={(value) => {
-        console.log(value);
         onChange?.(value);
       }}
       {...props}
     >
       {({ open }) => (
         <div className={clsx('relative w-full', props.disabled ? 'opacity-50' : '')}>
-          <ListboxButton className="relative min-w-11 w-full h-full cursor-default rounded-md bg-white pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
+          <ListboxButton className="relative min-w-11 w-full h-full cursor-default rounded-md bg-white dark:bg-secondaryColorDark pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/20 focus:outline-none focus:ring-2 sm:text-sm sm:leading-6 ">
             {!props.multiple && !Array.isArray(value) && (
-              <div className="flex w-full items-center h-full flex-wrap py-2">
-                <div className="ml-1 block truncate my-[2px]">
+              <div className="flex w-full items-center h-full flex-wrap py-[6px]">
+                <div
+                  className={clsx(
+                    'ml-1 block truncate my-[2px]',
+                    value?.label
+                      ? 'text-black dark:text-white'
+                      : 'text-black/50 dark:text-white/50',
+                  )}
+                >
                   {value?.label ?? (props.placeholder ? props.placeholder : 'Chọn một lựa chọn')}
                 </div>
               </div>
             )}
             {props.multiple && (!value || (Array.isArray(value) && value.length == 0)) && (
-              <div className="flex w-full items-center h-full flex-wrap py-2">
-                <div className="ml-1 block truncate my-[2px]">
+              <div className="flex w-full items-center h-full flex-wrap py-[6px]">
+                <div className={clsx('ml-1 block truncate my-[2px]')}>
                   {props.placeholder ? props.placeholder : 'Chọn nhiều lựa chọn'}
                 </div>
               </div>
@@ -64,7 +70,7 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
                 {value?.map((option, i) => (
                   <Tag
                     key={option.value}
-                    className="my-[2px] h-[36px] rounded-md py-0 text-sm mx-[2px] px-2 text-nowrap"
+                    className="my-[2px] h-[32px] rounded-md py-0 text-sm mx-[2px] px-2 text-nowrap"
                     closeable
                     onClose={() => onChange?.(value.filter((_, index) => index !== i))}
                   >
@@ -75,7 +81,12 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
             )}
 
             <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-              <svg width={14} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <svg
+                width={14}
+                className="fill-black dark:fill-white"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
                 <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
               </svg>
             </span>
@@ -90,15 +101,21 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
             leaveTo="opacity-0"
             enterFrom="h-0"
           >
-            <ListboxOptions className="absolute z-50 mt-1 max-h-72 h-min w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm transition-all duration-300 ease-linear">
+            <ListboxOptions className="absolute z-50 mt-1 max-h-72 h-min w-full overflow-auto rounded-md bg-white dark:bg-secondaryColorDark py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm transition-all duration-300 ease-linear">
               {options?.map((op) => (
                 <ListboxOption
                   key={op.value}
-                  className={({ selected, focus }) =>
+                  className={({ focus }) =>
                     clsx(
-                      selected ? 'bg-[#afbfac] text-black' : 'text-gray-900',
-                      'relative cursor-default select-none py-2 pl-2 mx-1 pr-8  rounded-lg my-[2px]',
-                      focus && !selected ? 'bg-black/5' : '',
+                      (!Array.isArray(value) && value?.value === op.value) ||
+                        (Array.isArray(value) && value?.find((val) => val.value === op.value))
+                        ? 'bg-[#afbfac] dark:bg-white/10 text-black'
+                        : 'text-gray-900 hover:bg-black/5 dark:hover:bg-white/5',
+                      'relative cursor-default select-none py-2 pl-2 mx-1 pr-8 rounded-lg my-[2px]',
+                      (focus && !(!Array.isArray(value) && value?.value === op.value)) ||
+                        (Array.isArray(value) && value?.find((val) => val.value === op.value))
+                        ? 'bg-black/5'
+                        : '',
                       op.disabled ? 'opacity-50' : '',
                     )
                   }
@@ -108,10 +125,12 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
                   <div className="flex items-center ">
                     <span
                       className={clsx(
-                        Array.isArray(value) && value?.find((val) => val.value === op.value)
-                          ? 'font-semibold'
-                          : 'font-normal',
-                        'ml-1 block truncate',
+                        (!Array.isArray(value) && value?.value === op.value) ||
+                          (Array.isArray(value) && value?.find((val) => val.value === op.value))
+                          ? 'font-semibold dark:text-white'
+                          : 'font-normal dark:text-white/70',
+
+                        'ml-1 block truncate ',
                       )}
                     >
                       {op.label}
@@ -119,20 +138,23 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
                   </div>
                   <span
                     className={clsx(
-                      Array.isArray(value) && value?.find((val) => val.value === op.value)
+                      (!Array.isArray(value) && value?.value === op.value) ||
+                        (Array.isArray(value) && value?.find((val) => val.value === op.value))
                         ? 'text-primaryButtonLight'
                         : 'hidden',
+
                       'absolute inset-y-0 right-0 flex items-center pr-4 ',
                     )}
                   >
                     <svg
-                      className="absolute right-3"
+                      className={clsx(
+                        (!Array.isArray(value) && value?.value === op.value) ||
+                          (Array.isArray(value) && value?.find((val) => val.value === op.value))
+                          ? 'fill-[green] dark:fill-[white]'
+                          : 'transparent',
+                        'absolute right-3',
+                      )}
                       width={12}
-                      fill={
-                        Array.isArray(value) && value?.find((val) => val.value === op.value)
-                          ? 'green'
-                          : 'transparent'
-                      }
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
                     >
@@ -150,7 +172,7 @@ export const Select = ({ className, options, value, onChange, ...props }: ISelec
                   disabled
                 >
                   <div className="flex items-center ">
-                    <span className={clsx('ml-1 block truncate font-normal')}>
+                    <span className={clsx('ml-1 block truncate font-normal dark:text-white')}>
                       Không có dữ liệu
                     </span>
                   </div>

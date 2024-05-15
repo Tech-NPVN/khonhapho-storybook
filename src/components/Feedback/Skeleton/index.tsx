@@ -4,8 +4,8 @@ import { HTMLAttributes, ReactNode } from 'react';
 type SkeletonProps = HTMLAttributes<HTMLDivElement> & {
   activeAnimation?: boolean;
   children?: string | ReactNode;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 };
 
 export const Skeleton = ({

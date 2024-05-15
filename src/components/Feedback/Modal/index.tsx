@@ -20,6 +20,7 @@ type ModalProps = HTMLAttributes<HTMLDivElement> & {
   styleTitle?: string;
   isDivided?: boolean;
   centerTitle?: boolean;
+  showLine?: boolean;
 };
 
 export const Modal = ({
@@ -35,6 +36,7 @@ export const Modal = ({
   title,
   footer = false,
   onCancel,
+  showLine = true,
   disableInteractOutside,
   centered,
   styleTitle = 'textPrimaryLight dark:text-textPrimaryDark',
