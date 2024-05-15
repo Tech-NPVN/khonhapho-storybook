@@ -93,11 +93,11 @@ export const Modal = ({
 
                       {/* End Title */}
 
-                      {showLine && <hr className="-mx-8"></hr>}
+                      <hr className="-mx-8"></hr>
                       {children}
                       {footer && (
                         <div className="mt-4 flex flex-col h-full justify-end">
-                          {showLine && <hr className="-mx-8"></hr>}
+                          <hr className="-mx-8"></hr>
                           <div className="flex justify-end gap-2 mt-4 ">
                             <Button
                               onClick={handleCloseModal}
