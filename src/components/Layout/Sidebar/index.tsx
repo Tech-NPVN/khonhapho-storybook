@@ -162,7 +162,7 @@ export const Sidebar = ({ openNavBarMobile = false, setOpenNavBarMobile }: Props
           {listMenu?.map((item) => <MenuList item={item} key={item.id} />)}
         </ul>
       </div>
-      <div className="p-4 h-[88px] lg:block hidden">
+      <div className="lg:p-4 h-[88px] lg:block hidden">
         <DarkAndLight theme={theme as string} onToggleDarkAndLight={toggleTheme} />
       </div>
     </div>

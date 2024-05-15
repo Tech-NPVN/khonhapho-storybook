@@ -37,6 +37,10 @@ export const router = createBrowserRouter([
         path: 'user/:id',
         element: <User />,
       },
+      {
+        path: 'user/collection',
+        element: <></>,
+      },
     ],
   },
 ]);
