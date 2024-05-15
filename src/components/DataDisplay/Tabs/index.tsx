@@ -55,7 +55,7 @@ export const Tabs = ({
       case 'fillGray':
         return 'bg-[#E5E6E8]  rounded-lg';
       case 'fillGreen':
-        return 'bg-white  rounded-lg dark:bg-primaryColorDark';
+        return 'bg-white rounded-lg dark:bg-primaryColorDark';
     }
   }, [variantTab]);
 

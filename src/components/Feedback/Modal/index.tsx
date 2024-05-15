@@ -18,6 +18,7 @@ type ModalProps = HTMLAttributes<HTMLDivElement> & {
   children?: ReactNode;
   disableInteractOutside?: boolean;
   styleTitle?: string;
+  showLine?: boolean;
 };
 
 export const Modal = ({
@@ -33,6 +34,7 @@ export const Modal = ({
   title,
   footer = false,
   onCancel,
+  showLine = true,
   disableInteractOutside,
   centered,
   styleTitle = 'textPrimaryLight dark:text-textPrimaryDark',

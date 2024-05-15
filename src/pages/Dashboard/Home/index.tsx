@@ -1,4 +1,5 @@
 import { TabRenderProps, Tabs } from '@/components/DataDisplay';
+import Caring from '@/components/Layout/Home/Caring';
 import NewsHome from '@/components/Layout/Home/News';
 
 export const Home = () => {
@@ -11,7 +12,7 @@ export const Home = () => {
     {
       name: 'BẠN QUAN TÂM',
       key: 'tab-2',
-      children: <div className="h-full md:w-[920px]"></div>,
+      children: <Caring />,
     },
   ];
 
