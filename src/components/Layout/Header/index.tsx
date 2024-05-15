@@ -1,5 +1,4 @@
 import { AlarmClock, ListUiIcon, PinIcon } from '@/components/General';
-import { useMode } from '@/hooks/useMode';
 import { Link } from 'react-router-dom';
 import { AppointmentPopover } from './AppointmentPopover';
 import { AvatarPopover } from './AvatarPopover';
@@ -13,12 +12,10 @@ export type typeItem = {
 };
 interface Props {
   setOpenNavBarMobile?: (value: boolean) => void;
+  theme?: string;
 }
 
-export const Header = ({ setOpenNavBarMobile }: Props) => {
-  const { theme } = useMode();
-  console.log('🚀 ~ Header ~ theme:', theme);
-
+export const Header = ({ setOpenNavBarMobile, theme }: Props) => {
   const ListItems: typeItem[] = [
     {
       name: 'Trang chủ',
