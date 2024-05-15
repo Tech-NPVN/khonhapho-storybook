@@ -1,4 +1,4 @@
-import { Button, EditSolidIcon, MessageIcon, Typography } from '@/components/General';
+import { Button, CameraIcon, EditSolidIcon, MessageIcon, Typography } from '@/components/General';
 import { useState } from 'react';
 import { UserChangePassword, UserEditProfile } from '../UserEdit';
 
@@ -11,20 +11,29 @@ const UserMain = ({ id }: { id?: string }) => {
       <div className="relative w-fulf">
         <img src="/nhapho-wallpaper.png" alt="nhapho-wallpaper" />
         <div className="flex bg-white dark:bg-primaryColorDark p-5 gap-5 relative rounded-bl-md rounded-br-md">
-          <div className="shrink-0 -top-6 w-40 h-40 rounded-full ring-4 ring-white overflow-hidden absolute">
+          <div className="shrink-0 -top-6 max-md:-top-[78px] w-40 h-40 rounded-full ring-4 ring-white absolute max-md:left-1/2 transform max-md:-translate-x-1/2">
             <img
               src="https://assets-cdn.khonhapho.com/test/2024_02_28/1d1ulc6-1709190533264.jpg?width=300&height=300"
               alt="avatar"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-full"
             />
+            <button className="absolute bg-white w-[30px] h-[30px] ring-2 ring-secondaryColorLightD2 flex items-center justify-center rounded-full bottom-2 right-2">
+              <CameraIcon />
+            </button>
           </div>
-          <div className="w-52 grow-0"></div>
-          <div className="flex w-full justify-between items-end">
+          <div className="w-52 grow-0 max-md:hidden"></div>
+          <div className="flex w-full justify-between items-end max-md:flex-col max-md:items-center max-md:pt-20 max-md:gap-5">
             <div>
-              <Typography className="font-semibold">Nhà Phố Việt Nam</Typography>
-              <Typography variant="h4">Thư ký · Nhà phố Việt Nam</Typography>
-              <Typography variant="h4">Khối · Trụ sở Hà Nội</Typography>
-              <div className="flex items-center gap-2">
+              <Typography className="font-semibold max-md:font-bold max-md:text-xl max-md:mb-2">
+                Nhà Phố Việt Nam
+              </Typography>
+              <Typography className="font-normal max-md:text-sm" variant="h4">
+                Thư ký · Nhà phố Việt Nam
+              </Typography>
+              <Typography className="font-normal max-md:text-sm" variant="h4">
+                Khối · Trụ sở Hà Nội
+              </Typography>
+              <div className="flex items-center gap-2 max-md:mt-2">
                 <svg
                   width="20"
                   height="21"
@@ -39,7 +48,7 @@ const UserMain = ({ id }: { id?: string }) => {
                   />
                 </svg>
 
-                <Typography variant="h4" className="!text-[#0D7490]">
+                <Typography variant="h4" className="!text-[#0D7490] max-md:text-sm">
                   Nhà Phố Việt Nam
                 </Typography>
               </div>

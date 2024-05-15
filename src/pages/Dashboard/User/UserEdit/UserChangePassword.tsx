@@ -39,7 +39,7 @@ export const UserChangePassword = ({
       open={open}
       onCancel={() => setOpen(false)}
       title="Đổi mật khẩu"
-      className="max-w-[510px] !px-3"
+      className="min-w-[350px] max-w-[510px] !px-3"
       isDivided={false}
       centerTitle
       disableInteractOutside
@@ -53,6 +53,7 @@ export const UserChangePassword = ({
             label="Mật khẩu cũ"
             required
           />
+
           <InputFormPassword<Form>
             name="newPassword"
             className="rounded-lg dark:border-0"
@@ -60,6 +61,7 @@ export const UserChangePassword = ({
             label="Mật khẩu mới"
             required
           />
+
           <InputFormPassword<Form>
             name="confirmPassword"
             className="rounded-lg dark:border-0"

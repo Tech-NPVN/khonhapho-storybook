@@ -52,7 +52,7 @@ export const UserEditProfile = ({
       open={open}
       onCancel={() => setOpen(false)}
       title="Chỉnh sửa hồ sơ"
-      className="max-w-[680px] !px-3"
+      className="min-w-[350px] max-w-[680px] !px-3"
       isDivided={false}
       centerTitle
       disableInteractOutside
