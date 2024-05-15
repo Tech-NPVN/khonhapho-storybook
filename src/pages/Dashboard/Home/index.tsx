@@ -17,7 +17,7 @@ export const Home = () => {
 
   return (
     <div className="mx-auto max-w-[920px]">
-      <Tabs tabs={HOME_TABS} variantTab="fillGreen" />
+      <Tabs tabs={HOME_TABS} variantTab="fillGreen" widthTabList={400} />
     </div>
   );
 };
