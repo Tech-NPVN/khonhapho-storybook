@@ -2,6 +2,7 @@ import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, User, Warehouse } from '@/pages/Dashboard';
 import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
 import { AuthLayout, NoAuthLayout } from '@/pages/Layout';
+import { MessagePage } from '@/pages/Message';
 import { createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: 'user/:id',
         element: <User />,
+      },
+      {
+        path: '/message',
+        element: <MessagePage />,
       },
     ],
   },

@@ -1,5 +1,5 @@
 import { AlarmClock, ListUiIcon, PinIcon } from '@/components/General';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AppointmentPopover } from './AppointmentPopover';
 import { AvatarPopover } from './AvatarPopover';
 import { MessagePopover } from './MessagePopover';
@@ -16,6 +16,7 @@ interface Props {
 }
 
 export const Header = ({ setOpenNavBarMobile, theme }: Props) => {
+  const location = useLocation();
   const ListItems: typeItem[] = [
     {
       name: 'Trang chủ',
@@ -72,9 +73,13 @@ export const Header = ({ setOpenNavBarMobile, theme }: Props) => {
             <PinIcon width="20" height="20" />
           </Link>
         </div>
-        <div className="flex items-center justify-center w-10 h-10 rounded-full dark:bg-secondaryColorDark bg-secondaryColorLight">
-          <MessagePopover listMessages={[]} />
-        </div>
+        {location.pathname === '/message' ? (
+          <></>
+        ) : (
+          <div className="flex items-center justify-center w-10 h-10 rounded-full dark:bg-secondaryColorDark bg-secondaryColorLight">
+            <MessagePopover listMessages={[]} />
+          </div>
+        )}
         <div className="flex items-center justify-center w-10 h-10 rounded-full dark:bg-secondaryColorDark bg-secondaryColorLight">
           <NotificationPopover listNotifications={[]} />
         </div>
