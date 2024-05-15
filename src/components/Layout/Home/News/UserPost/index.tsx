@@ -1,6 +1,8 @@
 import { Avatar } from '@/components/DataDisplay';
+import { Tag } from '@/components/DataDisplay/Tag';
 import { Input } from '@/components/DataEntry';
 import {
+  CheckIcon,
   CommentIcon,
   CopyIcon,
   EyeIcon,
@@ -10,6 +12,7 @@ import {
   SendIcon,
   ShareIcon,
 } from '@/components/General';
+import { useCopyToClipboard } from '@/hooks/useCopyToClipBoard';
 import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/react';
 
 type Props = {
@@ -18,7 +21,8 @@ type Props = {
 };
 
 const UserPost = (props: Props) => {
-  const { isShowComment, setIsShowComment } = props;
+  const { setIsShowComment } = props;
+  const { isCopied, copyToClipboard } = useCopyToClipboard();
 
   return (
     <div className="mt-6 bg-[#FFFFFF] dark:bg-primaryColorDark dark:text-textPrimaryDark min-h-[426px] rounded-md px-6 py-6">
@@ -41,9 +45,24 @@ const UserPost = (props: Props) => {
 
       <p className="mt-4">Coffin Dance</p>
 
-      <button>chép</button>
+      <Tag
+        className={`[&>span]:flex [&>span]:gap-0.5 [&>span]:text-[12px] min-w-[56px]  [&>span]:items-center ${isCopied ? '[&>span]:cursor-not-allowed' : '[&>span]:cursor-pointer'}`}
+        onClick={() => copyToClipboard('Coffin Dance')}
+      >
+        {isCopied ? (
+          <>
+            <CheckIcon width="14" height="14" />
+            <p>Đã sao chép</p>
+          </>
+        ) : (
+          <>
+            <CopyIcon width="14" height="14" />
+            <p>Chép</p>
+          </>
+        )}
+      </Tag>
 
-      <div className="flex gap-2 text-linkLight dark:text-linkDark">
+      <div className="flex gap-2 text-linkLight dark:text-linkDark flex-wrap">
         <p>#ctnnguyenphuongnam</p>
         <p>#nphn</p>
         <p>#khoi</p>
@@ -56,7 +75,7 @@ const UserPost = (props: Props) => {
         <p>#khoi</p>
       </div>
 
-      <div className="flex justify-between mt-4">
+      <div className="flex justify-between mt-4 text-[14px]">
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <EyeIcon />
@@ -71,15 +90,15 @@ const UserPost = (props: Props) => {
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <PhoneIcon />
-            <span>Điện thoại</span>
+            <span className="hidden md:block">Điện thoại</span>
           </div>
           <div className="flex items-center gap-2">
             <HeartIcon />
-            <span>Zalo</span>
+            <span className="hidden md:block">Zalo</span>
           </div>
           <div className="flex items-center gap-2">
             <MessageIcon />
-            <span>Messenger</span>
+            <span className="hidden md:block">Messenger</span>
           </div>
         </div>
       </div>
@@ -106,7 +125,7 @@ const UserPost = (props: Props) => {
           <Popover className="relative">
             <PopoverButton className="flex items-center justify-center gap-2 h-[32px] py-2 px-4 w-full">
               <ShareIcon />
-              <p>Chia sẻ</p>
+              <p className="text-[14px]">Chia sẻ</p>
             </PopoverButton>
             <Transition
               enter="transition ease-out duration-200"
@@ -133,7 +152,7 @@ const UserPost = (props: Props) => {
         </li>
       </ul>
 
-      <div className="flex gap-2 mt-4">
+      <div className="md:flex hidden gap-2 mt-4">
         <Avatar
           alt="avatar"
           height={40}

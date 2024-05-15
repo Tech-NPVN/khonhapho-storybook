@@ -18,6 +18,7 @@ type ModalProps = HTMLAttributes<HTMLDivElement> & {
   children?: ReactNode;
   disableInteractOutside?: boolean;
   styleTitle?: string;
+  showLine?: boolean;
 };
 
 export const Modal = ({
@@ -33,6 +34,7 @@ export const Modal = ({
   title,
   footer = false,
   onCancel,
+  showLine = true,
   disableInteractOutside,
   centered,
   styleTitle = 'textPrimaryLight dark:text-textPrimaryDark',
@@ -91,11 +93,11 @@ export const Modal = ({
 
                       {/* End Title */}
 
-                      <hr className="-mx-8"></hr>
+                      {showLine && <hr className="-mx-8"></hr>}
                       {children}
                       {footer && (
                         <div className="mt-4 flex flex-col h-full justify-end">
-                          <hr className="-mx-8"></hr>
+                          {showLine && <hr className="-mx-8"></hr>}
                           <div className="flex justify-end gap-2 mt-4 ">
                             <Button
                               onClick={handleCloseModal}

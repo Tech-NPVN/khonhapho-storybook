@@ -1,10 +1,11 @@
 import { Avatar } from '@/components/DataDisplay';
 import { Input } from '@/components/DataEntry';
-import { CommentIcon, HeartIcon, SearchIcon } from '@/components/General';
+import { CommentIcon, HeartIcon, SearchIcon, Typography } from '@/components/General';
 import UserPost from './UserPost';
 import UserPostSkeleton from './UserPostSkeleton';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Modal } from '@/components/Feedback';
+import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 
 const data = [
   {
@@ -49,17 +50,24 @@ const data = [
       { label: 'Diện tích:', value: '55m2' },
     ],
   },
-  // Add more data objects here if needed
 ];
 
 const NewsHome = () => {
   const [isShowComment, setIsShowComment] = useState<boolean>(false);
+  const [index, setIndex] = useState(3);
+
+  const fetchNextApi = () => {
+    setIndex((prevIndex) => prevIndex + 3);
+    setIsLoading(false);
+  };
+  const { isLoading, setIsLoading, loaderRef } = useIntersectionObserver(fetchNextApi);
+
   return (
     <div className="h-full md:w-[920px]">
-      <div className="flex justify-end mt-6">
-        <div className="flex w-[294px]">
+      <div className="flex md:justify-end  mt-6">
+        <div className="flex w-full md:w-[294px]">
           <Input
-            className="rounded-e-none bg-secondaryColorLight dark:bg-secondaryColorDark w-[254px]"
+            className="rounded-e-none bg-secondaryColorLight dark:bg-secondaryColorDark md:w-[254px]"
             placeholder="Nhập nội dung tìm kiếm"
           />
           <button className="flex items-center justify-center w-10 h-10 rounded-s-none bg-primaryButtonLight rounded-e-lg">
@@ -70,9 +78,11 @@ const NewsHome = () => {
 
       {/* Đáng chú ý */}
       <div className="mt-6">
-        <h2 className="text-[#000] dark:text-[#fff]">Đáng chú ý</h2>
+        <Typography variant="h2" className="text-[#000] dark:text-[#fff]">
+          Đáng chú ý
+        </Typography>
 
-        <div className="flex gap-4 overflow-hidden">
+        <div className="flex gap-4 overflow-auto md:overflow-hidden">
           {data.map((item) => {
             return (
               <div
@@ -140,7 +150,7 @@ const NewsHome = () => {
 
       {/* End đáng chú ý */}
 
-      {new Array(3).fill(0).map((item, index) => {
+      {new Array(index).fill(0).map((item, index) => {
         return (
           <>
             <UserPost
@@ -157,7 +167,6 @@ const NewsHome = () => {
         onCancel={() => setIsShowComment(false)}
         title="Bình luận"
         className=""
-        // styleTitle="textPrimaryLight dark:text-textPrimaryDark"
       >
         {Array(8)
           .fill(0)
@@ -195,7 +204,7 @@ const NewsHome = () => {
           })}
       </Modal>
 
-      <UserPostSkeleton />
+      <div ref={loaderRef}>{isLoading && <UserPostSkeleton />}</div>
     </div>
   );
 };

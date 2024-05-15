@@ -49,7 +49,7 @@ export const Tabs = ({ tabs, variantTab = 'underline', ...buttonProps }: TabsPro
       case 'fillGray':
         return 'bg-[#E5E6E8]  rounded-lg';
       case 'fillGreen':
-        return 'bg-white w-max rounded-lg dark:bg-primaryColorDark';
+        return 'bg-white md:w-max rounded-lg dark:bg-primaryColorDark';
     }
   }, [variantTab]);
 
