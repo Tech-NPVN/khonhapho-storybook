@@ -2,7 +2,12 @@ import SvgIcon, { TypeIcon } from '../SvgIcon';
 
 const SearchIcon = ({ color = '#333', width, height, viewBox, className = '' }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
+    <SvgIcon
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      className={`dark:[&>path]:fill-white  ${className}`}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"

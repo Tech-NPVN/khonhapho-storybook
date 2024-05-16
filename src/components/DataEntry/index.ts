@@ -4,3 +4,4 @@ export * from './Input';
 export * from './Rate';
 export * from './Select';
 export * from './Switch';
+export * from './Upload';

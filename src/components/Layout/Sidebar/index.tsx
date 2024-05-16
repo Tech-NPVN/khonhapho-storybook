@@ -182,9 +182,9 @@ export const Sidebar = ({
     >
       <div className="lg:h-[calc(100%_-_88px])] p-0 lg:overflow-y-auto overflow-hidden dark:text-white text-secondaryColorDark flex-1">
         <div className="flex items-center justify-between px-6 py-4 border-b border-secondaryColorDark lg:hidden">
-          <div onClick={() => setOpenNavBarMobile(false)}>
+          <button onClick={() => setOpenNavBarMobile(false)}>
             <CloseIcon />
-          </div>
+          </button>
           <DarkAndLight theme={theme} onToggleDarkAndLight={toggleTheme} />
         </div>
         <ul className="h-[calc(100vh_-85px)] p-6 overflow-y-auto lg:h-auto lg:overflow-hidden lg:p-4">

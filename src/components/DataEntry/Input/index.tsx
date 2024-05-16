@@ -29,6 +29,8 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   sizeInput?: 'small' | 'normal' | 'large' | null;
 };
 
+export const RequiredSymbolLabel = () => <span className="text-errorLight mr-1">*</span>;
+
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, prefixIcon, suffixIcon, sizeInput, disabled, ...props }, ref) => {
     return (

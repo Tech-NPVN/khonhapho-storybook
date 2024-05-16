@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply min-h-screen;
+  }
   body {
-    @apply overflow-x-hidden bg-secondaryColorLightD2 dark:bg-secondaryColorDarkD2;
+    @apply overflow-x-hidden bg-secondaryColorLightD2 dark:bg-secondaryColorDarkD2 h-full;
   }
 }
 

@@ -1,5 +1,4 @@
-import { RequiredSymbol } from '@/common/components';
-import { Form, IOption, InputForm, SelectForm } from '@/components/DataEntry';
+import { Form, IOption, InputForm, RequiredSymbolLabel, SelectForm } from '@/components/DataEntry';
 import { TextareaForm } from '@/components/DataEntry/Textarea';
 import { Button, Typography } from '@/components/General';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -130,7 +129,7 @@ function WarehouseForm() {
                     htmlFor="property_type"
                     className="inline-block mb-3 text-sm dark:text-white"
                   >
-                    <RequiredSymbol />
+                    <RequiredSymbolLabel />
                     Loại hình
                   </label>
                   <div className="mt-[3px]">
@@ -149,7 +148,7 @@ function WarehouseForm() {
                   htmlFor="property_feature"
                   className="inline-block mb-3 text-sm dark:text-white"
                 >
-                  <RequiredSymbol />
+                  <RequiredSymbolLabel />
                   Đặc điểm
                 </label>
                 <div>
@@ -169,7 +168,7 @@ function WarehouseForm() {
                     htmlFor="address.city"
                     className="inline-block mb-3 text-sm dark:text-white"
                   >
-                    <RequiredSymbol />
+                    <RequiredSymbolLabel />
                     Thành phố
                   </label>
                   <div>
@@ -187,7 +186,7 @@ function WarehouseForm() {
                     htmlFor="address.district"
                     className="inline-block mb-3 text-sm dark:text-white"
                   >
-                    <RequiredSymbol />
+                    <RequiredSymbolLabel />
                     Quận huyện
                   </label>
                   <div>
@@ -208,7 +207,7 @@ function WarehouseForm() {
                     htmlFor="address.street"
                     className="inline-block mb-3 text-sm dark:text-white"
                   >
-                    <RequiredSymbol />
+                    <RequiredSymbolLabel />
                     Đường
                   </label>
                   <div>
@@ -227,7 +226,7 @@ function WarehouseForm() {
                     htmlFor="address.apartment_number"
                     className="inline-block mb-3 text-sm dark:text-white"
                   >
-                    <RequiredSymbol />
+                    <RequiredSymbolLabel />
                     Ngõ, hẻm, số nhà, số phòng
                   </label>
                   <div>
@@ -260,7 +259,7 @@ function WarehouseForm() {
                     htmlFor="property_feature"
                     className="inline-block mb-3 text-sm dark:text-white"
                   >
-                    <RequiredSymbol />
+                    <RequiredSymbolLabel />
                     Thông số nhà
                   </label>
                   <div>
@@ -278,7 +277,7 @@ function WarehouseForm() {
                     htmlFor="bonus.value"
                     className="inline-block mb-3 text-sm dark:text-white"
                   >
-                    <RequiredSymbol />
+                    <RequiredSymbolLabel />
                     Hoa hồng
                   </label>
                   <div className="flex ">
@@ -308,7 +307,7 @@ function WarehouseForm() {
                     htmlFor="property_feature"
                     className="inline-block mb-3 text-sm dark:text-white"
                   >
-                    <RequiredSymbol />
+                    <RequiredSymbolLabel />
                     Loại hợp đồng
                   </label>
                   <div>
@@ -347,7 +346,7 @@ function WarehouseForm() {
               </div>
               <div className="w-full mt-2">
                 <label htmlFor="project" className="inline-block mb-3 text-sm dark:text-white">
-                  <RequiredSymbol />
+                  <RequiredSymbolLabel />
                   Tiêu đề (Tự động)
                 </label>
                 <div className="border-[1px] border-black/5 dark:border-white/10 px-2 py-3">
@@ -358,7 +357,7 @@ function WarehouseForm() {
               </div>
               <div className="w-full mt-2">
                 <label htmlFor="project" className="inline-block mb-3 text-sm dark:text-white">
-                  <RequiredSymbol />
+                  <RequiredSymbolLabel />
                   Nội dung
                 </label>
                 <div className="">
@@ -377,7 +376,7 @@ function WarehouseForm() {
                     htmlFor="legal_status"
                     className="inline-block mb-3 text-sm dark:text-white"
                   >
-                    <RequiredSymbol />
+                    <RequiredSymbolLabel />
                     Pháp lý
                   </label>
                   <div>
@@ -395,7 +394,7 @@ function WarehouseForm() {
                     htmlFor="property_feature"
                     className="inline-block mb-3 text-sm dark:text-white"
                   >
-                    <RequiredSymbol />
+                    <RequiredSymbolLabel />
                     Serial sổ
                   </label>
                   <div>
@@ -415,7 +414,7 @@ function WarehouseForm() {
                     htmlFor="owner_phone"
                     className="inline-block mb-3 text-sm dark:text-white"
                   >
-                    <RequiredSymbol />
+                    <RequiredSymbolLabel />
                     Số điện thoại chủ nhà
                   </label>
                   <div>
