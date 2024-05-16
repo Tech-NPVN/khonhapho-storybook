@@ -1,5 +1,6 @@
 import { CloseIcon } from '@/components/General';
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { DarkAndLight } from './DarkAndLight';
 import { MenuList } from './MenuList';
 
@@ -27,6 +28,8 @@ export const Sidebar = ({
   theme,
   toggleTheme,
 }: Props) => {
+  const location = useLocation();
+
   const listMenu: TItemMenu[] = [
     {
       id: '1',
@@ -153,7 +156,7 @@ export const Sidebar = ({
 
   return (
     <div
-      className={`lg:w-[250px] lg:top-[63px] bottom-0 dark:bg-primaryColorDark p-0 bg-primaryColorLight flex-col lg:flex lg:left-0 nav-mobile ${openNavBarMobile ? 'block' : ''}`}
+      className={`lg:w-[250px] lg:top-[63px] bottom-0 dark:bg-primaryColorDark p-0 bg-primaryColorLight flex-col lg:flex lg:left-0 nav-mobile ${openNavBarMobile ? 'block' : ''} ${location.pathname === '/message' ? 'lg:hidden' : ''}`}
     >
       <div className="lg:h-[calc(100%_-_88px])] p-0 lg:overflow-y-auto overflow-hidden dark:text-white text-secondaryColorDark flex-1">
         <div className="flex items-center justify-between px-6 py-4 border-b border-secondaryColorDark lg:hidden">
@@ -166,7 +169,7 @@ export const Sidebar = ({
           {listMenu?.map((item) => <MenuList item={item} key={item.id} />)}
         </ul>
       </div>
-      <div className="p-4 h-[88px] lg:block hidden">
+      <div className="lg:p-4 h-[88px] lg:block hidden">
         <DarkAndLight theme={theme as string} onToggleDarkAndLight={toggleTheme} />
       </div>
     </div>

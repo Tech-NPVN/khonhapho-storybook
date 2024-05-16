@@ -71,7 +71,7 @@ export const MessagePopover = ({ listMessages }: TMessagePopover) => {
       >
         <PopoverPanel
           anchor="bottom end"
-          className="rounded-xl text-sm  bg-primaryColorLight dark:bg-secondaryColorDark !top-[60px] shadow-lg p-3 border border-dividerLight/25 h-[calc(var(--window-height)-64px)] lg:h-[80vh] lg:min-w-[375px] min-w-full"
+          className="rounded-xl text-sm  bg-primaryColorLight dark:bg-secondaryColorDark !top-[55px] shadow-lg p-3 border border-dividerLight/25 h-[calc(var(--window-height)-64px)] lg:h-[80vh] lg:min-w-[375px] min-w-full z-20"
         >
           <div className="flex items-center justify-between">
             <Typography variant="h2" className="dark:text-primaryColorLight text-primaryColorDark">

@@ -35,7 +35,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div
         className={cn(inputStyles({ sizeInput, className }), {
-          'opacity-50 cursor-not-allowed': disabled,
+          'opacity-50 cursor-not-allowed bg-dividerLight dark:bg-[#303132]': disabled,
         })}
       >
         {prefixIcon}
@@ -59,6 +59,7 @@ type InputFormPasswordProps<T extends FieldValues> = InputHTMLAttributes<HTMLInp
   label?: string;
   description?: string | ReactNode;
   className?: string;
+  cnItem?: string;
   prefixIcon?: ReactNode;
   sizeInput?: 'small' | 'normal' | 'large' | null;
 };
@@ -68,6 +69,7 @@ export const InputFormPassword = <T extends FieldValues>({
   label,
   description,
   className,
+  cnItem,
   prefixIcon,
   sizeInput,
   required,
@@ -81,7 +83,7 @@ export const InputFormPassword = <T extends FieldValues>({
       control={control}
       name={name}
       render={({ field, fieldState: { error } }) => (
-        <FormItem>
+        <FormItem className={cnItem}>
           {label && (
             <FormLabel>
               {required && <RequiredSymbolLabel />}
@@ -91,7 +93,7 @@ export const InputFormPassword = <T extends FieldValues>({
           <FormControl>
             <Input
               type={showPassword ? 'text' : 'password'}
-              className={`${error && '!border-errorLight !dark:border-errorDark'} ${className}`}
+              className={`${className} ${error && '!border-errorLight !dark:border-errorDark'}`}
               prefixIcon={prefixIcon}
               sizeInput={sizeInput}
               suffixIcon={
@@ -113,6 +115,7 @@ export const InputFormPassword = <T extends FieldValues>({
 
 type InputFormProps<T extends FieldValues> = InputFormPasswordProps<T> & {
   suffixIcon?: ReactNode;
+  cnItem?: string;
   sizeInput?: 'small' | 'normal' | 'large' | null;
 };
 
@@ -121,6 +124,7 @@ export const InputForm = <T extends FieldValues>({
   label,
   description,
   className,
+  cnItem,
   prefixIcon,
   suffixIcon,
   sizeInput,
@@ -134,7 +138,7 @@ export const InputForm = <T extends FieldValues>({
       control={control}
       name={name}
       render={({ field, fieldState: { error } }) => (
-        <FormItem>
+        <FormItem className={cnItem}>
           {label && (
             <FormLabel>
               {required && <RequiredSymbolLabel />}
@@ -143,7 +147,7 @@ export const InputForm = <T extends FieldValues>({
           )}
           <FormControl>
             <Input
-              className={`${error && '!border-errorLight !dark:border-errorDark'} ${className}`}
+              className={`${className} ${error && '!border-errorLight !dark:border-errorDark'}`}
               prefixIcon={prefixIcon}
               suffixIcon={suffixIcon}
               sizeInput={sizeInput}
