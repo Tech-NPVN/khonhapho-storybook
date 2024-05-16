@@ -55,20 +55,19 @@ export const Modal = ({
   return (
     open && (
       <Transition appear show={open}>
-        <TransitionChild
-          enter="ease-out duration-300"
-          enterFrom="opacity-0 transform-[scale(95%)]"
-          enterTo="opacity-100 transform-[scale(100%)]"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100 transform-[scale(100%)]"
-          leaveTo="opacity-0 transform-[scale(95%)]"
-        >
-          <Dialog onClose={handleCloseModal} onClick={(e) => e.stopPropagation()}>
-            <DialogPanel>
-              <div
-                className={`fixed inset-0 w-full bg-[rgba(0,0,0,0.5)] overflow-auto h-full
+        <Dialog onClose={handleCloseModal} onClick={(e) => e.stopPropagation()}>
+          <DialogPanel>
+            <div
+              className={`fixed top-0 left-0 w-full bg-[rgba(0,0,0,0.5)] z-50 overflow-auto h-full
                     ${centered ? 'flex flex-col justify-center items-center' : 'flex flex-col items-center pt-20'}`}
-                style={{ zIndex: 9999 }}
+            >
+              <TransitionChild
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 transform-[scale(95%)]"
+                enterTo="opacity-100 transform-[scale(100%)]"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 transform-[scale(100%)]"
+                leaveTo="opacity-0 transform-[scale(95%)]"
               >
                 <div
                   className={`w-1/2 h-fit px-8 py-3 mb-12 rounded-xl relative bg-primaryColorLight dark:bg-primaryColorDark ${className}`}
@@ -116,10 +115,10 @@ export const Modal = ({
                     )}
                   </div>
                 </div>
-              </div>
-            </DialogPanel>
-          </Dialog>
-        </TransitionChild>
+              </TransitionChild>
+            </div>
+          </DialogPanel>
+        </Dialog>
       </Transition>
     )
   );
