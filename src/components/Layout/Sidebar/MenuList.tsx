@@ -11,11 +11,12 @@ export const MenuList = ({ item }: { item: TItemMenu }) => {
   };
   return (
     <>
-      <li key={item.id} className="flex items-center justify-between " onClick={handleShow}>
+      <li key={item.id} className="flex items-center justify-between">
         <NavLink
           to={item.href}
           onClick={(e) => {
             item.subMenu && e.preventDefault();
+            handleShow();
           }}
           className={({ isActive }) =>
             [

@@ -1,5 +1,6 @@
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
-import { Home, Urgently, User, Warehouse } from '@/pages/Dashboard';
+import { Home, Urgently, Warehouse } from '@/pages/Dashboard';
+import { UserCollection, UserProfile } from '@/pages/Dashboard/User';
 import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
 import { AuthLayout, NoAuthLayout } from '@/pages/Layout';
 import { MessagePage } from '@/pages/Message';
@@ -50,7 +51,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'user/:id',
-        element: <User />,
+        element: <UserProfile />,
       },
       {
         path: '/message',
@@ -58,7 +59,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'user/collection',
-        element: <></>,
+        element: <UserCollection />,
       },
     ],
   },

@@ -50,14 +50,14 @@ export const ForgotPassword = () => {
           />
 
           <div className="w-full mt-3">
-            <Button type="submit" className="text-md mb-4">
+            <Button type="submit" className="text-md mb-4 w-full">
               Gửi
             </Button>
             <Button
               type="button"
               variant="ghostBlue"
-              className="text-md font-normal"
-              onClick={() => navigate(-1)}
+              className="text-md font-normal w-full"
+              onClick={() => navigate('/login')}
             >
               Trở lại trang dăng nhập
             </Button>

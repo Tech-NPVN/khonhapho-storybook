@@ -12,7 +12,6 @@ export default {
         textPrimaryLight: '#000',
         textSecondaryLight: 'rgba(0, 0, 0, 0.5)',
         secondaryColorLight: '#ffffff',
-        tertiaryColorLight: 'rgba(14, 24, 28, 0.8)',
         dividerLight: '#d9d9d9',
         infoLight: '#1677ff',
         errorLight: '#f87272',
@@ -26,7 +25,6 @@ export default {
         textPrimaryDark: '#ffffff',
         textSecondaryDark: '#6B6C6D',
         secondaryColorDark: '#3A3B3C',
-        tertiaryColorDark: '#ffffff',
         dividerDark: '#6B6C6D',
         infoDark: '#1677ff',
         secondaryColorDarkD2: '#18191A',
@@ -35,6 +33,8 @@ export default {
         warningDark: '#fbbd23',
         linkDark: '#69C3F4',
         linkHoverDark: '#A2DEFF',
+        tertiaryColorLight: '#E5E6E8',
+        tertiaryColorDark: '#525354',
       },
       keyframes: {
         slideDown: {
