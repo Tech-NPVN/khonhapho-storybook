@@ -49,6 +49,7 @@ export const Select = forwardRef<HTMLSelectElement, ISelect>(
               className={clsx(
                 'relative min-w-11 w-full h-full cursor-default rounded-md bg-white dark:bg-secondaryColorDark pl-3 pr-10 text-left text-gray-900 ring-1 ring-inset ring-black/10 focus:ring-green-600 dark:ring-white/20 focus:outline-none focus:ring-1 sm:text-sm sm:leading-6 ',
                 className,
+                props.disabled ? 'cursor-not-allowed' : '',
               )}
             >
               {!props.multiple && !Array.isArray(value) && (
