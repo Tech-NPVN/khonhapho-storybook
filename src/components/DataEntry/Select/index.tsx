@@ -44,7 +44,12 @@ export const Select = forwardRef<HTMLSelectElement, ISelect>(
         {...props}
       >
         {({ open }) => (
-          <div className={clsx('relative w-full', props.disabled ? 'opacity-50' : '')}>
+          <div
+            className={clsx(
+              'relative w-full',
+              props.disabled ? 'opacity-50 cursor-not-allowed' : '',
+            )}
+          >
             <ListboxButton
               className={clsx(
                 'relative min-w-11 w-full h-full cursor-default rounded-md bg-white dark:bg-secondaryColorDark pl-3 pr-10 text-left text-gray-900 ring-1 ring-inset ring-black/10 focus:ring-green-600 dark:ring-white/20 focus:outline-none focus:ring-1 sm:text-sm sm:leading-6 ',
