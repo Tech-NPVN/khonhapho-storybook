@@ -60,13 +60,13 @@ export const Login = () => {
           <CheckboxForm name="" label="Lưu mật khẩu" className="text-[13px]" />
 
           <div className="w-full">
-            <Button type="submit" className="text-md mb-1">
+            <Button type="submit" className="text-md mb-1 w-full">
               Đăng nhập
             </Button>
             <Button
               type="button"
               variant="ghostBlue"
-              className="text-md font-normal"
+              className="text-md font-normal w-full"
               onClick={() => navigate('/forgot-password')}
             >
               Quên mật khẩu
@@ -80,7 +80,7 @@ export const Login = () => {
           <Button
             type="button"
             variant="outlineRed"
-            className="text-md"
+            className="text-md w-full"
             onClick={() => navigate('/sign-up')}
           >
             Tạo tài khoản

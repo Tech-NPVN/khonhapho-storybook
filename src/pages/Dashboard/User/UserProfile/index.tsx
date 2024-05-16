@@ -121,7 +121,7 @@ export const NoResultFound = () => {
   );
 };
 
-export const User = () => {
+export const UserProfile = () => {
   const { id } = useParams();
 
   return (

@@ -66,8 +66,9 @@ export const Modal = ({
           <Dialog onClose={handleCloseModal} onClick={(e) => e.stopPropagation()}>
             <DialogPanel>
               <div
-                className={`fixed top-0 left-0 w-full bg-[rgba(0,0,0,0.5)] z-10 overflow-auto h-full
+                className={`fixed inset-0 w-full bg-[rgba(0,0,0,0.5)] overflow-auto h-full
                     ${centered ? 'flex flex-col justify-center items-center' : 'flex flex-col items-center pt-20'}`}
+                style={{ zIndex: 9999 }}
               >
                 <div
                   className={`w-1/2 h-fit px-8 py-3 mb-12 rounded-xl relative bg-primaryColorLight dark:bg-primaryColorDark ${className}`}
