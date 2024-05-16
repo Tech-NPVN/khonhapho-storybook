@@ -142,7 +142,14 @@ export const Multiple: Story = {
       const [selected, setSelected] = useState<IOption[]>([]);
       return (
         <div className="min-h-80 w-96">
-          <Select options={OPTIONS} value={selected} onChange={setSelected} multiple />
+          <Select
+            options={OPTIONS}
+            value={selected}
+            onChange={(value) => {
+              Array.isArray(value) && setSelected(value);
+            }}
+            multiple
+          />
         </div>
       );
     };

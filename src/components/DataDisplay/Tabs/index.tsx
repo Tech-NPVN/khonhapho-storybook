@@ -12,10 +12,10 @@ const buttonTabStyles = cva(
           'border-b-2 border-transparent hover:text-primaryButtonLight rounded-none dark:text-white',
         underlineSelected:
           'border-b-2 border-primaryButtonLight text-primaryButtonLight rounded-none',
-        fillGray: 'px-[56px] ',
-        fillGraySelected: 'px-[56px] bg-[#F3F4F6]',
-        fillGreen: 'text-textSecondaryLight px-[56px] dark:text-textSecondaryDark font-semibold',
-        fillGreenSelected: 'px-[56px] bg-primaryButtonLight dark:bg-textSecondaryDark text-white',
+        fillGray: '',
+        fillGraySelected: 'bg-[#F3F4F6]',
+        fillGreen: 'text-textSecondaryLight dark:text-textSecondaryDark font-semibold',
+        fillGreenSelected: 'bg-primaryButtonLight dark:bg-textSecondaryDark text-white',
       },
     },
     defaultVariants: {
@@ -35,9 +35,15 @@ export type TabsProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonTabStyles> & {
     tabs: TabRenderProps[];
     variantTab?: 'underline' | 'fillGray' | 'fillGreen';
+    widthTabList?: number;
   };
 
-export const Tabs = ({ tabs, variantTab = 'underline', ...buttonProps }: TabsProps) => {
+export const Tabs = ({
+  tabs,
+  variantTab = 'underline',
+  widthTabList,
+  ...buttonProps
+}: TabsProps) => {
   const [tabIndex, setTabIndex] = useState<number>(0);
 
   const { variant, className, ...props } = buttonProps;
@@ -49,13 +55,13 @@ export const Tabs = ({ tabs, variantTab = 'underline', ...buttonProps }: TabsPro
       case 'fillGray':
         return 'bg-[#E5E6E8]  rounded-lg';
       case 'fillGreen':
-        return 'bg-white w-max rounded-lg dark:bg-primaryColorDark';
+        return 'bg-white rounded-lg dark:bg-primaryColorDark';
     }
   }, [variantTab]);
 
   return (
     <TabGroup as={Fragment} selectedIndex={tabIndex} onChange={setTabIndex}>
-      <TabList className={`flex ${getTabListCn}`}>
+      <TabList className={`flex w-full ${getTabListCn}`} style={{ width: widthTabList }}>
         {tabs.map((tab) => (
           <Tab as={Fragment} key={tab.key}>
             {({ selected }) => (
@@ -65,7 +71,7 @@ export const Tabs = ({ tabs, variantTab = 'underline', ...buttonProps }: TabsPro
                     variant: selected ? `${variantTab}Selected` : variantTab,
                     className,
                   }),
-                  'font-semibold',
+                  'font-semibold flex-1',
                 )}
                 {...props}
               >

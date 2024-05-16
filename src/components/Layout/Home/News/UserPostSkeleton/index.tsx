@@ -14,12 +14,12 @@ const UserPostSkeleton = () => {
       </div>
       <Skeleton width={250} height={20} className="mt-4"></Skeleton>
       <div className="flex flex-col gap-4 my-4 ">
-        <Skeleton className="" width={890} height={20}></Skeleton>
-        <Skeleton width={890} height={20}></Skeleton>
-        <Skeleton width={890} height={20}></Skeleton>
-        <Skeleton width={890} height={20}></Skeleton>
+        <Skeleton className="!w-full md:w-[890px]"></Skeleton>
+        <Skeleton className="!w-full md:w-[890px]"></Skeleton>
+        <Skeleton className="!w-full md:w-[890px]"></Skeleton>
+        <Skeleton className="!w-full md:w-[890px]"></Skeleton>
       </div>
-      <Skeleton width={400} height={20}></Skeleton>
+      <Skeleton className="!w-full md:w-[400px]"></Skeleton>
     </div>
   );
 };
