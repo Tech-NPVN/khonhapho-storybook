@@ -1,5 +1,7 @@
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, User, Warehouse } from '@/pages/Dashboard';
+import { CompanyPage } from '@/pages/Dashboard/Company';
+import { UserAppointment } from '@/pages/Dashboard/User/UserAppointment';
 import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
 import { AuthLayout, NoAuthLayout } from '@/pages/Layout';
 import { MessagePage } from '@/pages/Message';
@@ -45,16 +47,41 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: 'user/:id',
-        element: <User />,
+        path: 'user',
+        children: [
+          {
+            index: true,
+            element: <Warehouse />,
+          },
+          {
+            path: 'customers',
+            element: <>QUẢN LÝ KHÁCH HÀNG</>,
+          },
+          {
+            path: ':id',
+            element: <User />,
+          },
+          {
+            path: 'collection',
+            element: <>Mặc định</>,
+          },
+          {
+            path: 'appointment',
+            element: <UserAppointment />,
+          },
+          {
+            path: 'review',
+            element: <>Lịch sử báo cáo dẫn khách</>,
+          },
+        ],
       },
       {
-        path: '/message',
+        path: 'message',
         element: <MessagePage />,
       },
       {
-        path: 'user/collection',
-        element: <></>,
+        path: 'company',
+        element: <CompanyPage />,
       },
     ],
   },

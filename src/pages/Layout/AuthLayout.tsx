@@ -19,7 +19,7 @@ export const AuthLayout = () => {
           toggleTheme={toggleTheme}
         />
         <main
-          className={`relative w-screen mx-auto bg-secondaryColorLightD2 dark:bg-secondaryColorDarkD2 ${location.pathname === '/message' ? 'lg:w-full lg:ml-0' : 'lg:ml-[250px] lg:w-[calc(100vw_-_250px)] ml-0 px-3 pt-6 lg:p-4'}`}
+          className={`relative w-screen mx-auto bg-secondaryColorLightD2 dark:bg-secondaryColorDarkD2 ${location.pathname === '/message' ? 'lg:w-full lg:ml-0' : 'lg:ml-[250px] lg:w-[calc(100vw_-_250px)] ml-0 px-3 pt-6 lg:p-4 min-h-screen'}`}
         >
           <Outlet />
         </main>

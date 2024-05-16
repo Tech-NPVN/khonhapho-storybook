@@ -152,7 +152,46 @@ export const Sidebar = ({
         },
       ],
     },
+    {
+      id: '9',
+      href: '/user',
+      name: 'Tài khoản cá nhân',
+      subMenu: [
+        {
+          id: '1',
+          href: '/user/customers',
+          name: 'QL khách - Tự khớp khách',
+        },
+        {
+          id: '2',
+          href: '/user/appointment',
+          name: 'Lịch sử đặt lịch',
+        },
+        {
+          id: '3',
+          href: '/user/review',
+          name: 'Lịch sử báo cáo',
+        },
+        {
+          id: '4',
+          href: '/user/collection',
+          name: 'Bộ sưu tập',
+        },
+        {
+          id: '5',
+          href: '/user/profile',
+          name: 'Trang cá nhân',
+        },
+      ],
+    },
   ];
+
+  // Tài khoản cá nhân
+  // · QL khách - Tự khớp khách
+  // . Lịch sử đặt lịch
+  // · Lịch sử báo cáo
+  // · Bộ sưu tập
+  // · Trang cá nhân
 
   return (
     <div
