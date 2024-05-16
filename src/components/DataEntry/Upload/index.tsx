@@ -8,13 +8,15 @@ type UploadType = React.InputHTMLAttributes<InputEvent> & {
   onDrop?: (event: React.DragEvent) => void;
 };
 
-export const Upload = ({ onChange, multiple = false, onDrop }: UploadType) => {
+export const Upload = ({ onChange, multiple = false, onDrop, className }: UploadType) => {
   const handleOnDrag = (e: React.DragEvent) => {
     e.preventDefault();
   };
 
   return (
-    <div className="cursor-pointer flex items-center justify-center border border-dashed w-[200px] h-[200px] rounded-lg relative overflow-hidden group">
+    <div
+      className={`cursor-pointer flex items-center justify-center border border-dashed w-[200px] h-[200px] rounded-lg relative overflow-hidden group ${className}`}
+    >
       <label
         htmlFor="avatar"
         className="absolute inset-0 cursor-pointer"

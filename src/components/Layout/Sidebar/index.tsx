@@ -159,18 +159,33 @@ export const Sidebar = ({
       subMenu: [
         {
           id: '1',
+          href: '/user/customers',
+          name: 'QL khách - Tự khớp khách',
+        },
+        {
+          id: '2',
+          href: '/user/appointment',
+          name: 'Lịch sử đặt lịch',
+        },
+        {
+          id: '3',
+          href: '/user/review',
+          name: 'Lịch sử báo cáo',
+        },
+        {
+          id: '4',
           href: '/user/collection',
           name: 'Bộ sưu tập',
         },
         {
-          id: '2',
+          id: '5',
           href: '/user/profile',
           name: 'Trang cá nhân',
         },
       ],
     },
     {
-      id: 'logout',
+      id: '10',
       href: '/login',
       name: 'Đăng xuất',
     },
