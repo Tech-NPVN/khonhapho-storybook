@@ -1,3 +1,3 @@
 export const UserCollection = () => {
-  return <></>;
+  return <section className="grid grid-cols-12"></section>;
 };

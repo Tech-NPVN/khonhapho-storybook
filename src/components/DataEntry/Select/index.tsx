@@ -1,3 +1,4 @@
+import { RequiredSymbol } from '@/common/components';
 import { Tag } from '@/components/DataDisplay/Tag';
 import {
   Listbox,
@@ -10,7 +11,6 @@ import clsx from 'clsx';
 import { Fragment, ReactNode, forwardRef } from 'react';
 import { FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../Form';
-import { RequiredSymbolLabel } from '../Input';
 
 export interface IOption {
   value: string;
@@ -219,7 +219,7 @@ export const SelectForm = <T extends FieldValues>({
         <FormItem>
           {label && (
             <FormLabel>
-              {required && <RequiredSymbolLabel />}
+              {required && <RequiredSymbol />}
               {label}
             </FormLabel>
           )}

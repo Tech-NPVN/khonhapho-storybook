@@ -1,3 +1,4 @@
+import { RequiredSymbol } from '@/common/components';
 import { EyeIcon, EyeSlashIcon } from '@/components/General';
 import { cn } from '@/utils';
 import { Input as InputHeadless } from '@headlessui/react';
@@ -27,8 +28,6 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   suffixIcon?: ReactNode;
   sizeInput?: 'small' | 'normal' | 'large' | null;
 };
-
-export const RequiredSymbolLabel = () => <span className="text-errorLight mr-1">*</span>;
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, prefixIcon, suffixIcon, sizeInput, disabled, ...props }, ref) => {
@@ -86,7 +85,7 @@ export const InputFormPassword = <T extends FieldValues>({
         <FormItem className={cnItem}>
           {label && (
             <FormLabel>
-              {required && <RequiredSymbolLabel />}
+              {required && <RequiredSymbol />}
               {label}
             </FormLabel>
           )}
@@ -141,7 +140,7 @@ export const InputForm = <T extends FieldValues>({
         <FormItem className={cnItem}>
           {label && (
             <FormLabel>
-              {required && <RequiredSymbolLabel />}
+              {required && <RequiredSymbol />}
               {label}
             </FormLabel>
           )}
