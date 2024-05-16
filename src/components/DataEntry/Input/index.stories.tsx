@@ -42,6 +42,9 @@ export const Basic: Story = {
   },
 };
 
+/**
+ * You can add icon for input by using props `prefixIcon` or `suffixIcon`:
+ */
 export const PrefixAndSuffixIcon: Story = {
   render: () => (
     <div className="min-w-[400px] flex flex-col gap-5">

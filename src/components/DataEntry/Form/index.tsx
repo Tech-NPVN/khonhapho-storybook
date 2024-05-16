@@ -90,7 +90,7 @@ const FormLabel = forwardRef<HTMLLabelElement, HTMLAttributes<HTMLLabelElement>>
     return (
       <label
         ref={ref}
-        className={cn(error && 'text-errorLight', className)}
+        className={cn(`text-sm dark:text-white ${error && 'text-errorLight'}`, className)}
         htmlFor={formItemId}
         {...props}
       />
@@ -124,7 +124,7 @@ const FormDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLPara
       <p
         ref={ref}
         id={formDescriptionId}
-        className={cn('text-[13px] font-medium opacity-80', className)}
+        className={cn('text-[14px] opacity-80 dark:text-secondaryColorLight', className)}
         {...props}
       />
     );
@@ -146,7 +146,7 @@ const FormMessage = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagrap
         ref={ref}
         id={formMessageId}
         className={cn(
-          'text-sm font-medium flex items-center gap-2 text-errorLight transition-all duration-500 !mt-1',
+          'text-sm flex items-center gap-2 text-errorLight transition-all duration-500 !mt-1',
           className,
         )}
         {...props}

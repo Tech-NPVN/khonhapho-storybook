@@ -1,8 +1,8 @@
 import { cn } from '@/utils';
 import { cva, VariantProps } from 'class-variance-authority';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-const typographyStyles = cva('', {
+const typographyStyles = cva('dark:text-white', {
   variants: {
     variant: {
       h1: 'text-3xl font-bold',
@@ -23,7 +23,7 @@ const typographyStyles = cva('', {
 type TypographyProps = React.HTMLAttributes<HTMLElement> &
   VariantProps<typeof typographyStyles> & {
     variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span' | 'p';
-    children: string;
+    children: string | ReactNode;
     color?: string;
   };
 

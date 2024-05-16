@@ -46,7 +46,7 @@ export const CheckBox = ({
       >
         <CheckIcon className="hidden group-data-[checked]:block" width="15" height="13" />
       </CheckboxHeadless>
-      <Label>{label}</Label>
+      <Label className="dark:text-white">{label}</Label>
     </Field>
   );
 };
@@ -77,7 +77,7 @@ export const CheckboxForm = <T extends FieldValues>({
   // displayValue = 'value',
   ...props
 }: CheckboxFormProps<T>) => {
-  const { control } = useFormContext();
+  const { control } = useFormContext<T>();
 
   return (
     <FormField

@@ -6,7 +6,8 @@
     "deps",
     "lib",
     "action",
-    "structrue"
+    "structrue",
+    "pages",
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",

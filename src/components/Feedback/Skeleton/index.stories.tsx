@@ -1,3 +1,4 @@
+import { Typography } from '@/components/General';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Skeleton } from '.';
 
@@ -46,6 +47,9 @@ export const Basic: Story = {
   args: {},
 };
 
+/**
+ * By default, the skeleton pulsates, but you can disable the animation by props `activeAnimation={false}`
+ */
 export const NoActiveAnimation: Story = {
   args: {
     activeAnimation: false,
@@ -54,11 +58,29 @@ export const NoActiveAnimation: Story = {
 
 export const ComplexCombination: Story = {
   render: () => (
-    <div className="flex justify-start items-center gap-3">
-      <Skeleton width={60} height={60} className="rounded-full" />
-      <div className="flex flex-col gap-3">
-        <Skeleton width={150} height={25} />
-        <Skeleton width={250} height={15} />
+    <div className="flex flex-col gap-10">
+      <div className="flex justify-start items-center gap-4">
+        <Skeleton width={60} height={60} className="rounded-full" />
+        <div className="flex flex-col gap-3">
+          <Skeleton width={150} height={25} />
+          <Skeleton width={250} height={15} />
+        </div>
+      </div>
+
+      <div className="flex justify-start items-center gap-4">
+        <img
+          width={60}
+          height={60}
+          className="rounded-full"
+          src="https://github.com/shadcn.png"
+          alt=""
+        />
+        <div className="flex flex-col gap-1">
+          <Typography variant="h4">Name Example</Typography>
+          <Typography variant="span" className="text-sm">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          </Typography>
+        </div>
       </div>
     </div>
   ),

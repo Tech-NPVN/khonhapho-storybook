@@ -43,3 +43,20 @@ export const Default: Story = {
     children: 'Button Default',
   },
 };
+
+export const Usage: Story = {
+  render: () => {
+    return (
+      <div className="flex flex-col gap-5">
+        <Typography variant="h1">h1. Heading</Typography>
+        <Typography variant="h2">h2. Heading</Typography>
+        <Typography variant="h3">h3. Heading</Typography>
+        <Typography variant="h4">h4. Heading</Typography>
+        <Typography variant="h5">h5. Heading</Typography>
+        <Typography variant="h6">h6. Heading</Typography>
+        <Typography variant="span">span. Heading</Typography>
+        <Typography variant="p">p. Heading</Typography>
+      </div>
+    );
+  },
+};

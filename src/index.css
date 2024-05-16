@@ -11,5 +11,22 @@
     grid-column-gap: 20px;
     grid-row-gap: 20px;
   }
+
+  .nav-mobile {
+    @apply fixed w-[98%] z-10 dark:bg-secondaryColorDark bg-secondaryColorLight top-0 right-0 hidden m-0;
+  }
 }
 
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply rounded-md bg-secondaryColorDark/35 dark:bg-secondaryColorLight;
+}
