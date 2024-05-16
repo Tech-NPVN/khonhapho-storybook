@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    @apply min-h-screen;
+  }
+  body {
+    @apply overflow-x-hidden bg-secondaryColorLightD2 dark:bg-secondaryColorDarkD2 h-full;
+  }
+}
+
 @layer components {
   .icons {
     @apply grid text-center;

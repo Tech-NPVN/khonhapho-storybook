@@ -1,3 +1,4 @@
+import { RequiredSymbol } from '@/common/components';
 import { Tag } from '@/components/DataDisplay/Tag';
 import {
   Listbox,
@@ -10,7 +11,6 @@ import clsx from 'clsx';
 import { Fragment, ReactNode, forwardRef } from 'react';
 import { FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../Form';
-import { RequiredSymbolLabel } from '../Input';
 
 export interface IOption {
   value: string;
@@ -54,6 +54,7 @@ export const Select = forwardRef<HTMLSelectElement, ISelect>(
               className={clsx(
                 'relative min-w-11 w-full h-full cursor-default rounded-md bg-white dark:bg-secondaryColorDark pl-3 pr-10 text-left text-gray-900 ring-1 ring-inset ring-black/10 focus:ring-green-600 dark:ring-white/20 focus:outline-none focus:ring-1 sm:text-sm sm:leading-6 ',
                 className,
+                props.disabled ? 'cursor-not-allowed' : '',
               )}
             >
               {!props.multiple && !Array.isArray(value) && (
@@ -224,7 +225,7 @@ export const SelectForm = <T extends FieldValues>({
         <FormItem>
           {label && (
             <FormLabel>
-              {required && <RequiredSymbolLabel />}
+              {required && <RequiredSymbol />}
               {label}
             </FormLabel>
           )}

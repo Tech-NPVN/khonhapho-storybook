@@ -1,3 +1,4 @@
+import { RequiredSymbol } from '@/common/components';
 import { EyeIcon, EyeSlashIcon } from '@/components/General';
 import { cn } from '@/utils';
 import { Input as InputHeadless } from '@headlessui/react';
@@ -86,7 +87,7 @@ export const InputFormPassword = <T extends FieldValues>({
         <FormItem className={cnItem}>
           {label && (
             <FormLabel>
-              {required && <RequiredSymbolLabel />}
+              {required && <RequiredSymbol />}
               {label}
             </FormLabel>
           )}
@@ -141,7 +142,7 @@ export const InputForm = <T extends FieldValues>({
         <FormItem className={cnItem}>
           {label && (
             <FormLabel>
-              {required && <RequiredSymbolLabel />}
+              {required && <RequiredSymbol />}
               {label}
             </FormLabel>
           )}

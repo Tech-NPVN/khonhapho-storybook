@@ -55,13 +55,13 @@ export const SignUp = () => {
         </div>
 
         <div className="w-full mt-10">
-          <Button type="submit" className="mb-4 text-md">
+          <Button type="submit" className="w-full mb-4 text-md">
             Đăng ký
           </Button>
           <Button
             type="button"
             variant="ghostBlue"
-            className="font-normal text-md"
+            className="w-full font-normal text-md"
             onClick={() => navigate(-1)}
           >
             Trở về đăng nhập

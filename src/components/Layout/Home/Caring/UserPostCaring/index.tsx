@@ -1,6 +1,6 @@
 import { Avatar } from '@/components/DataDisplay';
 import { Tag } from '@/components/DataDisplay/Tag';
-import { Input } from '@/components/DataEntry';
+import { Input, Rate } from '@/components/DataEntry';
 import {
   AlarmClock,
   CheckIcon,
@@ -20,15 +20,13 @@ import {
 } from '@/components/General';
 import { useCopyToClipboard } from '@/hooks/useCopyToClipBoard';
 import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/react';
-import { useState } from 'react';
 
 const UserPostCaring = () => {
   const { isCopied, copyToClipboard } = useCopyToClipboard();
-  const [index, setIndex] = useState(3);
 
   return (
-    <div className="mt-6 bg-[#FFFFFF] dark:bg-primaryColorDark dark:text-textPrimaryDark min-h-[426px] rounded-md px-6 py-6">
-      <div className="flex justify-between items-center">
+    <div className="mt-6 bg-[#FFFFFF] dark:bg-primaryColorDark dark:text-textPrimaryDark min-h-[426px] rounded-md -mx-6 md:mx-0 px-6 py-6">
+      <div className="flex justify-between items-center ">
         <div className="flex items-center gap-2">
           <Avatar
             alt="avatar"
@@ -38,7 +36,10 @@ const UserPostCaring = () => {
           />
           <div className="">
             <h3 className="text-[14px] dark:text-[#74CF5A]">Nhà Phố Việt Nam</h3>
-            <div className="flex gap-2 items-center text-textSecondaryLight text-[14px]">
+            <div className='flex md:hidden gap-2 items-center'>
+              <Rate rating={5} /> <Typography variant="span">5,0</Typography>
+            </div>
+            <div className="md:flex gap-2 items-center text-textSecondaryLight text-[14px] hidden">
               <span className="dark:text-textSecondaryDark">8 giờ trước</span>
               <span className="dark:text-linkDark">·</span>
               <span className="dark:text-linkDark">Quy định và Hướng dẫn</span>
@@ -48,8 +49,16 @@ const UserPostCaring = () => {
 
         <div className="flex flex-col gap-1">
           <div className="flex gap-2 items-center ">
-            <Tag color="errorDark">Sổ đỏ/sổ hồng</Tag>
-            <Tag>Hạ chào</Tag>
+            <Tag
+              color="#FF4D4F"
+              backgroundColor="#fff"
+              className="border hidden md:block border-[#D4390F]"
+            >
+              Sổ đỏ/sổ hồng
+            </Tag>
+            <Tag backgroundColor="#197D16" color="#FFFFFF">
+              Hạ chào
+            </Tag>
           </div>
           <Typography
             variant="span"
@@ -101,7 +110,7 @@ const UserPostCaring = () => {
               </>
             )}
           </Tag>
-          <div className="flex items-center gap-4">
+          <div className="md:flex items-center gap-4 hidden ">
             <div className="flex items-center gap-3 cursor-pointer">
               <SuitableIcon />
               <Typography variant="p">Khách phù hợp</Typography>
@@ -114,61 +123,79 @@ const UserPostCaring = () => {
         </div>
       </div>
 
-      <div className="flex my-2 -mx-6 justify-between overflow-hidden ">
-        {Array(4)
-          .fill(0)
-          .map((_) => {
-            return (
-              <img
-                src="https://s3-alpha-sig.figma.com/img/adcc/9585/df02f2f8cf70b913523a76aa5f8c5203?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=idvkWHqyk10ZJcT8bexclO2iW9Bu~~l-LJlzllFPPiyYPXpZZ6UuZ~Mj2oBUQfViwGbfjDzGwUonQHscA02wEdJ1Z4h3jEc2Sh7sBeVEAVemAkwxzRsoSgSQRwBXwB7OBwllgWzboBMDD2fkEN8VI~6-OL~YI6gvcUEL3BadNhEgjQW-xymrtsH4w4XY7OpjfaeFUZAfdJ~QOxemycb~e8~6FKYYn8aDGBmFdtiMULi~c-P7CjYDiW0NZ5B09oTECsIbd3E0otzhuBCkRO-2Cs-bCOLWhxm9ieeEKs6Sf0xaIokut2NLeqYSZ-mE0XTcf0cF9Kc9PUS0U5X~Xl1pDg__"
-                className="object-contain"
-                width={225}
-                height={225}
-              />
-            );
-          })}
+      <div className="relative h-[300px] mt-4 -py-4 ">
+        <div className="absolute inset-0 -mx-6">
+          <div
+            // className="flex flex-wrap justify-between"
+            className="grid md:grid-cols-4 grid-cols-2 gap-1"
+          >
+            {Array(4)
+              .fill(0)
+              .map((_, index) => {
+                return (
+                  <a href="#!" className={` ${index === 3 ? 'relative' : ''}`}>
+                    <img
+                      key={index}
+                      src="https://i.pinimg.com/736x/52/55/44/5255445017cd98fd66d7d589e6c10f58.jpg"
+                      className={`h-[300px] object-cover `}
+                    />
+                    {index === 3 && (
+                      <>
+                        <div className="absolute inset-0 hover:bg-black/50"></div>
+                        <div className="absolute  inset-0 flex justify-center gap-2 items-center text-slate-200 text-xl font-semibold bg-black/50 cursor-pointer">
+                          +6 <span className="md:hidden"> Ảnh</span>
+                        </div>
+                      </>
+                    )}
+                  </a>
+                );
+              })}
+          </div>
+        </div>
       </div>
 
-      <div className="flex justify-between mt-4">
-        <div className="flex items-center gap-4 text-[14px]">
+      <div className="flex justify-between mt-4 text-textSecondaryLight dark:textSecondaryDark pt-[calc(100%_-_30px)] md:pt-[5px]">
+        <div className="flex items-center gap-1 md:gap-4 text-[14px]">
           <div className="flex items-center gap-2">
-            <EyeIcon />
-            <span>200</span>
+            <EyeIcon color="#1677FF" />
+            <span className='text-textPrimaryLight dark:text-textPrimaryDark'>200</span>
           </div>
           <div className="flex items-center gap-2">
-            <HeartIcon />
-            <span>200</span>
+            <PinSolidIcon color="#FF4D4F" />
+            <span className='text-textPrimaryLight dark:text-textPrimaryDark'>200</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 text-[14px]">
+        <div className="flex items-center gap-2 text-[14px]">
           <div className="flex items-center gap-2 cursor-pointer">
-            <PhoneIcon />
+            <PhoneIcon color="#197D16" />
             <span className="hidden md:block">Điện thoại</span>
           </div>
           <div className="flex items-center gap-2 cursor-pointer">
-            <HeartIcon />
+            <img
+              src="https://s3-alpha-sig.figma.com/img/9d24/9f6c/6b53792649a38af984e3a9140d78d33d?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ka8nQ-MIIIvVwxd8pBj8Vfokpp11zuN1UAQsY5tPxgDU7GAteKYoDrTIngi-SKU5xprHEe0553Fjwp2cmyWPQGyGc7mYj4x3c-tdnAygGkqDq1QIKsSLqNqrYMlgCyOa6-TJ3KcMLZAr5GhCsi70Hy0y~sSoL0nl7F8g9FBQqO03WrVleXPNOXm9FLOd8zAPZX4OQaJVMzlWkJJZ51GStZ8BPWyuJXgXp5a4THcVzNp5CDYbdHJ~Id5AT0-W7GmRhkX6EIU2TrfZlKWXxLkQph60fLXKYWfgTyQxW9-dtXodIx8nm7-gAsxxc5ou~Nx8uupukzBOFUs6JX2Q1L~yGg__"
+              alt=""
+              width={16}
+              height={16}
+              className="rounded-md"
+            />
             <span className="hidden md:block">Zalo</span>
           </div>
           <div className="flex items-center gap-2 cursor-pointer">
             <MessageIcon />
             <span className="hidden md:block">Messenger</span>
           </div>
-          <div className="flex items-center gap-2 cursor-pointer">
+          <Tag className="[&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:cursor-pointer ">
             <AlarmClock />
-            <span>Đặt lịch</span>
-          </div>
-          <Tag className="[&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span]:cursor-pointer">
-            <AlarmClock />
-            <span>Đặt lịch</span>
+            <span className="hidden md:block">Đặt lịch</span>
           </Tag>
           <div className="flex items-center gap-2 cursor-pointer">
             <PinSolidIcon />
-            <span>Lưu</span>
+            <span className="hidden md:block">Lưu</span>
           </div>
           <div className="flex items-center gap-2 cursor-pointer">
             <ReportIcon />
-            <span>Báo cáo dẫn khách</span>
+            <span className="hidden md:block">Báo cáo dẫn khách</span>
           </div>
         </div>
       </div>
@@ -193,7 +220,7 @@ const UserPostCaring = () => {
 
         <li style={{ width: '33%' }}>
           <Popover className="relative">
-            <PopoverButton className="flex items-center justify-center gap-2 h-[32px] py-2 px-4 w-full">
+            <PopoverButton className="flex items-center justify-center gap-2 h-[32px] py-2 w-full">
               <ShareIcon />
               <p className="text-[14px]">Chia sẻ</p>
             </PopoverButton>

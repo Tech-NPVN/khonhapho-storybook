@@ -16,10 +16,10 @@ export type TItemMenu = TItem & {
 };
 
 interface Props {
-  openNavBarMobile?: boolean;
-  setOpenNavBarMobile?: (value: boolean) => void;
-  theme?: string;
-  toggleTheme?: () => void;
+  openNavBarMobile: boolean;
+  setOpenNavBarMobile: (value: boolean) => void;
+  theme: string;
+  toggleTheme: () => void;
 }
 
 export const Sidebar = ({
@@ -184,14 +184,12 @@ export const Sidebar = ({
         },
       ],
     },
+    {
+      id: '10',
+      href: '/login',
+      name: 'Đăng xuất',
+    },
   ];
-
-  // Tài khoản cá nhân
-  // · QL khách - Tự khớp khách
-  // . Lịch sử đặt lịch
-  // · Lịch sử báo cáo
-  // · Bộ sưu tập
-  // · Trang cá nhân
 
   return (
     <div
@@ -199,17 +197,17 @@ export const Sidebar = ({
     >
       <div className="lg:h-[calc(100%_-_88px])] p-0 lg:overflow-y-auto overflow-hidden dark:text-white text-secondaryColorDark flex-1">
         <div className="flex items-center justify-between px-6 py-4 border-b border-secondaryColorDark lg:hidden">
-          <div onClick={() => setOpenNavBarMobile && setOpenNavBarMobile(false)}>
+          <button onClick={() => setOpenNavBarMobile(false)}>
             <CloseIcon />
-          </div>
-          <DarkAndLight theme={theme as string} onToggleDarkAndLight={toggleTheme} />
+          </button>
+          <DarkAndLight theme={theme} onToggleDarkAndLight={toggleTheme} />
         </div>
         <ul className="h-[calc(100vh_-85px)] p-6 overflow-y-auto lg:h-auto lg:overflow-hidden lg:p-4">
           {listMenu?.map((item) => <MenuList item={item} key={item.id} />)}
         </ul>
       </div>
       <div className="lg:p-4 h-[88px] lg:block hidden">
-        <DarkAndLight theme={theme as string} onToggleDarkAndLight={toggleTheme} />
+        <DarkAndLight theme={theme} onToggleDarkAndLight={toggleTheme} />
       </div>
     </div>
   );

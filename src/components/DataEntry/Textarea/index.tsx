@@ -1,9 +1,9 @@
+import { RequiredSymbol } from '@/common/components';
 import { cn } from '@/utils';
 import { Textarea as TextareaHeadless } from '@headlessui/react';
 import { ReactNode, TextareaHTMLAttributes, forwardRef } from 'react';
 import { FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../Form';
-import { RequiredSymbolLabel } from '../Input';
 
 export type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   minRows?: number;
@@ -28,7 +28,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <TextareaHeadless
         className={cn(
-          'w-full py-2 px-3 rounded-xl border transition-all duration-300 bg-transparent text-sm outline-none focus:outline-none focus:border-primaryButtonLight ring-opacity-50',
+          'w-full py-2 px-3 rounded-xl border transition-all duration-300 bg-transparent text-sm outline-none focus:outline-none focus:border-primaryButtonLight ring-opacity-50 bg-dividerLight dark:bg-[#303132] dark:border-textSecondaryDark dark:text-white',
           className,
         )}
         onChange={handleTextareaChange}
@@ -69,7 +69,7 @@ export const TextareaForm = <T extends FieldValues>({
         <FormItem className={className}>
           {label && (
             <FormLabel>
-              {required && <RequiredSymbolLabel />}
+              {required && <RequiredSymbol />}
               {label}
             </FormLabel>
           )}

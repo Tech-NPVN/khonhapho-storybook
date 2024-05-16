@@ -1,6 +1,7 @@
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
-import { Home, User, Warehouse } from '@/pages/Dashboard';
+import { Home, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
+import { UserCollection, UserProfile } from '@/pages/Dashboard/User';
 import { UserAppointment } from '@/pages/Dashboard/User/UserAppointment';
 import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
 import { AuthLayout, NoAuthLayout } from '@/pages/Layout';
@@ -59,11 +60,11 @@ export const router = createBrowserRouter([
           },
           {
             path: ':id',
-            element: <User />,
+            element: <UserProfile />,
           },
           {
             path: 'collection',
-            element: <>Mặc định</>,
+            element: <UserCollection />,
           },
           {
             path: 'appointment',
