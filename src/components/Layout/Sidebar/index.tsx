@@ -48,12 +48,12 @@ export const Sidebar = ({
     },
     {
       id: '4',
-      href: '/feels',
+      href: '/feeds',
       name: 'Tin hoạt động',
       subMenu: [
         {
           id: '1',
-          href: '/feels/deal',
+          href: '/feeds/deal',
           name: 'Thông báo vụ chốt',
         },
         {

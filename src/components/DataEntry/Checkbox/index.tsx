@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 import { FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '../Form';
 
-const checkBoxStyles = cva('group block size-4 rounded border', {
+const checkBoxStyles = cva('group block size-4 rounded border cursor-pointer', {
   variants: {
     variant: {
       default:
@@ -15,6 +15,8 @@ const checkBoxStyles = cva('group block size-4 rounded border', {
         'border-dividerLight data-[checked]:bg-successLight data-[checked]:border-successLight outline-successLight [&>svg]:fill-white',
       error:
         'border-dividerLight data-[checked]:bg-errorLight data-[checked]:border-errorLight outline-errorLight [&>svg]:fill-white',
+      green:
+        'border-dividerLight data-[checked]:border-transparent data-[checked]:bg-primaryButtonLight data-[checked]:border-primaryButtonLight outline-primaryButtonLight [&>svg]:fill-white',
     },
   },
   defaultVariants: {
@@ -53,7 +55,7 @@ export const CheckBox = ({
 
 export type CheckboxOption = {
   value: string;
-  label: string;
+  label?: string;
 };
 
 export type CheckboxFormProps<T extends FieldValues> = CheckBoxType & {
@@ -63,6 +65,8 @@ export type CheckboxFormProps<T extends FieldValues> = CheckBoxType & {
 
   // In case multiple checkbox
   options?: CheckboxOption[];
+  groupStyle?: ReactNode;
+  cnGroupStyle?: string;
   // displayValue?: string;
   // displayLabel?: string;
 };
@@ -73,6 +77,8 @@ export const CheckboxForm = <T extends FieldValues>({
   description,
   className,
   options,
+  groupStyle,
+  cnGroupStyle,
   // displayLabel = 'label',
   // displayValue = 'value',
   ...props
@@ -94,18 +100,40 @@ export const CheckboxForm = <T extends FieldValues>({
                 render={({ field: fieldChild }) => (
                   <FormItem>
                     <FormControl>
-                      <CheckBox
-                        checked={fieldChild.value?.includes(item.value)}
-                        onChange={(checked) => {
-                          return checked
-                            ? fieldChild.onChange([...fieldChild.value, item.value])
-                            : fieldChild.onChange(
-                                fieldChild.value?.filter((value: string) => value !== item.value),
-                              );
-                        }}
-                        label={item.label}
-                        className={`${error && 'border-errorLight'}`}
-                      />
+                      {groupStyle ? (
+                        <div className={cnGroupStyle}>
+                          {groupStyle}
+                          <CheckBox
+                            checked={fieldChild.value?.includes(item.value)}
+                            onChange={(checked) => {
+                              return checked
+                                ? fieldChild.onChange([...fieldChild.value, item.value])
+                                : fieldChild.onChange(
+                                    fieldChild.value?.filter(
+                                      (value: string) => value !== item.value,
+                                    ),
+                                  );
+                            }}
+                            label={item?.label ?? ''}
+                            className={`${error && 'border-errorLight'}`}
+                            {...props}
+                          />
+                        </div>
+                      ) : (
+                        <CheckBox
+                          checked={fieldChild.value?.includes(item.value)}
+                          onChange={(checked) => {
+                            return checked
+                              ? fieldChild.onChange([...fieldChild.value, item.value])
+                              : fieldChild.onChange(
+                                  fieldChild.value?.filter((value: string) => value !== item.value),
+                                );
+                          }}
+                          label={item.label}
+                          className={`${error && 'border-errorLight'}`}
+                          {...props}
+                        />
+                      )}
                     </FormControl>
                   </FormItem>
                 )}

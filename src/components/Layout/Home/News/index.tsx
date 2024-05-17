@@ -3,7 +3,7 @@ import { Input } from '@/components/DataEntry';
 import { CameraIcon, CommentIcon, HeartIcon, SearchIcon, SendIcon, Typography } from '@/components/General';
 import UserPost from './UserPost';
 import UserPostSkeleton from './UserPostSkeleton';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Modal } from '@/components/Feedback';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 

@@ -1,6 +1,7 @@
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
+import { FeedAll, FeedBranch, FeedDeal, FeedDepartment, FeedGroup } from '@/pages/Dashboard/Feeds';
 import {
   StocksAppointment,
   StocksConsignment,
@@ -106,15 +107,44 @@ export const router = createBrowserRouter([
             path: 'review',
             element: <StocksReview />,
           },
+          {
+            path: 'feeds',
+            children: [
+              {
+                index: true,
+                element: <></>,
+              },
+              {
+                path: 'deal',
+                element: <FeedDeal />,
+              },
+              {
+                path: 'all',
+                element: <FeedAll />,
+              },
+              {
+                path: 'branch',
+                element: <FeedBranch />,
+              },
+              {
+                path: 'department',
+                element: <FeedDepartment />,
+              },
+              {
+                path: 'group',
+                element: <FeedGroup />,
+              },
+            ],
+          },
+          {
+            path: 'message',
+            element: <MessagePage />,
+          },
+          {
+            path: 'company',
+            element: <CompanyPage />,
+          },
         ],
-      },
-      {
-        path: 'message',
-        element: <MessagePage />,
-      },
-      {
-        path: 'company',
-        element: <CompanyPage />,
       },
     ],
   },

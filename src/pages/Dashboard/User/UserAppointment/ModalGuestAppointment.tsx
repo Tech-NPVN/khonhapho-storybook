@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import { NoResult } from '@/common/components';
+=======
+>>>>>>> 522d27545bf9bc0e891a9b384c27d32245ad6345
 import { Tag } from '@/components/DataDisplay/Tag';
 import { Modal } from '@/components/Feedback';
 import { CameraIcon, SendIcon, Typography } from '@/components/General';

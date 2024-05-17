@@ -7,6 +7,10 @@ export const useCopyToClipboard = () => {
     try {
       await navigator.clipboard.writeText(content);
       setIsCopied(true);
+
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
     } catch (error) {
       setIsCopied(false);
     }
