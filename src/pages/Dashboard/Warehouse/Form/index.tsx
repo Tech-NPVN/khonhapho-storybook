@@ -1,11 +1,4 @@
-import {
-  Form,
-  IOption,
-  Input,
-  InputForm,
-  RequiredSymbolLabel,
-  SelectForm,
-} from '@/components/DataEntry';
+import { Form, Input, InputForm, RequiredSymbolLabel, SelectForm } from '@/components/DataEntry';
 import { TextareaForm } from '@/components/DataEntry/Textarea';
 import { Upload } from '@/components/DataEntry/Upload';
 import { Modal } from '@/components/Feedback';
@@ -14,47 +7,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-const PROPERTY_TYPE = [
-  { label: 'Thổ cư', value: '1' },
-  { label: 'Chung cư', value: '2' },
-  { label: 'Dự án', value: '3' },
-] as IOption[];
-
-const PROPERTY_FEATURE = [
-  { label: 'Mặt Phố', value: '1' },
-  { label: 'Kinh Doanh', value: '2' },
-  { label: 'Thời Trang', value: '3' },
-] as IOption[];
-
-const CITY = [
-  { label: 'Hà Nội', value: '1' },
-  { label: 'Đà Nẵng', value: '2' },
-  { label: 'Hồ Chí Minh', value: '3' },
-] as IOption[];
-
-const DISTRICT = [
-  { label: 'Bắc Từ Liêm', value: '1' },
-  { label: 'Cầu Giấy', value: '2' },
-  { label: 'Hồ Hoàn Kiếm', value: '3' },
-] as IOption[];
-
-const STREET = [
-  { label: 'Đường số 1', value: '1' },
-  { label: 'Đường số 2', value: '2' },
-  { label: 'Đường số 3', value: '3' },
-] as IOption[];
-
-const BONUS = [
-  { label: '%', value: '1' },
-  { label: 'Triệu', value: '2' },
-  { label: 'Tỷ', value: '3' },
-] as IOption[];
-
-const LEGAL_STATUS = [
-  { label: 'Sổ đỏ/Sổ hồng', value: '1' },
-  { label: 'Chưa sổ/Chờ cấp sổ', value: '2' },
-  { label: 'Có sổ - Thiếu seri sổ', value: '3' },
-] as IOption[];
+import {
+  BONUS,
+  CITY,
+  DISTRICT,
+  LEGAL_STATUS,
+  PROPERTY_FEATURE,
+  PROPERTY_TYPE,
+  STREET,
+} from '../const';
 
 const formOption = {
   value: z.string(),
@@ -407,7 +368,7 @@ function WarehouseForm() {
                   <RequiredSymbolLabel />
                   Nội dung
                 </label>
-                <div className="">
+                <div>
                   <TextareaForm<z.infer<typeof FormSchema>>
                     name="content"
                     value={form.watch('content')}
@@ -484,7 +445,7 @@ function WarehouseForm() {
                 </label>
                 <div className=" mt-3">
                   <Upload
-                    className="w-[100px] h-[100px] dark:bg-white/10"
+                    className="!w-[100px] !h-[100px] dark:bg-white/10"
                     previewImage={[]}
                     setPreviewImage={() => {}}
                   />
@@ -497,7 +458,7 @@ function WarehouseForm() {
                 </label>
                 <div className=" mt-3">
                   <Upload
-                    className="w-[100px] h-[100px] dark:bg-white/10"
+                    className="!w-[100px] !h-[100px] dark:bg-white/10"
                     previewImage={[]}
                     setPreviewImage={() => {}}
                   />
@@ -510,7 +471,7 @@ function WarehouseForm() {
                 </label>
                 <div className=" mt-3">
                   <Upload
-                    className="w-[100px] h-[100px] dark:bg-white/10"
+                    className="!w-[100px] !h-[100px] dark:bg-white/10"
                     previewImage={[]}
                     setPreviewImage={() => {}}
                   />
@@ -524,7 +485,7 @@ function WarehouseForm() {
                 </label>
                 <div className=" mt-3">
                   <Upload
-                    className="w-[100px] h-[100px] dark:bg-white/10"
+                    className="!w-[100px] !h-[100px] dark:bg-white/10"
                     previewImage={[]}
                     setPreviewImage={() => {}}
                   />
