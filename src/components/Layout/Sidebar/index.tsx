@@ -90,33 +90,33 @@ export const Sidebar = ({
     },
     {
       id: '7',
-      href: '/feels',
+      href: '/library',
       name: 'Thư viện nhà phố',
       subMenu: [
         {
           id: '1',
-          href: '/feels/deal',
+          href: '/library/knowledge',
           name: 'Thư viện kiến thức',
         },
         {
           id: '2',
-          href: '/feeds/all',
+          href: '/library/share-skills',
           name: 'Chia sẻ kỹ năng',
         },
         {
           id: '3',
-          href: '/feeds/branch',
+          href: '/library/manager',
           name: 'Thư viện trưởng phòng',
         },
         {
           id: '4',
-          href: '/feeds/department',
+          href: '/library/owner',
           name: 'Thư viện đầu chủ',
         },
         {
           id: '5',
-          href: '/feeds/group',
-          name: 'Thư viện tro',
+          href: '/library/assistant',
+          name: 'Thư viện trợ lý',
         },
       ],
     },
