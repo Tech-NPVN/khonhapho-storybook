@@ -24,16 +24,19 @@ const UserMain = ({ id }: { id?: string }) => {
           <div className="w-52 grow-0 max-md:hidden"></div>
           <div className="flex w-full justify-between items-end max-md:flex-col max-md:items-center max-md:pt-20 max-md:gap-5">
             <div>
-              <Typography className="font-semibold max-md:font-bold max-md:text-xl max-md:mb-2">
+              <Typography
+                variant="h2"
+                className="font-bold max-md:font-bold max-md:text-xl max-md:mb-2"
+              >
                 Nhà Phố Việt Nam
               </Typography>
-              <Typography className="font-normal max-md:text-sm" variant="h4">
+              <Typography className="font-normal max-md:text-sm" variant="h5">
                 Thư ký · Nhà phố Việt Nam
               </Typography>
-              <Typography className="font-normal max-md:text-sm" variant="h4">
+              <Typography className="font-normal max-md:text-sm" variant="h5">
                 Khối · Trụ sở Hà Nội
               </Typography>
-              <div className="flex items-center gap-2 max-md:mt-2">
+              <div className="flex items-center gap-2 mt-2">
                 <svg
                   width="20"
                   height="21"
@@ -48,7 +51,7 @@ const UserMain = ({ id }: { id?: string }) => {
                   />
                 </svg>
 
-                <Typography variant="h4" className="!text-[#0D7490] max-md:text-sm">
+                <Typography variant="h5" className="!text-[#0D7490] max-md:text-sm">
                   Nhà Phố Việt Nam
                 </Typography>
               </div>

@@ -22,14 +22,14 @@ export const SignUp = () => {
         onSubmit={formSignUp.handleSubmit((data) => console.log(data))}
         className="w-full md:w-[520px] h-auto bg-white dark:bg-primaryColorDark rounded-xl p-6"
       >
-        <div className="flex w-full justify-center mb-10 mt-6">
+        <div className="flex justify-center w-full mt-6 mb-10">
           <img
             src={theme === 'light' ? '/nhapho-icon.png' : '/nhapho-icon-dark.png'}
             alt="nhapho-icon"
           />
         </div>
 
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <InputForm name="name" label="Họ và tên" required className="rounded-lg" />
           <InputForm name="phoneNumbers" label="Số điện thoại" required className="rounded-lg" />
           <InputForm name="identity" label="Căn cước công dân" className="rounded-lg" />
@@ -55,13 +55,13 @@ export const SignUp = () => {
         </div>
 
         <div className="w-full mt-10">
-          <Button type="submit" className="text-md mb-4">
+          <Button type="submit" className="w-full mb-4 text-md">
             Đăng ký
           </Button>
           <Button
             type="button"
             variant="ghostBlue"
-            className="text-md font-normal"
+            className="w-full font-normal text-md"
             onClick={() => navigate(-1)}
           >
             Trở về đăng nhập
