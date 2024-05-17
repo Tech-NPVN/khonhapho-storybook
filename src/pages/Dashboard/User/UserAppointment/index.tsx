@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 import { NoResult } from '@/common/components';
-=======
->>>>>>> 522d27545bf9bc0e891a9b384c27d32245ad6345
 import { HouseViewHistory } from './HouseViewHistory';
 
 export type TLichXemNha = {
