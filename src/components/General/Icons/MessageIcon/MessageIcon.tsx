@@ -8,7 +8,12 @@ const MessageIcon = ({
   className = '',
 }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
+    <SvgIcon
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      className={`[&>path]:fill-primaryButtonLight [&>path[data-path-2]]:fill-white ${className}`}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"

@@ -1,6 +1,7 @@
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Urgently, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
+
 import {
   LibraryAssistant,
   LibraryKnowledge,
@@ -8,6 +9,14 @@ import {
   LibraryOwner,
   LibraryShareSkills,
 } from '@/pages/Dashboard/Library';
+import { FeedAll, FeedBranch, FeedDeal, FeedDepartment, FeedGroup } from '@/pages/Dashboard/Feeds';
+import {
+  StocksAppointment,
+  StocksConsignment,
+  StocksNovendors,
+  StocksOwn,
+  StocksReview,
+} from '@/pages/Dashboard/Stocks';
 import { UserCollection, UserProfile } from '@/pages/Dashboard/User';
 import { UserAppointment } from '@/pages/Dashboard/User/UserAppointment';
 import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
@@ -109,6 +118,89 @@ export const router = createBrowserRouter([
           {
             path: 'review',
             element: <>Lịch sử báo cáo dẫn khách</>,
+          },
+        ],
+      },
+      {
+        path: 'stocks',
+        children: [
+          {
+            path: 'own',
+            element: <StocksOwn />,
+          },
+          {
+            path: 'consignment',
+            element: <StocksConsignment />,
+          },
+          {
+            path: 'novendors',
+            element: <StocksNovendors />,
+          },
+          {
+            path: 'appointment',
+            element: <StocksAppointment />,
+          },
+          {
+            path: 'review',
+            element: <StocksReview />,
+          },
+          {
+            path: 'feeds',
+            children: [
+              {
+                index: true,
+                element: <></>,
+              },
+              {
+                path: 'deal',
+                element: <FeedDeal />,
+              },
+              {
+                path: 'all',
+                element: <FeedAll />,
+              },
+              {
+                path: 'branch',
+                element: <FeedBranch />,
+              },
+              {
+                path: 'department',
+                element: <FeedDepartment />,
+              },
+              {
+                path: 'group',
+                element: <FeedGroup />,
+              },
+            ],
+          },
+        ],
+      },
+      {
+        path: 'feeds',
+        children: [
+          {
+            index: true,
+            element: <></>,
+          },
+          {
+            path: 'deal',
+            element: <FeedDeal />,
+          },
+          {
+            path: 'all',
+            element: <FeedAll />,
+          },
+          {
+            path: 'branch',
+            element: <FeedBranch />,
+          },
+          {
+            path: 'department',
+            element: <FeedDepartment />,
+          },
+          {
+            path: 'group',
+            element: <FeedGroup />,
           },
         ],
       },

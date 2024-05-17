@@ -1,8 +1,13 @@
 import SvgIcon, { TypeIcon } from '../SvgIcon';
 
-const ClockIcon = ({ color = '#333', width, height, viewBox, className = '' }: TypeIcon) => {
+const ClockIcon = ({ color = '#333', width, height, viewBox, className }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
+    <SvgIcon
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      className={`dark:[&>path]:fill-white ${className}`}
+    >
       <path
         d="M8 1.5C4.13438 1.5 1 4.63438 1 8.5C1 12.3656 4.13438 15.5 8 15.5C11.8656 15.5 15 12.3656 15 8.5C15 4.63438 11.8656 1.5 8 1.5ZM8 14.3125C4.79063 14.3125 2.1875 11.7094 2.1875 8.5C2.1875 5.29063 4.79063 2.6875 8 2.6875C11.2094 2.6875 13.8125 5.29063 13.8125 8.5C13.8125 11.7094 11.2094 14.3125 8 14.3125Z"
         fill={color}

@@ -48,12 +48,12 @@ export const Sidebar = ({
     },
     {
       id: '4',
-      href: '/feels',
+      href: '/feeds',
       name: 'Tin hoạt động',
       subMenu: [
         {
           id: '1',
-          href: '/feels/deal',
+          href: '/feeds/deal',
           name: 'Thông báo vụ chốt',
         },
         {
@@ -122,32 +122,32 @@ export const Sidebar = ({
     },
     {
       id: '8',
-      href: '/feels',
+      href: '/stocks',
       name: 'Quản lý kho hàng',
       subMenu: [
         {
           id: '1',
-          href: '/feels/deal',
+          href: '/stocks/own',
           name: 'Kho cá nhân',
         },
         {
           id: '2',
-          href: '/feeds/all',
+          href: '/stocks/consignment',
           name: 'Kho tin chính chủ',
         },
         {
           id: '3',
-          href: '/feeds/branch',
+          href: '/stocks/novendors',
           name: 'Kho hàng tự do',
         },
         {
           id: '4',
-          href: '/feeds/department',
+          href: '/stocks/appointment',
           name: 'Lịch sử Đầu khách đặt lịch',
         },
         {
           id: '5',
-          href: '/feeds/group',
+          href: '/stocks/review',
           name: 'Lịch sử Đầu khách báo cáo',
         },
       ],

@@ -47,7 +47,7 @@ const UserPost = (props: Props) => {
 
       <Tag
         className={`
-        bg-tertiaryColorDark dark:bg-tertiaryColorLight cursor-pointer border [&>span]:flex [&>span]:gap-1 [&>span]:text-[12px] min-w-[56px]  [&>span]:items-center ${isCopied ? '[&>span]:cursor-not-allowed' : '[&>span]:cursor-pointer'} px-2`}
+        bg-tertiaryColorLight dark:bg-tertiaryColorDark cursor-pointer border [&>span]:flex [&>span]:gap-1 [&>span]:text-[12px] min-w-[56px]  [&>span]:items-center ${isCopied ? '[&>span]:cursor-not-allowed' : '[&>span]:cursor-pointer'} px-2`}
         onClick={() => copyToClipboard('Coffin Dance')}
       >
         {isCopied ? (

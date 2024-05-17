@@ -15,7 +15,7 @@ export const Upload = ({ onChange, multiple = false, onDrop, className }: Upload
 
   return (
     <div
-      className={`cursor-pointer flex items-center justify-center border border-dashed w-[200px] h-[200px] rounded-lg relative overflow-hidden group ${className}`}
+      className={`cursor-pointer flex items-center justify-center border-2 border-dashed dark:border-dividerDark bg-secondaryColorLightD2 dark:bg-secondaryColorDark w-[200px] h-[200px] rounded-lg relative overflow-hidden group ${className}`}
     >
       <label
         htmlFor="avatar"
@@ -35,8 +35,10 @@ export const Upload = ({ onChange, multiple = false, onDrop, className }: Upload
         />
       </label>
       <div className="flex flex-col items-center gap-4">
-        <AddIcon height="20" width="20" />
-        <Typography variant="span">Upload</Typography>
+        <AddIcon height="20" width="20" className="dark:[&>path]:fill-white " />
+        <Typography variant="span" className="text-[14px]">
+          Tải lên
+        </Typography>
       </div>
     </div>
   );
