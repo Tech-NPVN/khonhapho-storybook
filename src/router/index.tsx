@@ -1,6 +1,7 @@
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
+import { FeedAll, FeedBranch, FeedDeal, FeedDepartment, FeedGroup } from '@/pages/Dashboard/Feeds';
 import { UserCollection, UserProfile } from '@/pages/Dashboard/User';
 import { UserAppointment } from '@/pages/Dashboard/User/UserAppointment';
 import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
@@ -73,6 +74,35 @@ export const router = createBrowserRouter([
           {
             path: 'review',
             element: <>Lịch sử báo cáo dẫn khách</>,
+          },
+        ],
+      },
+      {
+        path: 'feeds',
+        children: [
+          {
+            index: true,
+            element: <></>,
+          },
+          {
+            path: 'deal',
+            element: <FeedDeal />,
+          },
+          {
+            path: 'all',
+            element: <FeedAll />,
+          },
+          {
+            path: 'branch',
+            element: <FeedBranch />,
+          },
+          {
+            path: 'department',
+            element: <FeedDepartment />,
+          },
+          {
+            path: 'group',
+            element: <FeedGroup />,
           },
         ],
       },
