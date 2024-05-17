@@ -1,11 +1,13 @@
+import { Tabs } from '@/components/DataDisplay';
 import { ModalHelp } from '@/components/Feedback';
 import { AddIcon, Button, Typography } from '@/components/General';
+import WarehouseList from '@/pages/Dashboard/Warehouse/List';
 import { Link } from 'react-router-dom';
 
 export const Warehouse = () => {
   return (
     <>
-      <div className="w-full px-6 py-3 bg-white rounded-lg h-96 dark:bg-primaryColorDark">
+      <div className="w-full px-6 py-3 bg-white rounded-lg dark:bg-primaryColorDark">
         <div className="flex justify-between pb-3">
           <div>
             <Typography variant="h2" className="text-sm font-medium uppercase dark:text-white">
@@ -92,6 +94,21 @@ export const Warehouse = () => {
           </Link>
         </div>
         <div className="w-full h-[1px] bg-black/5 dark:bg-white/10"></div>
+        <div className="mt-5 w-full">
+          <Tabs
+            variantTab="fillGray"
+            widthTabList={500}
+            tabs={[
+              { name: 'Danh Sách', key: 'ware-list', children: <WarehouseList /> },
+              {
+                name: 'Chi Tiết',
+                key: 'ware-details',
+                children: <></>,
+              },
+              { name: 'Đã lưu', key: 'ware-saved', children: <></> },
+            ]}
+          ></Tabs>
+        </div>
       </div>
     </>
   );
