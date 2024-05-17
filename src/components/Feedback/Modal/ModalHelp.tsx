@@ -31,8 +31,7 @@ export const ModalHelp = ({
         open={showModal}
         onCancel={handleShowModal}
         title={title}
-        width={650}
-        className="h-full"
+        className="lg:w-[650px] w-full"
         {...props}
       >
         {children}

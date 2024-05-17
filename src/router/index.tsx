@@ -2,6 +2,13 @@ import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
 import { FeedAll, FeedBranch, FeedDeal, FeedDepartment, FeedGroup } from '@/pages/Dashboard/Feeds';
+import {
+  StocksAppointment,
+  StocksConsignment,
+  StocksNovendors,
+  StocksOwn,
+  StocksReview,
+} from '@/pages/Dashboard/Stocks';
 import { UserCollection, UserProfile } from '@/pages/Dashboard/User';
 import { UserAppointment } from '@/pages/Dashboard/User/UserAppointment';
 import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
@@ -78,41 +85,66 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: 'feeds',
+        path: 'stocks',
         children: [
           {
-            index: true,
-            element: <></>,
+            path: 'own',
+            element: <StocksOwn />,
           },
           {
-            path: 'deal',
-            element: <FeedDeal />,
+            path: 'consignment',
+            element: <StocksConsignment />,
           },
           {
-            path: 'all',
-            element: <FeedAll />,
+            path: 'novendors',
+            element: <StocksNovendors />,
           },
           {
-            path: 'branch',
-            element: <FeedBranch />,
+            path: 'appointment',
+            element: <StocksAppointment />,
           },
           {
-            path: 'department',
-            element: <FeedDepartment />,
+            path: 'review',
+            element: <StocksReview />,
           },
           {
-            path: 'group',
-            element: <FeedGroup />,
+            path: 'feeds',
+            children: [
+              {
+                index: true,
+                element: <></>,
+              },
+              {
+                path: 'deal',
+                element: <FeedDeal />,
+              },
+              {
+                path: 'all',
+                element: <FeedAll />,
+              },
+              {
+                path: 'branch',
+                element: <FeedBranch />,
+              },
+              {
+                path: 'department',
+                element: <FeedDepartment />,
+              },
+              {
+                path: 'group',
+                element: <FeedGroup />,
+              },
+            ],
+          },
+          {
+            path: 'message',
+            element: <MessagePage />,
+          },
+          {
+            path: 'company',
+            element: <CompanyPage />,
           },
         ],
-      },
-      {
-        path: 'message',
-        element: <MessagePage />,
-      },
-      {
-        path: 'company',
-        element: <CompanyPage />,
       },
     ],
   },
