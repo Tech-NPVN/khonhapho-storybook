@@ -262,16 +262,12 @@ export const CompanyPage = () => {
           <thead>
             <tr className="bg-gray-200">
               {columms.map((columm) => (
-                <>
-                  {columm.status && (
-                    <th
-                      key={columm.label}
-                      className="px-1 py-2 text-base font-semibold text-left uppercase"
-                    >
-                      {columm.value}
-                    </th>
-                  )}
-                </>
+                <th
+                  key={columm.label}
+                  className="px-1 py-2 text-base font-semibold text-left uppercase"
+                >
+                  {columm.value}
+                </th>
               ))}
             </tr>
           </thead>
@@ -285,13 +281,9 @@ export const CompanyPage = () => {
                 })}
               >
                 {columms.map((col, k) => (
-                  <>
-                    {col.status && (
-                      <td className="px-1.5 py-1 text-left break-words" key={`th_key_${k}`}>
-                        {renderRowValue(col.label as keyof TListUsers, user)}
-                      </td>
-                    )}
-                  </>
+                  <td className="px-1.5 py-1 text-left break-words" key={`th_key_${k}`}>
+                    {renderRowValue(col.label as keyof TListUsers, user)}
+                  </td>
                 ))}
               </tr>
             ))}

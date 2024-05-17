@@ -136,15 +136,44 @@ export const router = createBrowserRouter([
               },
             ],
           },
+        ],
+      },
+      {
+        path: 'feeds',
+        children: [
           {
-            path: 'message',
-            element: <MessagePage />,
+            index: true,
+            element: <></>,
           },
           {
-            path: 'company',
-            element: <CompanyPage />,
+            path: 'deal',
+            element: <FeedDeal />,
+          },
+          {
+            path: 'all',
+            element: <FeedAll />,
+          },
+          {
+            path: 'branch',
+            element: <FeedBranch />,
+          },
+          {
+            path: 'department',
+            element: <FeedDepartment />,
+          },
+          {
+            path: 'group',
+            element: <FeedGroup />,
           },
         ],
+      },
+      {
+        path: 'message',
+        element: <MessagePage />,
+      },
+      {
+        path: 'company',
+        element: <CompanyPage />,
       },
     ],
   },
