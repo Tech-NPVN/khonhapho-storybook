@@ -1,9 +1,9 @@
 import { Modal } from '@/components/Feedback';
 import { Button, NextSolidIcon, Typography } from '@/components/General';
-import { useState } from 'react';
-import UserPostCaring from './UserPostCaring';
-import FormCaring from './FormCaring';
 import { useWindowSize } from '@/hooks/useWindowSize';
+import { useState } from 'react';
+import FormCaring from './FormCaring';
+import UserPostCaring from './UserPostCaring';
 
 const Caring = () => {
   const [isShowNotice, setIsShowNotice] = useState<boolean>(true);
@@ -17,9 +17,9 @@ const Caring = () => {
   return (
     <>
       <div className="mt-6">
-        <div className="py-3 px-4 rounded-md bg-primaryColorLight dark:bg-primaryColorDark text-textPrimaryLight dark:text-textPrimaryDark">
+        <div className="px-4 py-3 rounded-md bg-primaryColorLight dark:bg-primaryColorDark text-textPrimaryLight dark:text-textPrimaryDark">
           <div
-            className="flex gap-2 items-center cursor-pointer "
+            className="flex items-center gap-2 cursor-pointer "
             onClick={() => setIsOpenCollapse(!isOpenCollapse)}
           >
             <NextSolidIcon />
@@ -46,9 +46,9 @@ const Caring = () => {
         </div> */}
         {Array(index)
           .fill(0)
-          .map((_) => {
+          .map((_, i) => {
             return (
-              <div className="mt-6">
+              <div className="mt-6" key={`post_${i}`}>
                 <UserPostCaring />
               </div>
             );
@@ -62,13 +62,13 @@ const Caring = () => {
         onCancel={handleCloseNotice}
         disableInteractOutside={true}
       >
-        <div className="flex gap-2 items-center mt-2">
+        <div className="flex items-center gap-2 mt-2">
           <NextSolidIcon />
           <Typography variant="h2" className="text-[14px] md:text-base">
             Bạn hãy chọn khu vực và phân khúc mình đang bán để được thông báo khi có hàng mới lên.
           </Typography>
         </div>
-        <div className="w-full flex justify-end">
+        <div className="flex justify-end w-full">
           <Button className="mt-[10px] right-0" onClick={handleCloseNotice}>
             Hoàn thành
           </Button>

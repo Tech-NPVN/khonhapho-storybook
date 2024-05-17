@@ -2,12 +2,11 @@ import { Avatar } from '@/components/DataDisplay';
 import { Input } from '@/components/DataEntry';
 import { CameraIcon, SearchIcon, SendIcon } from '@/components/General';
 
-import { useState } from 'react';
 import { Modal } from '@/components/Feedback';
-import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import UserPost from '@/components/Layout/Home/News/UserPost';
 import UserPostSkeleton from '@/components/Layout/Home/News/UserPostSkeleton';
-
+import useIntersectionObserver from '@/hooks/useIntersectionObserver';
+import { useState } from 'react';
 
 export const FeedDepartment = () => {
   const [isShowComment, setIsShowComment] = useState<boolean>(false);
@@ -21,8 +20,7 @@ export const FeedDepartment = () => {
 
   return (
     <div className="h-full md:w-[920px] mx-auto -mt-[15px]">
-  
-      <div className="flex md:justify-end  mt-6">
+      <div className="flex mt-6 md:justify-end">
         <div className="flex w-full md:w-[294px]">
           <Input
             className="rounded-e-none bg-secondaryColorLight dark:bg-secondaryColorDark md:w-[254px]"
@@ -36,13 +34,7 @@ export const FeedDepartment = () => {
 
       {new Array(index).fill(0).map((item, index) => {
         return (
-          <>
-            <UserPost
-              key={index}
-              isShowComment={isShowComment}
-              setIsShowComment={setIsShowComment}
-            />
-          </>
+          <UserPost key={index} isShowComment={isShowComment} setIsShowComment={setIsShowComment} />
         );
       })}
 
@@ -58,9 +50,9 @@ export const FeedDepartment = () => {
         <div>
           {Array(8)
             .fill(0)
-            .map((_) => {
+            .map((_, i) => {
               return (
-                <div className="flex gap-2 mt-4 ">
+                <div className="flex gap-2 mt-4 " key={i}>
                   <Avatar
                     alt="avatar"
                     height={40}
@@ -90,16 +82,16 @@ export const FeedDepartment = () => {
                 </div>
               );
             })}
-          <hr className="-mx-8 my-4"></hr>
-          <div className="flex gap-2 w-full">
+          <hr className="my-4 -mx-8"></hr>
+          <div className="flex w-full gap-2">
             <Avatar
               alt="avatar"
               height={40}
               width={40}
               src="https://s3-alpha-sig.figma.com/img/206c/4897/28b7b0c60958131808a8471ce60ce66c?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ddKWmEtLX2W-UyEi6HzRg~HaaYN6KsDFuEAOu7Vl4brlTWYIttWq4LSRBkJTkmn6GALE0V2Fhik2kdPjAo~aAnLugu0zjNHEWrKHKTwCH3XaUjYGk4rX3o~xS8eiFrRUxSxklglUV3nUfLMTs0TGwt4OP8mOH9Q7jgTnHTTwsN2RRBOEHLIIm0T4PR25hWEh7WOGnLPnRTb~2ivohTt~IM3I4NunbrvT~nUKG1PYZGvPigJDRn2G4JkaRt4oEHjdEYjFC1UFnLEq59bnvOzgfumKkwGEv4pioqeL6lofZc2hbudFf8aV1VHmBXaLIb9Q42~a~dOO5SrSk3L9XfIUeg__"
             />
-            <div className="w-full relative border  rounded-md bg-primaryColorLight dark:bg-primaryColorDark">
-              <Input placeholder="Viết bình luận" className="border-none bg-transparent" />
+            <div className="relative w-full border rounded-md bg-primaryColorLight dark:bg-primaryColorDark">
+              <Input placeholder="Viết bình luận" className="bg-transparent border-none" />
               <div className="flex items-center justify-between gap-1 p-2">
                 <div className="flex items-center gap-1">
                   <CameraIcon className="cursor-pointer" />
