@@ -28,7 +28,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <TextareaHeadless
         className={cn(
-          'w-full py-2 px-3 rounded-xl border transition-all duration-300 bg-transparent text-sm outline-none focus:outline-none focus:border-primaryButtonLight ring-opacity-50 bg-dividerLight dark:bg-[#303132] dark:border-textSecondaryDark dark:text-white',
+          'w-full py-2 px-3 rounded-xl border transition-all duration-300 bg-transparent text-sm outline-none focus:outline-none focus:border-primaryButtonLight ring-opacity-50 bg-secondaryColorLightD2 dark:bg-secondaryColorDark dark:border-textSecondaryDark dark:text-white',
           className,
         )}
         onChange={handleTextareaChange}
