@@ -1,6 +1,13 @@
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
+import {
+  StocksAppointment,
+  StocksConsignment,
+  StocksNovendors,
+  StocksOwn,
+  StocksReview,
+} from '@/pages/Dashboard/Stocks';
 import { UserCollection, UserProfile } from '@/pages/Dashboard/User';
 import { UserAppointment } from '@/pages/Dashboard/User/UserAppointment';
 import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
@@ -73,6 +80,31 @@ export const router = createBrowserRouter([
           {
             path: 'review',
             element: <>Lịch sử báo cáo dẫn khách</>,
+          },
+        ],
+      },
+      {
+        path: 'stocks',
+        children: [
+          {
+            path: 'own',
+            element: <StocksOwn />,
+          },
+          {
+            path: 'consignment',
+            element: <StocksConsignment />,
+          },
+          {
+            path: 'novendors',
+            element: <StocksNovendors />,
+          },
+          {
+            path: 'appointment',
+            element: <StocksAppointment />,
+          },
+          {
+            path: 'review',
+            element: <StocksReview />,
           },
         ],
       },
