@@ -49,6 +49,7 @@ type TextareaFormProps<T extends FieldValues> = TextareaProps & {
   label?: string;
   description?: string | ReactNode;
   className?: string;
+  cnTextarea?: string;
 };
 
 export const TextareaForm = <T extends FieldValues>({
@@ -57,6 +58,7 @@ export const TextareaForm = <T extends FieldValues>({
   description,
   className,
   required,
+  cnTextarea,
   ...props
 }: TextareaFormProps<T>) => {
   const { control } = useFormContext<T>();
@@ -74,7 +76,11 @@ export const TextareaForm = <T extends FieldValues>({
             </FormLabel>
           )}
           <FormControl>
-            <Textarea className={`${error && 'border-errorLight'}`} {...field} {...props} />
+            <Textarea
+              className={`${error && 'border-errorLight'} ${cnTextarea}`}
+              {...field}
+              {...props}
+            />
           </FormControl>
           {description && <FormDescription>{description}</FormDescription>}
           <FormMessage />

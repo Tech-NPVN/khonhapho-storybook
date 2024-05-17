@@ -81,7 +81,7 @@ export const UserCollectionCreateOrUpdate = ({
                 setPreviewImage={setPreviewImage}
                 onChange={handleChange as any}
                 onDrop={handleDrop as any}
-                className="h-36 w-36 !rounded-full !border-2"
+                className="!h-36 !w-36 !rounded-full !border-2"
               />
             </div>
           )}
