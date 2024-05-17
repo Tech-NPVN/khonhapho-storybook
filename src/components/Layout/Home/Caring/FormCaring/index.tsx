@@ -1,6 +1,9 @@
-import { Select } from '@/components/DataEntry';
-import { Button, Typography } from '@/components/General';
-import { useState } from 'react';
+import { SelectForm, Form } from '@/components/DataEntry';
+import { Button } from '@/components/General';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+
 import {
   DISTRICT_OPTIONS,
   FEATURES_OPTIONS,
@@ -9,6 +12,7 @@ import {
   RANGE_PRICE_OPTIONS,
 } from './select';
 import { Transition } from '@headlessui/react';
+import { useState } from 'react';
 
 type Props = {
   isOpenCollapse: boolean;
@@ -17,103 +21,104 @@ type Props = {
 
 const FormCaring = (props: Props) => {
   const { isOpenCollapse, setIsOpenCollapse } = props;
-  const [selected, setSelected] = useState<IPlaceOptions[]>([]);
-  const [districtSelected, setDistrictSelected] = useState<IPlaceOptions[]>([]);
-  const [rangePriceSelected, setRangePriceSelected] = useState<IPlaceOptions[]>([]);
-  const [featuresSelected, setFeaturesSelected] = useState<IPlaceOptions[]>([]);
-  console.log('selected: ', selected);
-  console.log('districtSelected: ', districtSelected);
-  console.log('rangePriceSelected: ', rangePriceSelected);
-  console.log('featuresSelected: ', featuresSelected);
+
+  const formOption = {
+    value: z.string(),
+    label: z.string(),
+    disable: z.boolean().optional(),
+  };
+
+  const CaringFormSchema = z.object({
+    city: z.array(z.object(formOption)).refine((value) => value.length > 0, {
+      message: 'Yêu cầu nhập trường này',
+    }),
+    district: z.array(z.object(formOption)).refine((value) => value.length > 0, {
+      message: 'Yêu cầu nhập trường này',
+    }),
+    range_price: z.array(z.object(formOption)).refine((value) => value.length > 0, {
+      message: 'Yêu cầu nhập trường này',
+    }),
+    featuresSelected: z.array(z.object(formOption)),
+  });
+
+  const form = useForm<z.infer<typeof CaringFormSchema>>({
+    resolver: zodResolver(CaringFormSchema),
+    defaultValues: {
+      city: [],
+      district: [],
+      range_price: [],
+      featuresSelected: [],
+    },
+  });
+
   return (
     <>
-      <Transition
-        appear
-        show={isOpenCollapse}
-        enter="transition-opacity"
-        enterFrom="opacity-0"
-        enterTo="opacity-100"
-        leave="transition-opacity"
-        leaveFrom="opacity-100"
-        leaveTo="opacity-0"
-      >
-        <div>
-          <label className="">
-            <span className="text-errorLight mr-1 ">*</span>Chọn một khu vực
-          </label>
-          <Select
-            placeholder="Chọn tỉnh/thành phố"
-            options={PLACE_OPTIONS}
-            className="mt-2"
-            value={selected}
-            //@ts-ignore
-            onChange={setSelected}
-            multiple
-          ></Select>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}>
+          <div>
+            <SelectForm<z.infer<typeof CaringFormSchema>>
+              name="city"
+              value={form.watch('city')}
+              options={PLACE_OPTIONS}
+              placeholder="Tỉnh/Thành phố"
+              label="Chọn khu vực"
+              required
+              multiple
+            />
+          </div>
 
-          {selected.length === 0 && (
-            <p className="my-2 text-errorLight mr-1 text-[14px]">Yêu cầu nhập trường này</p>
-          )}
+          <div className="my-4">
+            <SelectForm<z.infer<typeof CaringFormSchema>>
+              name="district"
+              value={form.watch('district')}
+              options={DISTRICT_OPTIONS}
+              disabled={form.watch('city').length === 0}
+              className={`my-4 ${form.watch('city').length === 0 ? 'bg-gray-300' : ''} `}
+              placeholder="Quận/Huyện"
+              required
+              multiple
+            />
+          </div>
 
-          <Select
-            placeholder="Quận/Huyện"
-            options={DISTRICT_OPTIONS}
-            value={districtSelected}
-            className={`my-4 ${selected.length === 0 ? 'bg-gray-300' : ''} `}
-            disabled={selected.length === 0}
-            //@ts-ignore
-            onChange={setDistrictSelected}
-            multiple
-          ></Select>
+          <div className="my-4">
+            <SelectForm<z.infer<typeof CaringFormSchema>>
+              name="range_price"
+              value={form.watch('range_price')}
+              options={RANGE_PRICE_OPTIONS}
+              placeholder="Khoảng giá"
+              label="Chọn phân khúc"
+              required
+              multiple
+            />
+          </div>
 
-          {districtSelected.length === 0 && (
-            <p className="my-2 text-errorLight mr-1 text-[14px]">Yêu cầu nhập trường này</p>
-          )}
+          <div>
+            <SelectForm<z.infer<typeof CaringFormSchema>>
+              name="featuresSelected"
+              value={form.watch('featuresSelected')}
+              placeholder="Bỏ trống đồng nghĩa với chọn tất cả"
+              options={FEATURES_OPTIONS}
+              label="Chọn đặc điểm"
+              multiple
+            />
+          </div>
 
-          <label>
-            <span className="text-errorLight mr-1 ">*</span>Chọn phân khúc
-          </label>
-
-          <Select
-            placeholder="Khoảng giá"
-            options={RANGE_PRICE_OPTIONS}
-            value={rangePriceSelected}
-            className="my-4"
-            //@ts-ignore
-            onChange={setRangePriceSelected}
-            multiple
-          ></Select>
-
-          {rangePriceSelected.length === 0 && (
-            <p className="my-2 text-errorLight mr-1 text-[14px]">Yêu cầu nhập trường này</p>
-          )}
-
-          <label>Chọn đặc điểm</label>
-          <Select
-            placeholder="Bỏ trống đồng nghĩa với chọn tất cả"
-            options={FEATURES_OPTIONS}
-            value={featuresSelected}
-            className="my-4"
-            //@ts-ignore
-            onChange={setFeaturesSelected}
-            multiple
-          ></Select>
-
-          <div className="flex justify-end gap-2">
-            <Button className="w-[98px]">Cập nhật</Button>
+          <div className="flex justify-end gap-2 mt-4">
+            <Button className="w-[98px]" type="submit">
+              Cập nhật
+            </Button>
             <Button
               className="w-[72px] bg-primaryColorLight 
          hover:text-primaryButtonHoverLight
          hover:bg-primaryColorLight text-textPrimaryLight border border-[#28282] hover:border-primaryButtonHoverLight
-         dark:hover:primaryButtonHoverDark
-         "
+         dark:hover:primaryButtonHoverDark"
               onClick={() => setIsOpenCollapse(false)}
             >
               Đóng
             </Button>
           </div>
-        </div>
-      </Transition>
+        </form>
+      </Form>
     </>
   );
 };

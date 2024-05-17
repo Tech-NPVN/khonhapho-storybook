@@ -8,7 +8,12 @@ const PinSolidIcon = ({
   className = '',
 }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
+    <SvgIcon
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      className={`dark:[&>path]:fill-white ${className}`}
+    >
       <path
         d="M0 12V1.125C0 0.503672 0.503672 0 1.125 0H7.875C8.49633 0 9 0.503672 9 1.125V12L4.5 9.375L0 12Z"
         fill={color}
