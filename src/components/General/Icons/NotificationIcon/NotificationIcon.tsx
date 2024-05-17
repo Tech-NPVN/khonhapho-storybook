@@ -5,14 +5,14 @@ const NotificationIcon = ({
   width,
   height,
   viewBox = '0 0 20 20',
-  className = '',
+  className,
 }: TypeIcon) => {
   return (
     <SvgIcon
       width={width}
       height={height}
       viewBox={viewBox}
-      className={className}
+      className={`dark:[&>path]:fill-white ${className}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

@@ -7,6 +7,12 @@ const buttonStyles = cva(
   {
     variants: {
       variant: {
+        // White
+        defaultWhite: 'bg-transparent text-black dark:text-white',
+        outlineWhite:
+          'border border-dividerLight/50 dark:border-dividerDark/40 dark:text-white bg-transparent dark:bg-secondaryColorDark',
+        ghostWhite: 'text-black dark:text-white bg-transparent dark:hover:bg-secondaryColorDark',
+        linkWhite: 'bg-transparent underline-offset-4 hover:underline',
         // Green
         default: 'bg-primaryButtonLight text-white hover:bg-primaryButtonHoverLight',
         outline:
