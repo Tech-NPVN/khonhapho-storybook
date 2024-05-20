@@ -1,3 +1,5 @@
+import { ADMIN_ROUTE } from '@/constants/menu';
+import { Management } from '@/pages/Admin';
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Urgently, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
@@ -20,11 +22,11 @@ import {
 import { UserCollection, UserProfile, UserReview } from '@/pages/Dashboard/User';
 import { UserAppointment } from '@/pages/Dashboard/User/UserAppointment';
 import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
-import { AuthLayout, NoAuthLayout } from '@/pages/Layout';
+import { AdminLayout, AuthLayout, NoAuthLayout } from '@/pages/Layout';
 import { MessagePage } from '@/pages/Message';
-import { createBrowserRouter } from 'react-router-dom';
+import { RouteObject, createBrowserRouter } from 'react-router-dom';
 
-export const router = createBrowserRouter([
+const noAuthRoutes: RouteObject[] = [
   {
     element: <NoAuthLayout />,
     children: [
@@ -42,6 +44,9 @@ export const router = createBrowserRouter([
       },
     ],
   },
+];
+
+const authRoutes: RouteObject[] = [
   {
     path: '/',
     element: <AuthLayout />,
@@ -214,4 +219,19 @@ export const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
+
+const adminRoutes: RouteObject[] = [
+  {
+    element: <AdminLayout />,
+    path: ADMIN_ROUTE,
+    children: [
+      {
+        path: '',
+        element: <Management />,
+      },
+    ],
+  },
+];
+
+export const router = createBrowserRouter([...noAuthRoutes, ...authRoutes, ...adminRoutes]);

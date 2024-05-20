@@ -1,4 +1,5 @@
 import { CloseIcon } from '@/components/General';
+import { ADMIN_ROUTE } from '@/constants/menu';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { DarkAndLight } from './DarkAndLight';
@@ -188,6 +189,11 @@ export const Sidebar = ({
       id: '10',
       href: '/login',
       name: 'Đăng xuất',
+    },
+    {
+      id: '11',
+      href: ADMIN_ROUTE,
+      name: 'Trang quản trị',
     },
   ];
 
