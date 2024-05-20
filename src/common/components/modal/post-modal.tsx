@@ -44,17 +44,17 @@ export const PostModal = ({ open, setOpen, className }: PostModalProps) => {
             leaveTo="opacity-0 transform-[scale(95%)]"
           >
             <div
-              className={`w-11/12 min-h-[350px] h-fit rounded-2xl grid lg:grid-cols-2 grid-cols-1 relative overflow-x-hidden bg-primaryColorLight dark:bg-primaryColorDark ${className}`}
+              className={`w-11/12 min-h-[350px] h-fit rounded-2xl grid lg:grid-cols-11 grid-cols-1 relative overflow-x-hidden bg-primaryColorLight dark:bg-primaryColorDark ${className}`}
             >
               <button onClick={() => setOpen(false)} className="absolute left-5 top-5">
                 <CloseIcon className="[&>path]:fill-white" width="15" height="15" />
               </button>
 
-              <div className="min-h-[850px] max-lg:min-h-[650px] flex items-center bg-secondaryColorDarkD2">
+              <div className="col-span-6 min-h-[850px] max-lg:min-h-[650px] flex items-center bg-secondaryColorDarkD2">
                 <img src="/background.png" alt="post" className="w-full h-full object-contain" />
               </div>
 
-              <div className="flex flex-col relative">
+              <div className="col-span-5 flex flex-col relative">
                 <div className="px-3 py-2 flex items-center justify-between border-b-[1px] border-dividerLight/50 dark:border-dividerDark/40">
                   <Typography
                     variant="p"
@@ -208,7 +208,7 @@ export const PostModal = ({ open, setOpen, className }: PostModalProps) => {
                   </Button>
                 </div>
 
-                <div className="flex py-1 items-center justify-between border-b-[1px] border-t-[1px] border-dividerLight/50 dark:border-dividerDark/40">
+                <div className="flex py-1 px-3 items-center justify-between border-b-[1px] border-t-[1px] border-dividerLight/50 dark:border-dividerDark/40">
                   <Button variant="ghostWhite" className="flex-1" startIcon={<LikeIcon />}>
                     Thích
                   </Button>
