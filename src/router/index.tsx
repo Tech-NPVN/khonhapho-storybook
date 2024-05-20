@@ -1,7 +1,15 @@
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
-import { Home, Warehouse } from '@/pages/Dashboard';
+import { Home, Urgently, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
+
 import { FeedAll, FeedBranch, FeedDeal, FeedDepartment, FeedGroup } from '@/pages/Dashboard/Feeds';
+import {
+  LibraryAssistant,
+  LibraryKnowledge,
+  LibraryManager,
+  LibraryOwner,
+  LibraryShareSkills,
+} from '@/pages/Dashboard/Library';
 import {
   StocksAppointment,
   StocksConsignment,
@@ -9,7 +17,7 @@ import {
   StocksOwn,
   StocksReview,
 } from '@/pages/Dashboard/Stocks';
-import { UserCollection, UserProfile } from '@/pages/Dashboard/User';
+import { UserCollection, UserProfile, UserReview } from '@/pages/Dashboard/User';
 import { UserAppointment } from '@/pages/Dashboard/User/UserAppointment';
 import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
 import { AuthLayout, NoAuthLayout } from '@/pages/Layout';
@@ -56,6 +64,35 @@ export const router = createBrowserRouter([
         ],
       },
       {
+        path: 'urgently',
+        element: <Urgently />,
+      },
+      {
+        path: 'library',
+        children: [
+          {
+            path: 'knowledge',
+            element: <LibraryKnowledge />,
+          },
+          {
+            path: 'share-skills',
+            element: <LibraryShareSkills />,
+          },
+          {
+            path: 'manager',
+            element: <LibraryManager />,
+          },
+          {
+            path: 'owner',
+            element: <LibraryOwner />,
+          },
+          {
+            path: 'assistant',
+            element: <LibraryAssistant />,
+          },
+        ],
+      },
+      {
         path: 'user',
         children: [
           {
@@ -80,7 +117,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'review',
-            element: <>Lịch sử báo cáo dẫn khách</>,
+            element: <UserReview />,
           },
         ],
       },

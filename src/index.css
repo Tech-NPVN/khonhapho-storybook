@@ -7,7 +7,7 @@
     @apply min-h-screen;
   }
   body {
-    @apply overflow-x-hidden bg-secondaryColorLightD2 dark:bg-secondaryColorDarkD2 h-full;
+    @apply h-full overflow-x-hidden bg-secondaryColorLightD2 dark:bg-secondaryColorDarkD2;
   }
 }
 
@@ -23,6 +23,10 @@
 
   .nav-mobile {
     @apply fixed w-[98%] z-10 dark:bg-secondaryColorDark bg-secondaryColorLight top-0 right-0 hidden m-0;
+  }
+
+  .hidden-scroll::-webkit-scrollbar {
+    height: 0;
   }
 }
 
