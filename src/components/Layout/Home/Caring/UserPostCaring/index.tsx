@@ -26,7 +26,7 @@ const UserPostCaring = () => {
 
   return (
     <div className="mt-6 bg-[#FFFFFF] dark:bg-primaryColorDark dark:text-textPrimaryDark min-h-[426px] rounded-md -mx-6 md:mx-0 px-6 py-6">
-      <div className="flex justify-between items-center ">
+      <div className="flex items-center justify-between ">
         <div className="flex items-center gap-2">
           <Avatar
             alt="avatar"
@@ -36,7 +36,7 @@ const UserPostCaring = () => {
           />
           <div className="">
             <h3 className="text-[14px] dark:text-[#74CF5A]">Nhà Phố Việt Nam</h3>
-            <div className='flex md:hidden gap-2 items-center'>
+            <div className="flex items-center gap-2 md:hidden">
               <Rate rating={5} /> <Typography variant="span">5,0</Typography>
             </div>
             <div className="md:flex gap-2 items-center text-textSecondaryLight text-[14px] hidden">
@@ -48,7 +48,7 @@ const UserPostCaring = () => {
         </div>
 
         <div className="flex flex-col gap-1">
-          <div className="flex gap-2 items-center ">
+          <div className="flex items-center gap-2 ">
             <Tag
               color="#FF4D4F"
               backgroundColor="#fff"
@@ -80,7 +80,7 @@ const UserPostCaring = () => {
 
         <p className="mt-4">Coffin Dance</p>
 
-        <div className="flex gap-2 text-linkLight dark:text-linkDark flex-wrap">
+        <div className="flex flex-wrap gap-2 text-linkLight dark:text-linkDark">
           <p>#ctnnguyenphuongnam</p>
           <p>#nphn</p>
           <p>#khoi</p>
@@ -93,7 +93,7 @@ const UserPostCaring = () => {
           <p>#khoi</p>
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <Tag
             className={`[&>span]:flex [&>span]:gap-0.5 [&>span]:text-[12px] min-w-[56px]  [&>span]:items-center ${isCopied ? '[&>span]:cursor-not-allowed' : '[&>span]:cursor-pointer'}`}
             onClick={() => copyToClipboard('Coffin Dance')}
@@ -110,7 +110,7 @@ const UserPostCaring = () => {
               </>
             )}
           </Tag>
-          <div className="md:flex items-center gap-4 hidden ">
+          <div className="items-center hidden gap-4 md:flex ">
             <div className="flex items-center gap-3 cursor-pointer">
               <SuitableIcon />
               <Typography variant="p">Khách phù hợp</Typography>
@@ -127,22 +127,21 @@ const UserPostCaring = () => {
         <div className="absolute inset-0 -mx-6">
           <div
             // className="flex flex-wrap justify-between"
-            className="grid md:grid-cols-4 grid-cols-2 gap-1"
+            className="grid grid-cols-2 gap-1 md:grid-cols-4"
           >
             {Array(4)
               .fill(0)
               .map((_, index) => {
                 return (
-                  <a href="#!" className={` ${index === 3 ? 'relative' : ''}`}>
+                  <a href="#!" className={` ${index === 3 ? 'relative' : ''}`} key={index}>
                     <img
-                      key={index}
                       src="https://i.pinimg.com/736x/52/55/44/5255445017cd98fd66d7d589e6c10f58.jpg"
                       className={`h-[300px] object-cover `}
                     />
                     {index === 3 && (
                       <>
                         <div className="absolute inset-0 hover:bg-black/50"></div>
-                        <div className="absolute  inset-0 flex justify-center gap-2 items-center text-slate-200 text-xl font-semibold bg-black/50 cursor-pointer">
+                        <div className="absolute inset-0 flex items-center justify-center gap-2 text-xl font-semibold cursor-pointer text-slate-200 bg-black/50">
                           +6 <span className="md:hidden"> Ảnh</span>
                         </div>
                       </>
@@ -158,11 +157,11 @@ const UserPostCaring = () => {
         <div className="flex items-center gap-1 md:gap-4 text-[14px]">
           <div className="flex items-center gap-2">
             <EyeIcon color="#1677FF" />
-            <span className='text-textPrimaryLight dark:text-textPrimaryDark'>200</span>
+            <span className="text-textPrimaryLight dark:text-textPrimaryDark">200</span>
           </div>
           <div className="flex items-center gap-2">
             <PinSolidIcon color="#FF4D4F" />
-            <span className='text-textPrimaryLight dark:text-textPrimaryDark'>200</span>
+            <span className="text-textPrimaryLight dark:text-textPrimaryDark">200</span>
           </div>
         </div>
 
@@ -249,7 +248,7 @@ const UserPostCaring = () => {
         </li>
       </ul>
 
-      <div className="md:flex hidden gap-2 mt-4">
+      <div className="hidden gap-2 mt-4 md:flex">
         <Avatar
           alt="avatar"
           height={40}

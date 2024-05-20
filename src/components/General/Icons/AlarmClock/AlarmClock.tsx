@@ -5,10 +5,15 @@ const AlarmClock = ({
   height,
   width,
   viewBox = '0 0 22 22',
-  className = '',
+  className,
 }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
+    <SvgIcon
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      className={`dark:[&>path]:stroke-white ${className}`}
+    >
       <path
         d="M11.0001 21C15.9707 21 20.0001 16.9706 20.0001 12C20.0001 7.02944 15.9707 3 11.0001 3C6.02953 3 2.00009 7.02944 2.00009 12C2.00009 16.9706 6.02953 21 11.0001 21Z"
         stroke={color}
