@@ -38,8 +38,10 @@ export const MenuList = ({ item }: { item: TItemMenu }) => {
               to={sub.href}
               className={({ isActive }) =>
                 [
-                  'flex-1 p-3 text-sm font-semibold transition-colors rounded-lg cursor-pointer bg-transparent hover:bg-secondaryColorLightD2 hover:dark:bg-secondaryColorDark ',
-                  isActive ? 'bg-secondaryColorLightD2 dark:bg-secondaryColorDark' : '',
+                  'flex items-center justify-between flex-1 p-3 text-sm font-semibold transition-colors rounded-lg cursor-pointer  hover:bg-secondaryColorLightD2 hover:dark:bg-secondaryColorDark',
+                  isActive
+                    ? 'bg-secondaryColorLightD2 dark:bg-secondaryColorDark'
+                    : 'bg-transparent',
                 ].join(' ')
               }
               end
