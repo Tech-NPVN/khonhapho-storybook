@@ -44,7 +44,7 @@ export const Sidebar = ({
     },
     {
       id: '3',
-      href: '/feeds/urgently',
+      href: '/urgently',
       name: 'Khách cần mua gấp',
     },
     {
