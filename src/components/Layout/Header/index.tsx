@@ -15,45 +15,46 @@ interface Props {
   theme?: string;
 }
 
+export const ListItems: typeItem[] = [
+  {
+    name: 'Trang chủ',
+    icon: <AlarmClock />,
+    href: '/',
+  },
+  {
+    name: 'Trang cá nhân',
+    icon: <AlarmClock />,
+    href: '/user/profile',
+  },
+  {
+    name: 'Kho tài nguyên',
+    icon: <AlarmClock />,
+    href: '/',
+  },
+  {
+    name: 'Khách cần mua gấp',
+    icon: <AlarmClock />,
+    href: '/',
+  },
+  {
+    name: 'Kho cá nhân',
+    icon: <AlarmClock />,
+    href: '/',
+  },
+  {
+    name: 'QL khách - Tự khớp khách',
+    icon: <AlarmClock />,
+    href: '/',
+  },
+  {
+    name: 'Bộ sưu tập',
+    icon: <AlarmClock />,
+    href: '/',
+  },
+];
+
 export const Header = ({ setOpenNavBarMobile, theme }: Props) => {
   const location = useLocation();
-  const ListItems: typeItem[] = [
-    {
-      name: 'Trang chủ',
-      icon: <AlarmClock />,
-      href: '/',
-    },
-    {
-      name: 'Trang cá nhân',
-      icon: <AlarmClock />,
-      href: '/user/profile',
-    },
-    {
-      name: 'Kho tài nguyên',
-      icon: <AlarmClock />,
-      href: '/',
-    },
-    {
-      name: 'Khách cần mua gấp',
-      icon: <AlarmClock />,
-      href: '/',
-    },
-    {
-      name: 'Kho cá nhân',
-      icon: <AlarmClock />,
-      href: '/',
-    },
-    {
-      name: 'QL khách - Tự khớp khách',
-      icon: <AlarmClock />,
-      href: '/',
-    },
-    {
-      name: 'Bộ sưu tập',
-      icon: <AlarmClock />,
-      href: '/',
-    },
-  ];
 
   return (
     <header className="lg:fixed top-0 right-0 z-10 flex h-[63px] items-center justify-between w-full px-4 border-b bg-primaryColorLight dark:bg-primaryColorDark border-dividerLight dark:border-dividerDark">
