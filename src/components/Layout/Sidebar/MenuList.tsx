@@ -9,6 +9,7 @@ export const MenuList = ({ item }: { item: TItemMenu }) => {
   const handleShow = () => {
     setShow((prev) => !prev);
   };
+
   return (
     <>
       <li key={item.id} className="flex items-center justify-between">
