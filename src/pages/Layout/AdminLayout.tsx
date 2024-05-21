@@ -19,10 +19,6 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 const AdminSidebarItem = ({ item }: { item: TItemMenu }) => {
   const [show, setShow] = useState<boolean>(false);
 
-  const handleShow = () => {
-    setShow((prev) => !prev);
-  };
-
   return (
     <>
       <li key={item.id} className="flex items-center justify-between mb-1">
@@ -30,7 +26,7 @@ const AdminSidebarItem = ({ item }: { item: TItemMenu }) => {
           to={item.href}
           onClick={(e) => {
             item.subMenu && e.preventDefault();
-            handleShow();
+            setShow((prev) => !prev);
           }}
           className={({ isActive }) =>
             [
@@ -123,29 +119,32 @@ const AdminSidebar = ({ theme, toggleTheme, openDrawer, setOpenDrawer }: AdminSi
       </aside>
 
       <div
+        className={`fixed inset-0 z-40 bg-black/80 transition-opacity duration-300 ease-in-out ${openDrawer ? 'opacity-50' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => setOpenDrawer(false)}
+      ></div>
+
+      <div
         className={`fixed inset-0 z-50 transform ${openDrawer ? 'translate-x-0 visible' : 'translate-x-full invisible'} transition-transform duration-500 ease-in-out`}
       >
         <div className="fixed right-0 top-0 h-full w-[360px] dark:bg-secondaryColorDark bg-primaryColorDark shadow-xl overflow-y-auto">
           <div className="py-4 px-5 flex items-center justify-between">
-            <button onClick={() => setOpenDrawer(false)} className="flex-1">
+            <button onClick={() => setOpenDrawer(false)}>
               <CloseIcon color="white" />
             </button>
             <button className="flex items-center justify-between w-fit gap-2" onClick={toggleTheme}>
               <span className="flex-1 text-sm font-semibold cursor-pointer text-white text-left">
                 Chế độ {theme === 'light' ? 'tối' : 'sáng'}
               </span>
-              <div className="text-inherit hover:!text-inherit">
-                <button
-                  type="submit"
-                  className="flex items-center justify-center p-1.5 hover:bg-dividerDark/25 rounded-full transition-all"
-                >
-                  {theme === 'light' ? (
-                    <DarkIcon width="16" height="16" color="white" />
-                  ) : (
-                    <LightIcon width="16" height="16" color="white" />
-                  )}
-                </button>
-              </div>
+              <button
+                type="button"
+                className="flex items-center justify-center text-inherit p-1.5 hover:bg-dividerDark/25 rounded-full transition-all"
+              >
+                {theme === 'light' ? (
+                  <DarkIcon width="16" height="16" color="white" />
+                ) : (
+                  <LightIcon width="16" height="16" color="white" />
+                )}
+              </button>
             </button>
           </div>
 
@@ -206,9 +205,6 @@ export const AdminLayout = () => {
       />
       <div className="relative w-screen mx-auto lg:ml-[250px] lg:w-[calc(100vw_-_250px)]">
         <AdminHeader openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
-        {openDrawer && (
-          <div className="fixed inset-0 bg-black/45" onClick={() => setOpenDrawer(false)}></div>
-        )}
         <main className="ml-0 px-3 mt-16 lg:p-4 p-2">
           <Outlet />
         </main>
