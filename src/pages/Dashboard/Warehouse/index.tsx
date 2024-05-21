@@ -1,15 +1,29 @@
 import { TabList, TabPanel } from '@/components/DataDisplay/TabsV2';
+import { IOption, Select } from '@/components/DataEntry';
 import { ModalHelp } from '@/components/Feedback';
-import { AddIcon, Button, DetailIcon, ListUiIcon, PinIcon, Typography } from '@/components/General';
+import {
+  AddIcon,
+  ArrowDownArrowUpIcon,
+  Button,
+  DetailIcon,
+  ListUiIcon,
+  PinIcon,
+  Typography,
+} from '@/components/General';
 import WarehouseList from '@/pages/Dashboard/Warehouse/List';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import WarehouseDetails from './Details';
 import WarehouseFilter from './Filter';
 import WarehouseSaved from './Saved';
+import { SORT_OPTIONS } from './const';
 
 export const Warehouse = () => {
+  const [sort, setSort] = useState<IOption>(SORT_OPTIONS[0]);
+
   return (
     <>
+      {/* <Details /> */}
       <div className="w-full">
         <div className="px-5 py-3 rounded-lg bg-white dark:bg-primaryColorDark">
           <div className="flex justify-between pb-3 ">
@@ -124,6 +138,9 @@ export const Warehouse = () => {
           <TabPanel name="warehouse" tabIndex={0}>
             <WarehouseList />
           </TabPanel>
+          <TabPanel name="warehouse" tabIndex={2}>
+            <WarehouseSaved />
+          </TabPanel>
         </div>
         <div>
           <TabPanel name="warehouse" tabIndex={1}>
@@ -133,11 +150,19 @@ export const Warehouse = () => {
                   console.log(value);
                 }}
               />
+              <div className="relative mt-5 w-full flex justify-end">
+                <div className="min-w-[200px]">
+                  <Select
+                    value={sort}
+                    options={SORT_OPTIONS}
+                    onChange={(value) => setSort(value as IOption)}
+                    placeholder="..."
+                    customIcon={<ArrowDownArrowUpIcon width="8" className="me-2" />}
+                  ></Select>
+                </div>
+              </div>
             </div>
             <WarehouseDetails />
-          </TabPanel>
-          <TabPanel name="warehouse" tabIndex={2}>
-            <WarehouseSaved />
           </TabPanel>
         </div>
       </div>
