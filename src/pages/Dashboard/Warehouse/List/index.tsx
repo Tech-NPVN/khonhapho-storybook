@@ -20,6 +20,53 @@ import { useEffect, useRef, useState } from 'react';
 
 import { clsx } from 'clsx';
 import WarehouseFilter from '../Filter';
+
+export const StatusTag = ({ status }: { status: keyof typeof STATUS_LABEL }) => {
+  switch (status) {
+    case 1:
+      return (
+        <div className="border-[1px] border-[#1c7f18] bg-[#1c7f18] text-white text-center rounded-md text-[12px] px-1">
+          {STATUS_LABEL[status]?.label}
+        </div>
+      );
+    case 2:
+      return (
+        <div className="border-[1px] border-[#ffbb96] bg-[#fff2e8] text-[#d4380d] text-center rounded-md text-[12px] px-1">
+          {STATUS_LABEL[status]?.label}
+        </div>
+      );
+    case 3:
+      return (
+        <div className="border-[1px] border-[#d4380d] bg-[#fff2e8] text-[#d4380d] text-center rounded-md text-[12px] px-1">
+          {STATUS_LABEL[status]?.label}
+        </div>
+      );
+    case 4:
+      return (
+        <div className="border-[1px] border-[#FF0000] bg-[#FF0000] text-white text-center rounded-md text-[12px] px-1">
+          {STATUS_LABEL[status]?.label}
+        </div>
+      );
+    case 5:
+      return (
+        <div className="border-[1px] border-[#FF0000] bg-[#FF0000] text-white text-center rounded-md text-[12px] px-1">
+          {STATUS_LABEL[status]?.label}
+        </div>
+      );
+    case 6:
+      return (
+        <div className="border-[1px] border-[#ff5500] bg-[#ff5500] text-white text-center rounded-md text-[12px] px-1">
+          {STATUS_LABEL[status]?.label}
+        </div>
+      );
+    default:
+      return (
+        <div className="border-[1px] border-dividerDark bg-black/20 text-center rounded-md text-[12px] px-1">
+          {STATUS_LABEL[status]?.label}
+        </div>
+      );
+  }
+};
 function WarehouseList() {
   const [tableHeader, setTableHeader] = useState<ITableHeader>({});
   const [showModalCustomViewRow, setShowModalCustomViewRow] = useState<boolean>(false);
@@ -37,11 +84,13 @@ function WarehouseList() {
 
   return (
     <div className="mt-5">
-      <WarehouseFilter
-        onChange={(value) => {
-          console.log(value);
-        }}
-      />
+      <div className="mt-3">
+        <WarehouseFilter
+          onChange={(value) => {
+            console.log(value);
+          }}
+        />
+      </div>
       <div className="relative mt-5">
         <Button
           variant={'outline'}
@@ -162,17 +211,7 @@ function WarehouseList() {
 
                   {tableHeader.status?.show && (
                     <td className="flex justify-center items-center h-9 px-2">
-                      <div
-                        className={clsx(
-                          'border-[1px] border-dividerDark bg-black/20 text-center rounded-md text-[12px] px-1',
-                          data.status == 0 ? 'border-[#FF4D4F] bg-[#ffe7e7] text-[#FF4D4F]' : '',
-                          data.status == 2 ? 'border-[green] bg-[#1c7f18] text-white' : '',
-                          data.status == 3 ? 'border-[#DD761C] bg-[#fff0d5] text-[#DD761C]' : '',
-                          data.status == 4 ? 'border-[#f04245] bg-[#ff0e12] text-white' : '',
-                        )}
-                      >
-                        {STATUS_LABEL[data.status]?.label}
-                      </div>
+                      <StatusTag status={data.status} />
                     </td>
                   )}
                   {tableHeader.address?.show ? (

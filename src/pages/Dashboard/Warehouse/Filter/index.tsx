@@ -73,7 +73,7 @@ function WarehouseFilter({ onChange }: Props) {
         <Select
           placeholder="Loại hình"
           options={[{ value: 'all', label: 'Tất cả' }, ...PROPERTY_TYPE]}
-          value={filter?.status as IOption}
+          value={filter?.property_type as IOption}
           onChange={(value) => {
             handleChange({ ...filter, property_type: value as IOption });
           }}

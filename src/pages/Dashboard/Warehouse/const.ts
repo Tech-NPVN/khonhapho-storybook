@@ -84,21 +84,36 @@ export const TABLE_HEADER = {
     text_align: 'center',
   },
 } as ITableHeader;
+// Tất cả
+// Bán mạnh
+// Hạ chào
+// Tăng chào
+// Tạm dừng
+// Dừng bán
+// Đã bán
+// Đã chốt
+
 export const STATUS_LABEL = {
   0: {
-    label: 'Tạm dừng',
-  },
-  1: {
     label: 'Bán mạnh',
   },
+  1: {
+    label: 'Hạ chào',
+  },
   2: {
-    label: 'Hạ trào',
+    label: 'Tăng chào',
   },
   3: {
-    label: 'Tăng trào',
+    label: 'Tạm dừng',
   },
   4: {
-    label: 'Đã Chốt',
+    label: 'Dừng bán',
+  },
+  5: {
+    label: 'Đã bán',
+  },
+  6: {
+    label: 'Đã chốt',
   },
 };
 export interface IDataTable {
@@ -191,7 +206,7 @@ export const TABLE_DATA = [
   {
     id: 4,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -207,7 +222,7 @@ export const TABLE_DATA = [
   {
     id: 5,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -223,7 +238,7 @@ export const TABLE_DATA = [
   {
     id: 6,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -239,7 +254,7 @@ export const TABLE_DATA = [
   {
     id: 7,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -255,7 +270,7 @@ export const TABLE_DATA = [
   {
     id: 8,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -271,7 +286,7 @@ export const TABLE_DATA = [
   {
     id: 9,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -287,7 +302,7 @@ export const TABLE_DATA = [
   {
     id: 10,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -303,7 +318,7 @@ export const TABLE_DATA = [
   {
     id: 11,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -319,7 +334,7 @@ export const TABLE_DATA = [
   {
     id: 12,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -335,7 +350,7 @@ export const TABLE_DATA = [
   {
     id: 13,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -351,7 +366,7 @@ export const TABLE_DATA = [
   {
     id: 14,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -367,7 +382,7 @@ export const TABLE_DATA = [
   {
     id: 15,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -383,7 +398,7 @@ export const TABLE_DATA = [
   {
     id: 16,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -399,7 +414,7 @@ export const TABLE_DATA = [
   {
     id: 17,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -415,7 +430,7 @@ export const TABLE_DATA = [
   {
     id: 18,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -431,7 +446,7 @@ export const TABLE_DATA = [
   {
     id: 19,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -447,7 +462,7 @@ export const TABLE_DATA = [
   {
     id: 20,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -463,7 +478,7 @@ export const TABLE_DATA = [
   {
     id: 21,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -479,7 +494,7 @@ export const TABLE_DATA = [
   {
     id: 22,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -495,7 +510,7 @@ export const TABLE_DATA = [
   {
     id: 23,
     time: '01/11/2023',
-    status: Math.floor(Math.random() * 5),
+    status: Math.floor(Math.random() * 7),
     address: 'Tràng An, Tân Thành, Ninh Bình',
     streets: 'Tân Thành',
     district: 'Tràng An',
@@ -623,3 +638,19 @@ export const GROUPS = [
   { value: 'code-001', label: 'Test' },
   { value: 'code-002', label: 'DEV' },
 ] as IOption[];
+
+export const IMAGE_URLS: string[] = [
+  'https://i.ibb.co/G71tsmT/nha-pho-dep-1.png',
+  'https://i.ibb.co/rMwM4Xy/nha-pho-35-tang-anh-tinh-nghi-xuan-00005.jpg',
+  'https://i.ibb.co/M6q82yt/50271371-759755064399890-6462199697548247040-n5.webp',
+  'https://i.ibb.co/rpWYLdK/Thuc-te-mau-thiet-ke-nha-pho-2-5-tang-dep-hoan-thien-di-vao-su-dung-tai-tpvinh-00005-min.jpg',
+  'https://i.ibb.co/rpWYLdK/Thuc-te-mau-thiet-ke-nha-pho-2-5-tang-dep-hoan-thien-di-vao-su-dung-tai-tpvinh-00005-min.jpg',
+  'https://i.ibb.co/TghCvZB/thiet-ke-biet-thu-2-tang-mai-thai.jpg',
+  'https://i.ibb.co/z6j0Rnj/images.jpg',
+  'https://i.ibb.co/z6j0Rnj/images.jpg',
+  'https://i.ibb.co/z6j0Rnj/images.jpg',
+  'https://i.ibb.co/z6j0Rnj/images.jpg',
+  'https://i.ibb.co/z6j0Rnj/images.jpg',
+  'https://i.ibb.co/z6j0Rnj/images.jpg',
+];
+export const WAREHOUSE_DETAILS = [1, 2, 3, 4, 5, 6, 7];

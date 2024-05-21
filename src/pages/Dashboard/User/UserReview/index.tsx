@@ -3,7 +3,7 @@ import { Input } from '@/components/DataEntry';
 import { AddIcon, SearchIcon, Typography } from '@/components/General';
 import clsx from 'clsx';
 
-type TListHistoryReportOwner = {
+type TListHistoryReportGuide = {
   time_report?: string;
   fullNameOwner?: string;
   fullNameCustomer?: string;
@@ -14,24 +14,21 @@ type TListHistoryReportOwner = {
 
 const columms = [
   { label: 'time_report', value: 'Thời gian báo cáo', status: true },
-  { label: 'fullNameOwner', value: 'Họ tên đầu chủ', status: true },
   { label: 'fullNameCustomer', value: 'Họ tên khách', status: true },
   { label: 'time_customer_house', value: 'Thời gian khách xem nhà', status: true },
   { label: 'address_customer_house', value: 'Địa chỉ dẫn khách xem', status: true },
   { label: 'review', value: 'Xem', status: true },
 ];
 
-const listHistoryReportOwner: TListHistoryReportOwner[] = [];
+const listHistoryReportOwner: TListHistoryReportGuide[] = [];
 
 const renderRowValue = (
-  key: keyof TListHistoryReportOwner,
-  row: TListHistoryReportOwner,
+  key: keyof TListHistoryReportGuide,
+  row: TListHistoryReportGuide,
 ): string | React.ReactElement => {
   switch (key) {
     case 'time_report':
       return <span>{row.time_report}</span>;
-    case 'fullNameOwner':
-      return <span className="text-[#0D7490] font-semibold">{row.fullNameOwner}</span>;
     case 'fullNameCustomer':
       return <span>{row.fullNameCustomer || '-'}</span>;
     case 'time_customer_house':
@@ -45,12 +42,12 @@ const renderRowValue = (
   }
 };
 
-export const StocksReview = () => {
+export const UserReview = () => {
   return (
     <div className="w-full px-6 py-3 bg-white rounded-lg h-96 dark:bg-primaryColorDark">
       <div className="flex items-center justify-between pb-3">
         <Typography variant="h2" className="text-sm font-medium dark:text-white">
-          Lịch sử đầu khách báo cáo
+          Lịch sử báo cáo dẫn khách
         </Typography>
       </div>
       <div className="w-full h-[1px] bg-black/5 dark:bg-white/10"></div>
@@ -92,7 +89,7 @@ export const StocksReview = () => {
               >
                 {columms.map((col, k) => (
                   <td className="px-1.5 py-1 text-left break-words" key={`th_key_${k}`}>
-                    {renderRowValue(col.label as keyof TListHistoryReportOwner, history)}
+                    {renderRowValue(col.label as keyof TListHistoryReportGuide, history)}
                   </td>
                 ))}
               </tr>
