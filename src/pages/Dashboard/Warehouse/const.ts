@@ -397,6 +397,8 @@ export interface IPosting {
     email?: string;
     zalo?: string;
     message?: string;
+    groups: string;
+    position: string;
   };
   note?: string;
   last_online: string;
@@ -440,6 +442,8 @@ const PostDemo: IPosting = {
   owner: {
     fullName: 'Lương Quang Trọng',
     phone: '0389619050',
+    groups: 'Hà nội 888',
+    position: 'GĐ',
   },
   last_online: new Date('2024-05-20').toString(),
 };

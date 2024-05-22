@@ -115,15 +115,16 @@ export const Warehouse = () => {
             </Link>
           </div>
           <div className="w-full h-[1px] bg-black/5 dark:bg-white/10"></div>
-          <div className="mt-5 w-[500px]">
+          <div className="mt-5 sm:w-[500px]">
             <TabList
+              className="text-sm sm:text-base"
               items={[
                 <span className="flex items-center gap-1">
                   <ListUiIcon />
                   <span>Danh sách</span>
                 </span>,
                 <span className="flex items-center gap-1">
-                  <DetailIcon width="18" />
+                  <DetailIcon color="#" className="stroke-black dark:stroke-white" width="18" />
                   <span>Chi tiết</span>
                 </span>,
                 <span className="flex items-center gap-1">
@@ -144,7 +145,7 @@ export const Warehouse = () => {
         </div>
         <div>
           <TabPanel name="warehouse" tabIndex={1}>
-            <div className="px-5 pt-4 pb-5 -mt-2 bg-white rounded-b-lg">
+            <div className="px-5 pt-4 pb-5 -mt-2 bg-white dark:bg-primaryColorDark rounded-b-lg">
               <WarehouseFilter
                 onChange={(value) => {
                   console.log(value);

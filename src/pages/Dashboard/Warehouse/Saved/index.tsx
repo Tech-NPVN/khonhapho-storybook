@@ -10,7 +10,6 @@ import {
   PinIcon,
   ReportIcon,
 } from '@/components/General';
-import { useOutsideClickClose } from '@/hooks/useOutsideClickClose';
 import {
   ITableHeader,
   LIST_POST_DEMO,
@@ -75,9 +74,8 @@ function WarehouseSave() {
   const [tableHeader, setTableHeader] = useState<ITableHeader>({});
   const [showModalCustomViewRow, setShowModalCustomViewRow] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  useOutsideClickClose(modalRef, () => {
-    setShowModalCustomViewRow(false);
-  });
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
   const [sort, setSort] = useState<IOption>(SORT_OPTIONS[1]);
   useEffect(() => {
     const tb_header = {
@@ -91,7 +89,21 @@ function WarehouseSave() {
     );
     setTableHeader(tb_header);
   }, []);
-
+  useEffect(() => {
+    const handleBodyClick = (event: MouseEvent) => {
+      if (buttonRef.current?.contains(event?.target as Node)) {
+        return;
+      }
+      if (showModalCustomViewRow && !modalRef.current?.contains(event?.target as Node)) {
+        setShowModalCustomViewRow(false);
+        return;
+      }
+    };
+    document.body.addEventListener('click', handleBodyClick);
+    return () => {
+      document.body.removeEventListener('click', handleBodyClick);
+    };
+  }, [showModalCustomViewRow]);
   const saveHeader = (data: ITableHeader) => {
     const cloneData = {} as {
       [key: string]: boolean;
@@ -112,6 +124,7 @@ function WarehouseSave() {
       </div>
       <div className="relative mt-5 flex justify-between">
         <Button
+          ref={buttonRef}
           variant={'outline'}
           startIcon={<EyeOffIcon />}
           className="border-secondaryColorDark/30 dark:border-white/30 text-secondaryColorDark dark:text-white"
