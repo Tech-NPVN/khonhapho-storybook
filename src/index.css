@@ -32,6 +32,18 @@
   .link {
     @apply text-linkLight hover:text-linkHoverLight dark:text-linkDark dark:hover:text-linkHoverDark cursor-pointer;
   }
+
+  .badge-red {
+    @apply bg-errorLight text-white font-medium text-[12px] w-auto h-auto min-h-5 min-w-5 px-2 flex justify-center items-center rounded-full;
+  }
+
+  .tag-blue {
+    @apply bg-linkLight/20 text-linkLight border-linkLight/20 dark:bg-linkDark/20 dark:text-linkDark dark:border-linkDark/30;
+  }
+
+  .tag-red {
+    @apply bg-errorLight/20 text-errorLight border-errorLight/20 dark:bg-errorDark/20 dark:text-errorDark dark:border-errorDark/30;
+  }
 }
 
 ::-webkit-scrollbar {

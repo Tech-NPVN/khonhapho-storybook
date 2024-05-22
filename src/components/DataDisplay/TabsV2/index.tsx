@@ -49,7 +49,7 @@ export function TabList({ name, items, defaultIndex, className }: Readonly<ITabL
             style={{ width: `calc(100% / ${items.length}` }}
           >
             <span
-              className={`flex items-center justify-center w-full px-0 py-1 mb-0 border-0 rounded-lg font-medium text-black dark:text-white ${className}`}
+              className={`flex items-center justify-center w-full px-0 py-1 mb-0 border-0 rounded-lg text-black dark:text-white font-semibold ${className}`}
             >
               {item}
             </span>
@@ -64,7 +64,7 @@ export function TabList({ name, items, defaultIndex, className }: Readonly<ITabL
           }}
         >
           <span
-            className={`text-transparent flex items-center justify-center w-full px-0 py-1 mb-0 border-0 ${className}`}
+            className={`text-transparent flex items-center justify-center font-medium w-full px-0 py-1 mb-0 border-0 ${className}`}
           >
             -
           </span>
