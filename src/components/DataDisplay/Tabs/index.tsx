@@ -13,7 +13,7 @@ const buttonTabStyles = cva(
         underlineSelected:
           'border-b-2 border-primaryButtonLight text-primaryButtonLight rounded-none',
         fillGray: '',
-        fillGraySelected: 'bg-[#F3F4F6]',
+        fillGraySelected: 'bg-[#F3F4F6] dark:bg-[rgba(58,59,60,1)]',
         fillGreen: 'text-textSecondaryLight dark:text-textSecondaryDark font-semibold',
         fillGreenSelected: 'bg-primaryButtonLight dark:bg-textSecondaryDark text-white',
       },
@@ -61,7 +61,10 @@ export const Tabs = ({
 
   return (
     <TabGroup as={Fragment} selectedIndex={tabIndex} onChange={setTabIndex}>
-      <TabList className={`flex w-full ${getTabListCn}`} style={{ width: widthTabList }}>
+      <TabList
+        className={`flex w-full dark:bg-[rgba(24,25,26,1)] ${getTabListCn}`}
+        style={{ width: widthTabList }}
+      >
         {tabs.map((tab) => (
           <Tab as={Fragment} key={tab.key}>
             {({ selected }) => (
@@ -71,7 +74,7 @@ export const Tabs = ({
                     variant: selected ? `${variantTab}Selected` : variantTab,
                     className,
                   }),
-                  'font-semibold flex-1',
+                  'font-semibold flex-1 dark:text-[#fff]',
                 )}
                 {...props}
               >
