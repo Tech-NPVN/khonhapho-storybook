@@ -3,84 +3,135 @@ import { IOption } from '@/components/DataEntry';
 export interface ITableHeader {
   [key: string]: {
     title: string;
-    show?: boolean;
+    hidden?: boolean;
     min_width?: number;
     text_align?: 'center' | 'left' | 'right';
   };
 }
-export const TABLE_HEADER = {
+export const TABLE_HEADER_LIST = {
   save: {
     title: 'Lưu',
-    show: true,
     text_align: 'center',
   },
   book: {
     title: 'Đ.Lịch',
-    show: true,
     text_align: 'center',
   },
   time: {
     title: 'T.Gian',
-    show: true,
     text_align: 'center',
   },
   status: {
     title: 'Hiện Trạng',
-    show: true,
     text_align: 'center',
   },
   address: {
     title: 'Địa chỉ',
-    show: true,
     min_width: 170,
   },
   streets: {
     title: 'Phố',
-    show: true,
     min_width: 120,
   },
   district: {
     title: 'Quận',
-    show: true,
     min_width: 120,
   },
   spec: {
     title: 'Thông số',
-    show: true,
     min_width: 120,
   },
   price: {
     title: 'Giá',
-    show: true,
   },
   unit: {
     title: 'TR/M²',
-    show: true,
   },
   owner: {
     title: 'Đầu chủ',
-    show: true,
     min_width: 120,
   },
   contact: {
     title: 'Liên hệ',
-    show: true,
     text_align: 'center',
   },
 
   property_feature: {
     title: 'Đặc điểm',
-    show: true,
     min_width: 150,
   },
   report: {
     title: 'B.Cáo',
-    show: true,
     text_align: 'center',
   },
   view: {
     title: 'Xem',
     show: true,
+    text_align: 'center',
+  },
+} as ITableHeader;
+export const TABLE_HEADER_SAVED = {
+  save: {
+    title: 'Lưu',
+    text_align: 'center',
+  },
+  book: {
+    title: 'Đ.Lịch',
+    text_align: 'center',
+  },
+  note: {
+    title: 'Ghi chú',
+    text_align: 'center',
+  },
+  time: {
+    title: 'T.Gian',
+    text_align: 'center',
+  },
+  status: {
+    title: 'Hiện Trạng',
+    text_align: 'center',
+  },
+  address: {
+    title: 'Địa chỉ',
+    min_width: 170,
+  },
+  streets: {
+    title: 'Phố',
+    min_width: 120,
+  },
+  district: {
+    title: 'Quận',
+    min_width: 120,
+  },
+  spec: {
+    title: 'Thông số',
+    min_width: 120,
+  },
+  price: {
+    title: 'Giá',
+  },
+  unit: {
+    title: 'TR/M²',
+  },
+  owner: {
+    title: 'Đầu chủ',
+    min_width: 120,
+  },
+  contact: {
+    title: 'Liên hệ',
+    text_align: 'center',
+  },
+
+  property_feature: {
+    title: 'Đặc điểm',
+    min_width: 150,
+  },
+  report: {
+    title: 'B.Cáo',
+    text_align: 'center',
+  },
+  view: {
+    title: 'Xem',
     text_align: 'center',
   },
 } as ITableHeader;
@@ -134,397 +185,26 @@ export interface IDataTable {
   };
   property_feature: string;
 }
-export const TABLE_DATA = [
-  {
-    id: 0,
-    time: '20/02/2024',
-    status: 0,
-    address: 'Opera House Suites, Ngõ Tràng Tiền, Tràng Tiền, Hoàn Kiếm, Hà Nội ',
-    streets: 'Tràng Tiền',
-    district: 'Hoàn Kiếm',
-    spec: '34 93 883 723',
-    price: '1000 tỷ',
-    unit: 'TR/M²',
-    owner: 'Nguyễn Văn A',
-    contact: {
-      phone: '0123456789',
-      message: 'https://www.facebook.com/',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 1,
-    time: '01/11/2023',
-    status: 1,
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-      zalo: 'https://www.facebook.com/',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 2,
-    time: '01/11/2023',
-    status: 2,
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-      message: 'https://www.facebook.com/',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 3,
-    time: '01/11/2023',
-    status: 3,
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-      message: 'https://www.facebook.com/',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 4,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 5,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 6,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 7,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 8,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 9,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 10,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 11,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 12,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 13,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 14,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 15,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 16,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 17,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 18,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 19,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 20,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 21,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 22,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-  {
-    id: 23,
-    time: '01/11/2023',
-    status: Math.floor(Math.random() * 7),
-    address: 'Tràng An, Tân Thành, Ninh Bình',
-    streets: 'Tân Thành',
-    district: 'Tràng An',
-    spec: '707 123 9099',
-    price: '10 tỷ',
-    unit: '30 TR/M²',
-    owner: 'Lê Thị B',
-    contact: {
-      phone: '0126789345',
-    },
-    property_feature: 'Nhà Mặt phố, Bố làm to',
-  },
-] as IDataTable[];
 
+export interface IDataTableSaved {
+  id: string | number;
+  time: string;
+  note: string;
+  status: keyof typeof STATUS_LABEL;
+  address: string;
+  streets: string;
+  district: string;
+  spec: string;
+  price: string;
+  unit: string;
+  owner: string;
+  contact: {
+    phone: string;
+    zalo?: string;
+    message?: string;
+  };
+  property_feature: string;
+}
 export const PROPERTY_TYPE = [
   { label: 'Thổ cư', value: 'tho-cu' },
   { label: 'Chung cư', value: 'chung-cu' },
@@ -644,13 +324,196 @@ export const IMAGE_URLS: string[] = [
   'https://i.ibb.co/rMwM4Xy/nha-pho-35-tang-anh-tinh-nghi-xuan-00005.jpg',
   'https://i.ibb.co/M6q82yt/50271371-759755064399890-6462199697548247040-n5.webp',
   'https://i.ibb.co/rpWYLdK/Thuc-te-mau-thiet-ke-nha-pho-2-5-tang-dep-hoan-thien-di-vao-su-dung-tai-tpvinh-00005-min.jpg',
-  'https://i.ibb.co/rpWYLdK/Thuc-te-mau-thiet-ke-nha-pho-2-5-tang-dep-hoan-thien-di-vao-su-dung-tai-tpvinh-00005-min.jpg',
   'https://i.ibb.co/TghCvZB/thiet-ke-biet-thu-2-tang-mai-thai.jpg',
-  'https://i.ibb.co/z6j0Rnj/images.jpg',
-  'https://i.ibb.co/z6j0Rnj/images.jpg',
-  'https://i.ibb.co/z6j0Rnj/images.jpg',
-  'https://i.ibb.co/z6j0Rnj/images.jpg',
-  'https://i.ibb.co/z6j0Rnj/images.jpg',
   'https://i.ibb.co/z6j0Rnj/images.jpg',
 ];
 export const WAREHOUSE_DETAILS = [1, 2, 3, 4, 5, 6, 7];
+
+//
+// Tin nổi bật
+// Tin mới nhất
+// Tin cũ nhất
+// Giá cao nhất
+// Giá thấp nhất
+
+export const SORT_OPTIONS = [
+  {
+    value: '0',
+    label: 'Tin nổi bật',
+  },
+  {
+    value: '1',
+    label: 'Tin mới nhất',
+  },
+  {
+    value: '2',
+    label: 'Tin cũ nhất',
+  },
+  {
+    value: '3',
+    label: 'Giá cao nhất',
+  },
+  {
+    value: '4',
+    label: 'Giá thấp nhất',
+  },
+] as IOption[];
+
+export interface IPosting {
+  id: string;
+  user: {
+    id: string;
+    name: string;
+    avatar: string;
+  };
+  categories: string;
+  updated_ad: string;
+  created_ad: string;
+  status: keyof typeof STATUS_LABEL;
+  legal_status: IOption;
+  content: string;
+  tags: string[];
+  spec: {
+    price: string;
+    price_unit: string;
+    area: number;
+    area_unit: string;
+  };
+  property_feature: string;
+  images: string[];
+  view_count: number;
+  save_count: number;
+  comment_count: number;
+  address: {
+    city: string;
+    district: string;
+    street: string;
+    apartment_number: string;
+    details: string;
+  };
+  owner: {
+    fullName: string;
+    phone: string;
+    email?: string;
+    zalo?: string;
+    message?: string;
+  };
+  note?: string;
+  last_online: string;
+}
+const PostDemo: IPosting = {
+  id: new Date().getTime().toString(),
+  categories: 'Quy định và Hướng dẫn',
+  comment_count: 1,
+  content:
+    'Lorem ipsum dolor sit amet, consectetur adip occurence velit vel aug tellus et justo e upon er suscip vit erat vol consequat et',
+  created_ad: new Date('2022-02-23').toString(),
+  updated_ad: new Date('2024-01-28').toString(),
+  images: IMAGE_URLS,
+  legal_status: {
+    label: 'Sổ đỏ/Sổ hồng',
+    value: 'da-ban',
+  },
+  property_feature: 'Nhà mặt phố bố làm to',
+  save_count: 129,
+  spec: {
+    area: 100,
+    area_unit: 'm²',
+    price: '13tỷ',
+    price_unit: '40tr/m²',
+  },
+  status: 0,
+  tags: ['quangtrong', 'nhapho', 'abc', 'test'],
+  user: {
+    avatar: IMAGE_URLS[0],
+    id: '123',
+    name: 'TrongNhaPho',
+  },
+  view_count: 8182,
+  address: {
+    apartment_number: 'Đường số 1',
+    city: 'Hồ Chí Minh',
+    district: 'Quận 1',
+    details: 'Số nhà 12, đường số 1, Quốc lộ 1A, Quận 1, Thành phố Hồ Chí Minh',
+    street: 'Quốc lộ 1A',
+  },
+  owner: {
+    fullName: 'Lương Quang Trọng',
+    phone: '0389619050',
+  },
+  last_online: new Date('2024-05-20').toString(),
+};
+
+export const LIST_POST_DEMO: IPosting[] = [
+  { ...PostDemo, id: Math.random().toString() },
+  { ...PostDemo, id: Math.random().toString() },
+  { ...PostDemo, id: Math.random().toString() },
+  { ...PostDemo, id: Math.random().toString() },
+  { ...PostDemo, id: Math.random().toString() },
+  { ...PostDemo, id: Math.random().toString() },
+  { ...PostDemo, id: Math.random().toString() },
+];
+interface IComment {
+  user: {
+    fullName: string;
+    avatar: string;
+  };
+  content: string;
+  created_at: string;
+}
+export const Comment_Demo: IComment[] = [
+  {
+    user: {
+      fullName: 'TrongNhaPho',
+      avatar: IMAGE_URLS[0],
+    },
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    created_at: new Date('2024-05-20').toString(),
+  },
+  {
+    user: {
+      fullName: 'Lương Quang Trọng',
+      avatar: IMAGE_URLS[1],
+    },
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    created_at: new Date('2024-05-21').toString(),
+  },
+  {
+    user: {
+      fullName: 'TrongNhaPho',
+      avatar: IMAGE_URLS[0],
+    },
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    created_at: new Date('2024-05-21').toString(),
+  },
+  {
+    user: {
+      fullName: 'Lương Quang Trọng',
+      avatar: IMAGE_URLS[1],
+    },
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    created_at: new Date('2024-05-11').toString(),
+  },
+  {
+    user: {
+      fullName: 'TrongNhaPho',
+      avatar: IMAGE_URLS[0],
+    },
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    created_at: new Date('2024-05-02').toString(),
+  },
+  {
+    user: {
+      fullName: 'Lương Quang Trọng',
+      avatar: IMAGE_URLS[1],
+    },
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    created_at: new Date('2024-05-12').toString(),
+  },
+];
