@@ -1,5 +1,5 @@
 import { IOption, Input, Select } from '@/components/DataEntry';
-import { Button, ResetIcon } from '@/components/General';
+import { Button, DoubleArrowDownIcon, DoubleArrowUpIcon, ResetIcon } from '@/components/General';
 import { useState } from 'react';
 import {
   CITY,
@@ -33,7 +33,7 @@ interface IFilter {
   property_feature?: IOption[];
   branch?: IOption;
   group?: IOption;
-  user_name?: string;
+  user_name?: IOption;
 }
 const price_min = {
   label: 'Giá tối thiểu',
@@ -50,6 +50,7 @@ function WarehouseFilter({ onChange }: Props) {
     price_min,
     price_max,
   });
+  const [showMore, setShowMore] = useState(false);
   const handleChange = (data: IFilter) => {
     setFilter({ ...data });
     const dataClone = { ...data };
@@ -96,7 +97,7 @@ function WarehouseFilter({ onChange }: Props) {
           options={DISTRICT}
           value={filter?.district as IOption}
           onChange={(value) => {
-            handleChange({ ...filter, city: value as IOption });
+            handleChange({ ...filter, district: value as IOption });
           }}
         ></Select>
       </div>
@@ -222,49 +223,58 @@ function WarehouseFilter({ onChange }: Props) {
           multiple
         ></Select>
       </div>
-      <div className="w-[calc(50%_-_4px)] md:w-[calc(33.33%_-_4px)] lg:w-[calc(25%_-_4px)] xl:w-[calc(20%_-_4px)]">
-        <Select placeholder="Dự án/Chung cư"></Select>
-      </div>
-      <div className="w-[calc(50%_-_4px)] md:w-[calc(33.33%_-_4px)] lg:w-[calc(25%_-_4px)] xl:w-[calc(20%_-_4px)]">
-        <Select
-          placeholder="Chi nhánh"
-          options={CITY}
-          onChange={(value) => {
-            handleChange({
-              ...filter,
-              branch: value as IOption,
-            });
-          }}
-        ></Select>
-      </div>
-      <div className="w-[calc(50%_-_4px)] md:w-[calc(33.33%_-_4px)] lg:w-[calc(25%_-_4px)] xl:w-[calc(20%_-_4px)]">
-        <Select
-          placeholder="Phòng ban"
-          options={GROUPS}
-          onChange={(value) => {
-            handleChange({
-              ...filter,
-              group: value as IOption,
-            });
-          }}
-        ></Select>
-      </div>
-      <div className="w-[calc(50%_-_4px)] md:w-[calc(33.33%_-_4px)] lg:w-[calc(25%_-_4px)] xl:w-[calc(20%_-_4px)]">
-        <Input
-          placeholder="Tên tài khoản"
-          className="rounded-lg"
-          value={filter.user_name ?? ''}
-          onChange={(e) => {
-            handleChange({
-              ...filter,
-              user_name: e.target.value,
-            });
-          }}
-        />
-      </div>
+
+      {showMore && (
+        <>
+          <div className="w-[calc(50%_-_4px)] md:w-[calc(33.33%_-_4px)] lg:w-[calc(25%_-_4px)] xl:w-[calc(20%_-_4px)]">
+            <Select placeholder="Dự án/Chung cư"></Select>
+          </div>
+          <div className="w-[calc(50%_-_4px)] md:w-[calc(33.33%_-_4px)] lg:w-[calc(25%_-_4px)] xl:w-[calc(20%_-_4px)]">
+            <Select
+              placeholder="Chi nhánh"
+              options={CITY}
+              onChange={(value) => {
+                handleChange({
+                  ...filter,
+                  branch: value as IOption,
+                });
+              }}
+            ></Select>
+          </div>
+          <div className="w-[calc(50%_-_4px)] md:w-[calc(33.33%_-_4px)] lg:w-[calc(25%_-_4px)] xl:w-[calc(20%_-_4px)]">
+            <Select
+              placeholder="Phòng ban"
+              options={GROUPS}
+              onChange={(value) => {
+                handleChange({
+                  ...filter,
+                  group: value as IOption,
+                });
+              }}
+              disabled={!filter.branch}
+            ></Select>
+          </div>
+          <div className="w-[calc(50%_-_4px)] md:w-[calc(33.33%_-_4px)] lg:w-[calc(25%_-_4px)] xl:w-[calc(20%_-_4px)]">
+            <Select
+              placeholder="Phòng ban"
+              options={GROUPS}
+              value={filter.user_name}
+              onChange={(value) => {
+                handleChange({
+                  ...filter,
+                  user_name: value as IOption,
+                });
+              }}
+              disabled={!filter.branch}
+            ></Select>
+          </div>
+        </>
+      )}
+
       <div className="w-[calc(50%_-_4px)] md:w-[calc(33.33%_-_4px)] lg:w-[calc(25%_-_4px)] xl:w-[calc(20%_-_4px)]">
         <Button
           className="w-full"
+          variant={'outline'}
           onClick={() => {
             setFilter({});
             handleChange({});
@@ -272,6 +282,22 @@ function WarehouseFilter({ onChange }: Props) {
         >
           <ResetIcon />
           Đặt lại
+        </Button>
+      </div>
+      <div className="w-full flex justify-end">
+        <Button
+          startIcon={showMore ? <DoubleArrowUpIcon /> : <DoubleArrowDownIcon />}
+          variant="outline"
+          className="relative h-8 px-4 font-normal border-none text-secondaryColorDark dark:text-secondaryColorLightD2"
+          onClick={() => {
+            setShowMore((prev) => !prev);
+          }}
+        >
+          {showMore ? 'Thu gọn' : 'Mở rộng'}
+          <div className="flex items-center justify-center">
+            <span className="absolute inline-flex w-2 h-2 top-1 right-2.5 rounded-full opacity-75 animate-ping bg-successLight dark:bg-successDark"></span>
+            <span className="absolute w-2 h-2 rounded-full top-1 right-2.5 bg-successLight dark:bg-successDark"></span>
+          </div>
         </Button>
       </div>
     </div>
