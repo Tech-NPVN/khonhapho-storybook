@@ -10,9 +10,7 @@ const OnlineAccount = () => {
         <Typography variant="h5" className="font-medium font-sm">
           Tài khoản đang online
         </Typography>
-        <span className="bg-errorLight text-white font-medium text-[12px] w-auto h-auto min-h-5 min-w-5 px-2 flex justify-center items-center rounded-full">
-          12
-        </span>
+        <span className="badge-red">12</span>
       </div>
 
       <div className="pt-4">
