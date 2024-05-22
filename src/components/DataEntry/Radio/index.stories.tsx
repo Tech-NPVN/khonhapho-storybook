@@ -4,9 +4,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import Radio, { RadioForm, radioOptions } from '.';
+import Radio, { RadioForm, radioOption } from '.';
 import { Form } from '../Form';
 
+const radioOptions: radioOption[] = [
+  { value: '1', label: 'One' },
+  { value: '2', label: 'Two' },
+  { value: '3', label: 'Three', disabled: true },
+  { value: '4', label: 'Four' },
+];
 const meta: Meta<typeof Radio> = {
   title: 'Data Entry/Radio',
   component: Radio,

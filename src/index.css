@@ -28,6 +28,10 @@
   .hidden-scroll::-webkit-scrollbar {
     height: 0;
   }
+
+  .link {
+    @apply text-linkLight hover:text-linkHoverLight dark:text-linkDark dark:hover:text-linkHoverDark cursor-pointer;
+  }
 }
 
 ::-webkit-scrollbar {

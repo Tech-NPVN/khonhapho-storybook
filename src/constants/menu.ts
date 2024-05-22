@@ -95,7 +95,6 @@ export const ADMIN_MENU: TItemMenu[] = [
       },
     ],
   },
-
   {
     id: 'admin-company-setting',
     href: ADMIN_ROUTE + '/company-setting',
