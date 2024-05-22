@@ -25,7 +25,7 @@ export const Warehouse = () => {
     <>
       {/* <Details /> */}
       <div className="w-full">
-        <div className="px-5 py-3 rounded-lg bg-white dark:bg-primaryColorDark">
+        <div className="px-5 py-3 bg-white rounded-lg dark:bg-primaryColorDark">
           <div className="flex justify-between pb-3 ">
             <div>
               <Typography variant="h2" className="text-sm font-medium uppercase dark:text-white">
@@ -118,15 +118,15 @@ export const Warehouse = () => {
           <div className="mt-5 w-[500px]">
             <TabList
               items={[
-                <span className="flex gap-1 items-center">
+                <span className="flex items-center gap-1">
                   <ListUiIcon />
                   <span>Danh sách</span>
                 </span>,
-                <span className="flex gap-1 items-center">
+                <span className="flex items-center gap-1">
                   <DetailIcon width="18" />
                   <span>Chi tiết</span>
                 </span>,
-                <span className="flex gap-1 items-center">
+                <span className="flex items-center gap-1">
                   <PinIcon />
                   <span>Lưu lại</span>
                 </span>,
@@ -144,13 +144,13 @@ export const Warehouse = () => {
         </div>
         <div>
           <TabPanel name="warehouse" tabIndex={1}>
-            <div className="-mt-2 pt-4 pb-5 rounded-b-lg px-5 bg-white">
+            <div className="px-5 pt-4 pb-5 -mt-2 bg-white rounded-b-lg">
               <WarehouseFilter
                 onChange={(value) => {
                   console.log(value);
                 }}
               />
-              <div className="relative mt-5 w-full flex justify-end">
+              <div className="flex justify-end w-full mt-5 ">
                 <div className="min-w-[200px]">
                   <Select
                     value={sort}
