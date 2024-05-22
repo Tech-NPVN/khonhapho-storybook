@@ -1,5 +1,7 @@
 import { ADMIN_ROUTE } from '@/constants/menu';
-import { Consignment, Management, Referral } from '@/pages/Admin';
+
+import { Consignment, Management, Referral, Users } from '@/pages/Admin';
+
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Urgently, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
@@ -237,6 +239,10 @@ const adminRoutes: RouteObject[] = [
       {
         path: 'referral',
         element: <Referral />,
+      },
+      {
+        path: 'users',
+        element: <Users />,
       },
     ],
   },
