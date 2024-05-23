@@ -67,7 +67,7 @@ function WarehouseForm() {
     },
   });
   return (
-    <div className="w-full  rounded-lg min-h-96 bg-white dark:bg-primaryColorDark">
+    <div className="w-full bg-white rounded-lg min-h-96 dark:bg-primaryColorDark">
       <Modal
         className="w-[90vw] md:w-[700px]"
         open={isShowSelect}
@@ -78,15 +78,15 @@ function WarehouseForm() {
         }}
         children={
           <div className="w-full mt-5 min-h-[300px]">
-            <div className="w-full flex justify-end">
+            <div className="flex justify-end w-full">
               <div className="flex">
                 <div className="w-full flex-1 sm:min-w-[270px]">
                   <Input
-                    className=" rounded-md rounded-e-none"
+                    className="rounded-md rounded-e-none"
                     placeholder="Nhập đ/c, SĐT, seri sổ"
                   />
                 </div>
-                <button className="bg-green-600 text-white rounded-e-md w-12 flex justify-center items-center">
+                <button className="flex items-center justify-center w-12 text-white bg-green-600 rounded-e-md">
                   <SearchIcon className="fill-[white]" color="white" />
                 </button>
               </div>
@@ -95,23 +95,23 @@ function WarehouseForm() {
         }
       />
       <div className="px-6 w-full lg:w-[calc(100%_-_32px)] py-4">
-        <Typography variant="h2" className="text-lg uppercase font-medium dark:text-white">
+        <Typography variant="h2" className="text-lg font-medium uppercase dark:text-white">
           Kho Tài Nguyên
         </Typography>
       </div>
       <div className="w-full h-[1px] bg-black/5 dark:bg-white/10"></div>
-      <div className="px-6 w-full py-3">
+      <div className="w-full px-6 py-3">
         <Form {...form}>
           <form
-            className="flex pt-4 flex-wrap"
+            className="flex flex-wrap pt-4"
             onSubmit={form.handleSubmit((data) => alert(JSON.stringify(data)))}
           >
-            <div className="flex lg:flex-1 w-full flex-none justify-between flex-wrap me-2">
-              <div className="flex w-full flex-wrap">
-                <div className="sm:flex-1 w-full me-0 sm:me-2">
+            <div className="flex flex-wrap justify-between flex-none w-full lg:flex-1 me-2">
+              <div className="flex flex-wrap w-full">
+                <div className="w-full sm:flex-1 me-0 sm:me-2">
                   <label
                     htmlFor="copy-button"
-                    className=" w-full mb-4 text-sm dark:text-white line-clamp-1"
+                    className="w-full mb-4 text-sm dark:text-white line-clamp-1"
                   >
                     Nhân bản tin đăng
                   </label>
@@ -128,7 +128,7 @@ function WarehouseForm() {
                     </Button>
                   </div>
                 </div>
-                <div className="sm:flex-1 w-full ms:0 sm:ms-2 mt-4 sm:mt-0">
+                <div className="w-full mt-4 sm:flex-1 ms:0 sm:ms-2 sm:mt-0">
                   <label
                     htmlFor="property_type"
                     className="mb-4 text-sm dark:text-white line-clamp-1"
@@ -166,11 +166,11 @@ function WarehouseForm() {
                   />
                 </div>
               </div>
-              <div className="w-full flex mt-4 flex-wrap sm:flex-nowrap">
+              <div className="flex flex-wrap w-full mt-4 sm:flex-nowrap">
                 <div className="w-full sm:flex-1 me-0 sm:me-2">
                   <label
                     htmlFor="address.city"
-                    className=" mb-3 text-sm dark:text-white line-clamp-1"
+                    className="mb-3 text-sm dark:text-white line-clamp-1"
                   >
                     <RequiredSymbolLabel />
                     Thành phố
@@ -185,10 +185,10 @@ function WarehouseForm() {
                     />
                   </div>
                 </div>
-                <div className="flex-1 ms-0 mt-4 sm:mt-0 sm:ms-2">
+                <div className="flex-1 mt-4 ms-0 sm:mt-0 sm:ms-2">
                   <label
                     htmlFor="address.district"
-                    className=" mb-3 text-sm dark:text-white line-clamp-1"
+                    className="mb-3 text-sm dark:text-white line-clamp-1"
                   >
                     <RequiredSymbolLabel />
                     Quận huyện
@@ -205,11 +205,11 @@ function WarehouseForm() {
                   </div>
                 </div>
               </div>
-              <div className="w-full flex mt-4 flex-wrap sm:flex-nowrap">
+              <div className="flex flex-wrap w-full mt-4 sm:flex-nowrap">
                 <div className="w-full sm:flex-1 me-0 sm:me-2">
                   <label
                     htmlFor="address.street"
-                    className=" mb-3 text-sm dark:text-white line-clamp-1"
+                    className="mb-3 text-sm dark:text-white line-clamp-1"
                   >
                     <RequiredSymbolLabel />
                     Đường
@@ -228,7 +228,7 @@ function WarehouseForm() {
                 <div className="flex-1 mt-4 sm:mt-0 sm:ms-2">
                   <label
                     htmlFor="address.apartment_number"
-                    className=" mb-4 text-sm dark:text-white line-clamp-1"
+                    className="mb-4 text-sm dark:text-white line-clamp-1"
                   >
                     <RequiredSymbolLabel />
                     Ngõ, hẻm, số nhà, số phòng
@@ -244,7 +244,7 @@ function WarehouseForm() {
                 </div>
               </div>
               <div className="w-full mt-4">
-                <label htmlFor="project" className=" mb-3 text-sm dark:text-white line-clamp-1">
+                <label htmlFor="project" className="mb-3 text-sm dark:text-white line-clamp-1">
                   Dự án/Khu đô thị/Chung cư
                 </label>
                 <div>
@@ -257,11 +257,11 @@ function WarehouseForm() {
                   />
                 </div>
               </div>
-              <div className="w-full flex mt-4 flex-wrap">
-                <div className="w-full sm:flex-1 mt-0 sm:me-2">
+              <div className="flex flex-wrap w-full mt-4">
+                <div className="w-full mt-0 sm:flex-1 sm:me-2">
                   <label
                     htmlFor="property_feature"
-                    className=" mb-3 text-sm dark:text-white line-clamp-1"
+                    className="mb-3 text-sm dark:text-white line-clamp-1"
                   >
                     <RequiredSymbolLabel />
                     Thông số nhà
@@ -279,7 +279,7 @@ function WarehouseForm() {
                 <div className="flex-1 mt-4 sm:mt-0 sm:ms-2">
                   <label
                     htmlFor="bonus.value"
-                    className=" mb-3 text-sm dark:text-white line-clamp-1"
+                    className="mb-3 text-sm dark:text-white line-clamp-1"
                   >
                     <RequiredSymbolLabel />
                     Hoa hồng
@@ -309,11 +309,11 @@ function WarehouseForm() {
                   </div>
                 </div>
               </div>
-              <div className="w-full flex mt-2 flex-wrap">
+              <div className="flex flex-wrap w-full mt-2">
                 <div className="w-full sm:flex-1 sm:me-2">
                   <label
                     htmlFor="property_feature"
-                    className=" mb-3 text-sm dark:text-white line-clamp-1"
+                    className="mb-3 text-sm dark:text-white line-clamp-1"
                   >
                     <RequiredSymbolLabel />
                     Loại hợp đồng
@@ -332,7 +332,7 @@ function WarehouseForm() {
                 <div className="flex-1 mt-4 sm:mt-0 sm:ms-2">
                   <label
                     htmlFor="bonus_referral"
-                    className=" mb-3 text-sm dark:text-white line-clamp-1"
+                    className="mb-3 text-sm dark:text-white line-clamp-1"
                   >
                     Cầu đối tác
                   </label>
@@ -353,7 +353,7 @@ function WarehouseForm() {
                 </div>
               </div>
               <div className="w-full mt-4">
-                <label htmlFor="project" className=" mb-3 text-sm dark:text-white line-clamp-1">
+                <label htmlFor="project" className="mb-3 text-sm dark:text-white line-clamp-1">
                   <RequiredSymbolLabel />
                   Tiêu đề (Tự động)
                 </label>
@@ -364,7 +364,7 @@ function WarehouseForm() {
                 </div>
               </div>
               <div className="w-full mt-4">
-                <label htmlFor="project" className=" mb-3 text-sm dark:text-white line-clamp-1">
+                <label htmlFor="project" className="mb-3 text-sm dark:text-white line-clamp-1">
                   <RequiredSymbolLabel />
                   Nội dung
                 </label>
@@ -378,11 +378,11 @@ function WarehouseForm() {
                   />
                 </div>
               </div>
-              <div className="w-full flex mt-2 flex-wrap">
+              <div className="flex flex-wrap w-full mt-2">
                 <div className="w-full sm:flex-1 me-0 sm:me-2">
                   <label
                     htmlFor="legal_status"
-                    className=" mb-3 text-sm dark:text-white line-clamp-1"
+                    className="mb-3 text-sm dark:text-white line-clamp-1"
                   >
                     <RequiredSymbolLabel />
                     Pháp lý
@@ -397,10 +397,10 @@ function WarehouseForm() {
                     />
                   </div>
                 </div>
-                <div className="w-full sm:flex-1 mt-4 sm:mt-0 mx-0 sm:mx-2">
+                <div className="w-full mx-0 mt-4 sm:flex-1 sm:mt-0 sm:mx-2">
                   <label
                     htmlFor="property_feature"
-                    className=" mb-3 text-sm dark:text-white line-clamp-1"
+                    className="mb-3 text-sm dark:text-white line-clamp-1"
                   >
                     <RequiredSymbolLabel />
                     Serial sổ
@@ -417,10 +417,10 @@ function WarehouseForm() {
                     />
                   </div>
                 </div>
-                <div className="w-full sm:flex-1 mt-4 sm:mt-0 ms-0 sm:ms-2">
+                <div className="w-full mt-4 sm:flex-1 sm:mt-0 ms-0 sm:ms-2">
                   <label
                     htmlFor="owner_phone"
-                    className=" mb-3 text-sm dark:text-white line-clamp-1"
+                    className="mb-3 text-sm dark:text-white line-clamp-1"
                   >
                     <RequiredSymbolLabel />
                     Số điện thoại chủ nhà
@@ -437,13 +437,13 @@ function WarehouseForm() {
                 </div>
               </div>
             </div>
-            <div className="flex-1 mt-5 lg:mt-0 flex ms-2 flex-wrap items-start content-start">
+            <div className="flex flex-wrap items-start content-start flex-1 mt-5 lg:mt-0 ms-2">
               <div className="w-full">
                 <label className="w-full text-sm line-clamp-1" htmlFor="">
                   <RequiredSymbolLabel />
                   Ảnh (tối đa 12 ảnh)
                 </label>
-                <div className=" mt-3">
+                <div className="mt-3 ">
                   <Upload
                     className="!w-[100px] !h-[100px] dark:bg-white/10"
                     previewImage={[]}
@@ -456,7 +456,7 @@ function WarehouseForm() {
                   <RequiredSymbolLabel />
                   Video (tối đa 4 video và không vượt quá 50MB/video):
                 </label>
-                <div className=" mt-3">
+                <div className="mt-3 ">
                   <Upload
                     className="!w-[100px] !h-[100px] dark:bg-white/10"
                     previewImage={[]}
@@ -469,7 +469,7 @@ function WarehouseForm() {
                   <RequiredSymbolLabel />
                   Ảnh sổ đỏ pháp lý, hợp đồng trích thường (tối đa 20 ảnh)
                 </label>
-                <div className=" mt-3">
+                <div className="mt-3 ">
                   <Upload
                     className="!w-[100px] !h-[100px] dark:bg-white/10"
                     previewImage={[]}
@@ -483,7 +483,7 @@ function WarehouseForm() {
                   <RequiredSymbolLabel />
                   Audio ghi âm pháp lý, hợp đồng trích thường (tối đa 4 audio):
                 </label>
-                <div className=" mt-3">
+                <div className="mt-3 ">
                   <Upload
                     className="!w-[100px] !h-[100px] dark:bg-white/10"
                     previewImage={[]}
@@ -492,7 +492,7 @@ function WarehouseForm() {
                 </div>
               </div>
             </div>
-            <div className="w-full mt-10 mb-5 justify-center flex ">
+            <div className="flex justify-center w-full mt-10 mb-5 ">
               <Button type="submit" className="w-72">
                 Đăng Tin
               </Button>
