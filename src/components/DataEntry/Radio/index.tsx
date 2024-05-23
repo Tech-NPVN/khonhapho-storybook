@@ -18,7 +18,7 @@ function Radio({ checked, name, disabled, label, size = 'sm', onChecked, ...prop
   return (
     <label
       className={clsx(
-        'flex select-none relative justify-start items-center',
+        'flex select-none relative justify-start items-center dark:text-[#fff]',
         disabled ? 'text-[#cecece] cursor-default' : 'text-[#000] cursor-pointer',
         !disabled && '[&>span]:hover:bg-[#afafaf]',
         props.className,

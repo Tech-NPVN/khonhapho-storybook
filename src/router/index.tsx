@@ -1,9 +1,8 @@
 import { ADMIN_ROUTE } from '@/constants/menu';
-import { Management, SettingCompany } from '@/pages/Admin';
+import { Consignment, Management, Referral, SettingCompany, Users } from '@/pages/Admin';
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Urgently, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
-
 import { FeedAll, FeedBranch, FeedDeal, FeedDepartment, FeedGroup } from '@/pages/Dashboard/Feeds';
 import {
   LibraryAssistant,
@@ -238,6 +237,18 @@ const adminRoutes: RouteObject[] = [
       {
         path: '/admin/company-setting',
         element: <SettingCompany />,
+      },
+      {
+        path: 'consignment',
+        element: <Consignment />,
+      },
+      {
+        path: 'referral',
+        element: <Referral />,
+      },
+      {
+        path: 'users',
+        element: <Users />,
       },
     ],
   },
