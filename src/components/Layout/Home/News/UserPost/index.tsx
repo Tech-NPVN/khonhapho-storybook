@@ -1,6 +1,7 @@
 import { Avatar } from '@/components/DataDisplay';
 import { Tag } from '@/components/DataDisplay/Tag';
 import { Input } from '@/components/DataEntry';
+import { DatePickerComponent } from '@/components/DataEntry/DatePicker';
 import {
   CheckIcon,
   CommentIcon,
@@ -75,6 +76,8 @@ const UserPost = (props: Props) => {
         <p>#khoi</p>
         <p>#khoi</p>
       </div>
+
+      <DatePickerComponent />
 
       <div className="flex justify-between mt-4 text-[14px]">
         <div className="flex items-center gap-4">
