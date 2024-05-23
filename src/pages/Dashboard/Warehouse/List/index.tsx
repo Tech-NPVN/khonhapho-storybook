@@ -7,7 +7,6 @@ import {
   MessageIcon,
   NotificationIcon,
   PinIcon,
-  ReportIcon,
 } from '@/components/General';
 import {
   ITableHeader,
@@ -21,6 +20,7 @@ import { useEffect, useRef, useState } from 'react';
 import { clsx } from 'clsx';
 import WarehouseFilter from '../Filter';
 import { dateToStringDate } from '../helpers';
+import { ReportsButton } from './ReportsButton';
 import { ViewButton } from './ViewButton';
 
 export const StatusTag = ({ status }: { status: keyof typeof STATUS_LABEL }) => {
@@ -335,9 +335,7 @@ function WarehouseList() {
                     ) : null}
                     {!tableHeader.report?.hidden ? (
                       <td className="px-2">
-                        <div className="flex justify-center">
-                          <ReportIcon />
-                        </div>
+                        <ReportsButton data={data} />
                       </td>
                     ) : null}
                     {!tableHeader.view?.hidden ? (

@@ -3,8 +3,10 @@ import { Tag } from '@/components/DataDisplay/Tag';
 import { Input, Rate } from '@/components/DataEntry';
 import {
   AlarmClock,
+  CameraIcon,
   CheckIcon,
   ClockIcon,
+  CloseIcon,
   CommentIcon,
   CopyIcon,
   CounterClockwiseClock,
@@ -13,28 +15,36 @@ import {
   MessageIcon,
   PhoneIcon,
   PinSolidIcon,
-  ReportIcon,
   SendIcon,
   ShareIcon,
   SuitableIcon,
   Typography,
 } from '@/components/General';
 import { useCopyToClipboard } from '@/hooks/useCopyToClipBoard';
+import { useOutsideClickClose } from '@/hooks/useOutsideClickClose';
 import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/react';
 import clsx from 'clsx';
+import { useRef, useState } from 'react';
 import { StatusTag } from '../List';
-import { Comment_Demo, IPosting } from '../const';
+import { ReportsButton } from '../List/ReportsButton';
+import { Comment_Demo, IComment, IPosting } from '../const';
 import { dateToStringDate, dateToStringTime, getTimeAgo } from '../helpers';
 export const WarehousePosting = ({
   data,
   type = 'list',
-  setShowAllComments,
 }: {
   data: IPosting;
   type?: 'list' | 'modal';
-  setShowAllComments?: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const [cmts, setCmts] = useState<IComment[]>(Comment_Demo.slice(0, 3));
   const { isCopied, copyToClipboard } = useCopyToClipboard();
+  const [showModalComment, setShowModalComment] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const inputCommentRef = useRef<HTMLInputElement>(null);
+  useOutsideClickClose(modalRef, () => {
+    setShowModalComment(false);
+  });
+
   return (
     <>
       <div className="flex flex-wrap bg-[#FFFFFF] dark:bg-primaryColorDark dark:text-textPrimaryDark rounded-md relative ">
@@ -46,6 +56,7 @@ export const WarehousePosting = ({
               : 'lg:h-[calc(95vh_-_70px)] lg:overflow-x-hidden overflow-y-auto',
           )}
         >
+          {/* header */}
           <div className="w-full">
             <div className="flex justify-between px-3 py-2">
               <div className="text-[12px] flex gap-1">
@@ -65,6 +76,7 @@ export const WarehousePosting = ({
 
           <div>
             <div>
+              {/* Thông tin bài viết */}
               <div className="py-5 px-3">
                 <div className="flex justify-between items-center ">
                   <div className="flex items-center gap-2">
@@ -209,7 +221,12 @@ export const WarehousePosting = ({
                   <div className="flex items-center gap-2 text-[14px]">
                     <div className="flex items-center gap-2 cursor-pointer">
                       <PhoneIcon color="#197D16" />
-                      <span className={clsx('hidden', type === 'modal' ? 'hidden' : '')}>
+                      <span
+                        className={clsx(
+                          'hidden dark:text-white',
+                          type === 'modal' ? 'hidden' : 'lg:block',
+                        )}
+                      >
                         Điện thoại
                       </span>
                     </div>
@@ -221,29 +238,59 @@ export const WarehousePosting = ({
                         height={16}
                         className="rounded-md"
                       />
-                      <span className={clsx('hidden', type === 'modal' ? 'hidden' : '')}>Zalo</span>
+                      <span
+                        className={clsx(
+                          'hidden dark:text-white',
+                          type === 'modal' ? 'hidden' : 'lg:block',
+                        )}
+                      >
+                        Zalo
+                      </span>
                     </div>
                     <div className="flex items-center gap-2 cursor-pointer">
                       <MessageIcon />
-                      <span className={clsx('hidden', type === 'modal' ? 'hidden' : '')}>
+                      <span
+                        className={clsx(
+                          'hidden dark:text-white',
+                          type === 'modal' ? 'hidden' : 'lg:block',
+                        )}
+                      >
                         Messenger
                       </span>
                     </div>
                     <div className="flex items-center gap-2 cursor-pointer">
                       <AlarmClock />
-                      <span className={clsx('hidden', type === 'modal' ? 'hidden' : '')}>
+                      <span
+                        className={clsx(
+                          'hidden dark:text-white',
+                          type === 'modal' ? 'hidden' : 'lg:block',
+                        )}
+                      >
                         Đặt lịch
                       </span>
                     </div>
                     <div className="flex items-center gap-2 cursor-pointer">
                       <PinSolidIcon />
-                      <span className={clsx('hidden', type === 'modal' ? 'hidden' : '')}>Lưu</span>
+                      <span
+                        className={clsx(
+                          'hidden dark:text-white',
+                          type === 'modal' ? 'hidden' : 'lg:block',
+                        )}
+                      >
+                        Lưu
+                      </span>
                     </div>
                     <div className="flex items-center gap-2 cursor-pointer">
-                      <ReportIcon />
-                      <span className={clsx('hidden', type === 'modal' ? 'hidden' : '')}>
-                        Báo cáo dẫn khách
-                      </span>
+                      <ReportsButton data={data}>
+                        <span
+                          className={clsx(
+                            'hidden dark:text-white',
+                            type === 'modal' ? 'hidden' : 'lg:block',
+                          )}
+                        >
+                          Báo cáo dẫn khách
+                        </span>
+                      </ReportsButton>
                     </div>
                   </div>
                 </div>
@@ -259,7 +306,11 @@ export const WarehousePosting = ({
                 <li style={{ width: '33%' }}>
                   <button
                     className="flex items-center gap-2 justify-center h-[32px] w-full"
-                    onClick={() => setShowAllComments?.(true)}
+                    onClick={() => {
+                      type === 'modal'
+                        ? inputCommentRef.current?.focus()
+                        : setShowModalComment(true);
+                    }}
                   >
                     <CommentIcon />
                     <p>Bình luận</p>
@@ -296,11 +347,11 @@ export const WarehousePosting = ({
                   </Popover>
                 </li>
               </ul>
-              <div className={'py-5 px-3 md:flex hidden'}>
+              <div className={clsx('py-5 px-3 ', type === 'modal' ? 'flex' : 'md:flex hidden')}>
                 <div
                   className={clsx('w-full ', type === 'list' ? 'max-h-[500px] overflow-auto' : '')}
                 >
-                  {Comment_Demo.slice(0, 3).map((comment, i) => (
+                  {cmts.map((comment, i) => (
                     <div key={'comment-' + i} className="flex gap-2 mt-4">
                       <Avatar alt="avatar" height={40} width={40} src={comment?.user?.avatar} />
                       <div className="flex flex-col ">
@@ -311,7 +362,7 @@ export const WarehousePosting = ({
                               {/* <span>·</span>
                   <span>Quy định và Hướng dẫn</span> */}
                             </div>
-                            <p className="text-primaryTextDark">Coffin Dance</p>
+                            <p className="text-primaryTextDark">{comment.content}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-4 mt-2 dark:text-textSecondaryDark text-[12px]">
@@ -324,7 +375,9 @@ export const WarehousePosting = ({
                     </div>
                   ))}
                   <button
-                    onClick={() => setShowAllComments?.(true)}
+                    onClick={() => {
+                      type === 'modal' ? setCmts(Comment_Demo) : setShowModalComment(true);
+                    }}
                     className="mt-2 text-[#000000] dark:text-[#ffffffbb] hover:underline"
                   >
                     Xem thêm bình luận
@@ -334,6 +387,7 @@ export const WarehousePosting = ({
             </div>
           </div>
         </div>
+        {/* Input */}
         <div
           className={clsx(
             'pb-5 px-3 w-full bg-white dark:bg-secondaryColorDark',
@@ -348,7 +402,98 @@ export const WarehousePosting = ({
               src="https://s3-alpha-sig.figma.com/img/206c/4897/28b7b0c60958131808a8471ce60ce66c?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ddKWmEtLX2W-UyEi6HzRg~HaaYN6KsDFuEAOu7Vl4brlTWYIttWq4LSRBkJTkmn6GALE0V2Fhik2kdPjAo~aAnLugu0zjNHEWrKHKTwCH3XaUjYGk4rX3o~xS8eiFrRUxSxklglUV3nUfLMTs0TGwt4OP8mOH9Q7jgTnHTTwsN2RRBOEHLIIm0T4PR25hWEh7WOGnLPnRTb~2ivohTt~IM3I4NunbrvT~nUKG1PYZGvPigJDRn2G4JkaRt4oEHjdEYjFC1UFnLEq59bnvOzgfumKkwGEv4pioqeL6lofZc2hbudFf8aV1VHmBXaLIb9Q42~a~dOO5SrSk3L9XfIUeg__"
             />
 
-            <Input name="comment" suffixIcon={<SendIcon />} placeholder="Viết bình luận..." />
+            <Input
+              ref={inputCommentRef}
+              name="comment"
+              suffixIcon={<SendIcon />}
+              placeholder="Viết bình luận..."
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className={clsx(
+          'fixed left-0 right-0 top-0 bottom-0 justify-center items-center z-[101] bg-black/20',
+          showModalComment ? 'flex' : 'hidden',
+        )}
+      >
+        <div className="relative bg-white dark:bg-primaryColorDark w-[80vw] h-[95vh] overflow-hidden rounded-lg ">
+          <div ref={modalRef} className="h-full w-full ">
+            <div className="w-full h-12 flex items-center justify-between bg-white dark:bg-secondaryColorDark">
+              <span className="text-sm md:text-lg lg:text-xl font-medium px-3 dark:text-white">
+                Bình luận tin của {data.owner.position} {data.owner.fullName} • {data.owner.group}
+              </span>
+              <button
+                className="me-5"
+                onClick={() => {
+                  setShowModalComment(false);
+                }}
+              >
+                <CloseIcon
+                  width="20"
+                  color="#"
+                  className="fill-black dark:fill-white"
+                  height="20"
+                />
+              </button>
+            </div>
+            <hr className="dark:border-white/30" />
+            <div className="h-[calc(95vh_-_150px)] overflow-x-hidden overflow-y-auto px-3">
+              <div>
+                {Comment_Demo.map((cmt, i) => {
+                  return (
+                    <div className="flex gap-2 mt-4 " key={`avatar_${i}`}>
+                      <Avatar alt="avatar" height={40} width={40} src={cmt.user.avatar} />
+                      <div className="flex flex-col ">
+                        <div className="px-2 py-2 bg-[#F3F4F6] dark:bg-secondaryColorDark rounded-md">
+                          <div>
+                            <div className="flex gap-2 items-center text-black text-[14px] font-semibold dark:text-[#74CF5A]">
+                              <h3 className="text-[14px]">{cmt.user.fullName}</h3>
+                              <span className="hidden md:block">·</span>
+                              <span className="hidden md:block">Quy định và Hướng dẫn</span>
+                            </div>
+                            <p className="dark:text-textPrimaryDark text-textPrimaryLight">
+                              {cmt.content}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-4 mt-2 dark:text-textSecondaryDark text-[12px]">
+                          <button>Thích</button>
+                          <button>Trả lời</button>
+                          <p>{getTimeAgo(new Date(cmt.created_at))}</p>
+                          <p>Đã chỉnh sửa</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="px-3 pt-3">
+              <div className="flex w-full gap-2">
+                <Avatar
+                  alt="avatar"
+                  height={40}
+                  width={40}
+                  src="https://s3-alpha-sig.figma.com/img/206c/4897/28b7b0c60958131808a8471ce60ce66c?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ddKWmEtLX2W-UyEi6HzRg~HaaYN6KsDFuEAOu7Vl4brlTWYIttWq4LSRBkJTkmn6GALE0V2Fhik2kdPjAo~aAnLugu0zjNHEWrKHKTwCH3XaUjYGk4rX3o~xS8eiFrRUxSxklglUV3nUfLMTs0TGwt4OP8mOH9Q7jgTnHTTwsN2RRBOEHLIIm0T4PR25hWEh7WOGnLPnRTb~2ivohTt~IM3I4NunbrvT~nUKG1PYZGvPigJDRn2G4JkaRt4oEHjdEYjFC1UFnLEq59bnvOzgfumKkwGEv4pioqeL6lofZc2hbudFf8aV1VHmBXaLIb9Q42~a~dOO5SrSk3L9XfIUeg__"
+                />
+                <div className="relative w-full border rounded-md bg-primaryColorLight dark:bg-secondaryColorDark">
+                  <Input
+                    placeholder="Viết bình luận"
+                    className="bg-transparent border-none dark:bg-transparent"
+                  />
+                  <div className="flex items-center justify-between gap-1 p-2">
+                    <div className="flex items-center gap-1">
+                      <CameraIcon className="cursor-pointer" />
+                      <CameraIcon className="cursor-pointer" />
+                      <CameraIcon className="cursor-pointer" />
+                      <CameraIcon className="cursor-pointer" />
+                    </div>
+                    <SendIcon className="cursor-pointer" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

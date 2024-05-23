@@ -2,13 +2,11 @@ import { Switch } from '@/components/DataEntry';
 import {
   Button,
   ClockIcon,
-  DeleteIcon,
   EyeOffIcon,
   MessageIcon,
   NoteIcon,
   NotificationIcon,
   PinIcon,
-  ReportIcon,
 } from '@/components/General';
 import {
   ITableHeader,
@@ -23,6 +21,8 @@ import { ArrowDownArrowUpIcon } from '@/components/General';
 import { SORT_OPTIONS } from '@/pages/Dashboard/Warehouse/const';
 import { clsx } from 'clsx';
 import WarehouseFilter from '../Filter';
+import { ReportsButton } from '../List/ReportsButton';
+import { ViewButton } from '../List/ViewButton';
 import { dateToStringDate } from '../helpers';
 export const StatusTag = ({ status }: { status: keyof typeof STATUS_LABEL }) => {
   switch (status) {
@@ -347,14 +347,12 @@ function WarehouseSave() {
                     ) : null}
                     {!tableHeader.report?.hidden ? (
                       <td className="px-2">
-                        <div className="flex justify-center">
-                          <ReportIcon />
-                        </div>
+                        <ReportsButton data={data} />
                       </td>
                     ) : null}
                     {!tableHeader.view?.hidden ? (
                       <td className="absolute right-0 w-[40px] h-9 flex justify-center items-center px-2">
-                        <DeleteIcon />
+                        <ViewButton data={data} />
                       </td>
                     ) : null}
                   </tr>

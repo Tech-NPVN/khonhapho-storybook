@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { ReactNode } from 'react';
 import { FieldPath, FieldValues, useFormContext } from 'react-hook-form';
 import { FormControl, FormDescription, FormField, FormItem, FormMessage } from '../Form';
+import { Input } from '../Input';
 
 type RadioProps = {
   checked?: boolean;
@@ -19,7 +20,9 @@ function Radio({ checked, name, disabled, label, size = 'sm', onChecked, ...prop
     <label
       className={clsx(
         'flex select-none relative justify-start items-center',
-        disabled ? 'text-[#cecece] cursor-default' : 'text-[#000] cursor-pointer',
+        disabled
+          ? 'text-[#cecece] cursor-default dark:text-white/50'
+          : 'text-[#000] cursor-pointer dark:text-white',
         !disabled && '[&>span]:hover:bg-[#afafaf]',
         props.className,
       )}
@@ -94,13 +97,49 @@ export const RadioForm = <T extends FieldValues>({
                   render={({ field: fieldChild }) => (
                     <FormItem>
                       <FormControl>
-                        <Radio
-                          checked={fieldChild.value?.value?.includes(item.value)}
-                          onChecked={() => {
-                            fieldChild.onChange(item);
-                          }}
-                          label={item.label}
-                        />
+                        <div className="flex items-start">
+                          <div className={clsx(item.value?.includes('other') ? 'mt-1' : '')}>
+                            <Radio
+                              checked={fieldChild.value?.value?.includes(item.value)}
+                              onChecked={() => {
+                                fieldChild.onChange({
+                                  ...item,
+                                  input_value: '',
+                                });
+                              }}
+                              label={item.label}
+                            />
+                          </div>
+                          {item.value === 'other' && (
+                            <div className="w-full ms-3">
+                              <Input
+                                className={clsx(
+                                  'h-9 rounded-lg',
+                                  fieldChild.value?.input_value
+                                    ? ''
+                                    : fieldChild.value?.value === 'other'
+                                      ? 'border-errorLight dark:border-errorLight'
+                                      : '',
+                                  fieldChild.value?.value !== 'other' ? 'border-[black]/30' : '',
+                                )}
+                                disabled={fieldChild.value?.value !== 'other'}
+                                value={fieldChild.value?.input_value}
+                                onChange={(e) => {
+                                  fieldChild.onChange({
+                                    ...item,
+                                    input_value: e.target.value,
+                                  });
+                                }}
+                              ></Input>
+                              {fieldChild.value?.value === 'other' &&
+                                !fieldChild.value?.input_value && (
+                                  <span className="text-sm text-errorLight">
+                                    Vui lòng nhập trường này
+                                  </span>
+                                )}
+                            </div>
+                          )}
+                        </div>
                       </FormControl>
                     </FormItem>
                   )}

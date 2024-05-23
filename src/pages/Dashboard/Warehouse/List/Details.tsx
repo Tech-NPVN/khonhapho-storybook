@@ -1,21 +1,12 @@
-import { Avatar } from '@/components/DataDisplay';
-import { Input } from '@/components/DataEntry';
-import {
-  AngleNextIcon,
-  AnglePrevIcon,
-  CameraIcon,
-  CloseIcon,
-  SendIcon,
-} from '@/components/General';
+import { AngleNextIcon, AnglePrevIcon, CloseIcon } from '@/components/General';
 import { useOutsideClickClose } from '@/hooks/useOutsideClickClose';
 import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react';
 import clsx from 'clsx';
 import { useRef, useState } from 'react';
 import { WarehousePosting } from '../Details/WarehousePosting';
-import { Comment_Demo, IPosting } from '../const';
-import { getTimeAgo } from '../helpers';
+import { IPosting } from '../const';
 export const PostingDetails = ({
-  show = true,
+  show = false,
   onClose,
   data,
 }: {
@@ -25,9 +16,8 @@ export const PostingDetails = ({
 }) => {
   const [index, setIndex] = useState(0);
   const modalRef = useRef<HTMLDivElement>(null);
-  const [showAllComments, setShowAllComments] = useState(false);
   const handleCloseModal = () => {
-    showAllComments ? setShowAllComments(false) : onClose?.();
+    onClose?.();
   };
   useOutsideClickClose(modalRef, handleCloseModal);
 
@@ -35,10 +25,13 @@ export const PostingDetails = ({
     <>
       <Transition appear show={show}>
         <Dialog
-          onClose={handleCloseModal}
+          onClose={() => {
+            console.log('Close modal 1');
+          }}
           onClick={(e) => {
             e.stopPropagation();
             handleCloseModal();
+            console.log('Close modal');
           }}
         >
           <DialogPanel>
@@ -73,11 +66,11 @@ export const PostingDetails = ({
                           <AnglePrevIcon color="#" className="fill-black dark:fill-white" />
                         </button>
                         <span className="font-medium dark:text-white">
-                          {data.owner.position} {data.owner.fullName} • {data.owner.groups}
+                          {data.owner.position} {data.owner.fullName} • {data.owner.group}
                         </span>
                       </div>
                     </div>
-                    <div className=" w-full lg:w-1/2 h-[100%] relative overflow-hidden">
+                    <div className=" w-full lg:w-1/2 h-[40vh] lg:h-[100%] relative overflow-hidden">
                       <div
                         className={clsx('h-full flex items-center ease-in-out duration-300')}
                         style={{
@@ -121,98 +114,7 @@ export const PostingDetails = ({
                       </div>
                     </div>
                     <div className="w-full lg:w-1/2">
-                      <WarehousePosting
-                        type="modal"
-                        data={data}
-                        setShowAllComments={setShowAllComments}
-                      />
-                    </div>
-                  </div>
-                  <div
-                    className={clsx(
-                      ' absolute left-0 right-0 top-0 bottom-0 justify-center items-center z-[101]',
-                      showAllComments ? 'flex' : 'hidden',
-                    )}
-                  >
-                    <div className="relative bg-white dark:bg-primaryColorDark w-full h-full">
-                      <div className="w-full h-12 flex items-center justify-between bg-white dark:bg-secondaryColorDark">
-                        <span className="text-xl font-medium px-3 dark:text-white">
-                          Bình luận tin của {data.owner.position} {data.owner.fullName} •{' '}
-                          {data.owner.groups}
-                        </span>
-                        <button
-                          className="me-5"
-                          onClick={() => {
-                            setShowAllComments(false);
-                          }}
-                        >
-                          <CloseIcon
-                            width="20"
-                            color="#"
-                            className="fill-black dark:fill-white"
-                            height="20"
-                          />
-                        </button>
-                      </div>
-                      <hr className="dark:border-white/30" />
-                      <div className="h-[calc(95vh_-_150px)] overflow-x-hidden overflow-y-auto px-3">
-                        <div>
-                          {Comment_Demo.map((cmt, i) => {
-                            return (
-                              <div className="flex gap-2 mt-4 " key={`avatar_${i}`}>
-                                <Avatar alt="avatar" height={40} width={40} src={cmt.user.avatar} />
-                                <div className="flex flex-col ">
-                                  <div className="px-2 py-2 bg-[#F3F4F6] dark:bg-secondaryColorDark rounded-md">
-                                    <div>
-                                      <div className="flex gap-2 items-center text-black text-[14px] font-semibold dark:text-[#74CF5A]">
-                                        <h3 className="text-[14px]">{cmt.user.fullName}</h3>
-                                        <span className="hidden md:block">·</span>
-                                        <span className="hidden md:block">
-                                          Quy định và Hướng dẫn
-                                        </span>
-                                      </div>
-                                      <p className="dark:text-textPrimaryDark text-textPrimaryLight">
-                                        {cmt.content}
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div className="flex items-center gap-4 mt-2 dark:text-textSecondaryDark text-[12px]">
-                                    <button>Thích</button>
-                                    <button>Trả lời</button>
-                                    <p>{getTimeAgo(new Date(cmt.created_at))}</p>
-                                    <p>Đã chỉnh sửa</p>
-                                  </div>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                      <div className="px-3 pt-3">
-                        <div className="flex w-full gap-2">
-                          <Avatar
-                            alt="avatar"
-                            height={40}
-                            width={40}
-                            src="https://s3-alpha-sig.figma.com/img/206c/4897/28b7b0c60958131808a8471ce60ce66c?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ddKWmEtLX2W-UyEi6HzRg~HaaYN6KsDFuEAOu7Vl4brlTWYIttWq4LSRBkJTkmn6GALE0V2Fhik2kdPjAo~aAnLugu0zjNHEWrKHKTwCH3XaUjYGk4rX3o~xS8eiFrRUxSxklglUV3nUfLMTs0TGwt4OP8mOH9Q7jgTnHTTwsN2RRBOEHLIIm0T4PR25hWEh7WOGnLPnRTb~2ivohTt~IM3I4NunbrvT~nUKG1PYZGvPigJDRn2G4JkaRt4oEHjdEYjFC1UFnLEq59bnvOzgfumKkwGEv4pioqeL6lofZc2hbudFf8aV1VHmBXaLIb9Q42~a~dOO5SrSk3L9XfIUeg__"
-                          />
-                          <div className="relative w-full border rounded-md bg-primaryColorLight dark:bg-secondaryColorDark">
-                            <Input
-                              placeholder="Viết bình luận"
-                              className="bg-transparent border-none dark:bg-transparent"
-                            />
-                            <div className="flex items-center justify-between gap-1 p-2">
-                              <div className="flex items-center gap-1">
-                                <CameraIcon className="cursor-pointer" />
-                                <CameraIcon className="cursor-pointer" />
-                                <CameraIcon className="cursor-pointer" />
-                                <CameraIcon className="cursor-pointer" />
-                              </div>
-                              <SendIcon className="cursor-pointer" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <WarehousePosting type="modal" data={data} />
                     </div>
                   </div>
                 </div>
