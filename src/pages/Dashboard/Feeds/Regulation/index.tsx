@@ -7,8 +7,9 @@ import UserPost from '@/components/Layout/Home/News/UserPost';
 import UserPostSkeleton from '@/components/Layout/Home/News/UserPostSkeleton';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import { useState } from 'react';
+import CreatePost from '../CreatePost';
 
-export const FeedDepartment = () => {
+export const FeedRegulation = () => {
   const [isShowComment, setIsShowComment] = useState<boolean>(false);
   const [index, setIndex] = useState(3);
 
@@ -20,6 +21,8 @@ export const FeedDepartment = () => {
 
   return (
     <div className="h-full md:w-[920px] mx-auto -mt-[15px]">
+      <CreatePost />
+
       <div className="flex mt-6 md:justify-end">
         <div className="flex w-full md:w-[294px]">
           <Input
@@ -44,6 +47,8 @@ export const FeedDepartment = () => {
         title="Bình luận"
         className="w-full md:w-1/2"
         isDivided={true}
+
+        // styleTitle="textPrimaryLight dark:text-textPrimaryDark"
       >
         <div>
           {Array(8)
