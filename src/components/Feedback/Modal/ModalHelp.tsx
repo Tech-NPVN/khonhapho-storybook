@@ -6,12 +6,14 @@ type TModalHelp = {
   label?: string;
   title?: string;
   children?: React.ReactNode;
+  className?: string;
 };
 
 export const ModalHelp = ({
   label = 'Lý do không lọc Diện tích/Mặt tiền/Hướng',
   title = 'Lý do không lọc Diện tích/Mặt tiền/Hướng',
   children,
+  className,
   ...props
 }: TModalHelp) => {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -21,7 +23,7 @@ export const ModalHelp = ({
   return (
     <div>
       <div
-        className="flex gap-1 text-xs font-normal cursor-pointer text-infoLight hover:underline"
+        className={`flex gap-1 text-xs font-normal cursor-pointer text-infoLight hover:underline ${className}`}
         onClick={handleShowModal}
       >
         {label}
