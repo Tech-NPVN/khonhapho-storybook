@@ -4,7 +4,7 @@ import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Urgently, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
 
-import { FeedAll, FeedBranch, FeedDeal, FeedDepartment, FeedGroup } from '@/pages/Dashboard/Feeds';
+import { FeedAll, FeedBranch, FeedDeal, FeedDepartment, FeedGroup, FeedRegulation } from '@/pages/Dashboard/Feeds';
 import {
   LibraryAssistant,
   LibraryKnowledge,
@@ -176,6 +176,7 @@ const authRoutes: RouteObject[] = [
                 path: 'group',
                 element: <FeedGroup />,
               },
+
             ],
           },
         ],
@@ -206,6 +207,10 @@ const authRoutes: RouteObject[] = [
           {
             path: 'group',
             element: <FeedGroup />,
+          },
+          {
+            path: 'regulation',
+            element: <FeedRegulation />,
           },
         ],
       },
