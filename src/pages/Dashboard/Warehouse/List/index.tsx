@@ -7,9 +7,7 @@ import {
   MessageIcon,
   NotificationIcon,
   PinIcon,
-  ReportIcon,
 } from '@/components/General';
-import { useOutsideClickClose } from '@/hooks/useOutsideClickClose';
 import {
   ITableHeader,
   LIST_POST_DEMO,
@@ -22,6 +20,7 @@ import { useEffect, useRef, useState } from 'react';
 import { clsx } from 'clsx';
 import WarehouseFilter from '../Filter';
 import { dateToStringDate } from '../helpers';
+import { ReportsButton } from './ReportsButton';
 import { ViewButton } from './ViewButton';
 
 export const StatusTag = ({ status }: { status: keyof typeof STATUS_LABEL }) => {
@@ -74,9 +73,7 @@ function WarehouseList() {
   const [tableHeader, setTableHeader] = useState<ITableHeader>({});
   const [showModalCustomViewRow, setShowModalCustomViewRow] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  useOutsideClickClose(modalRef, () => {
-    setShowModalCustomViewRow(false);
-  });
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const [sort, setSort] = useState<IOption>(SORT_OPTIONS[1]);
   useEffect(() => {
     const tb_header = {
@@ -87,7 +84,23 @@ function WarehouseList() {
       (header) => (tb_header[header[0]].hidden = header[1] == true),
     );
     setTableHeader(tb_header);
+    // event
   }, []);
+  useEffect(() => {
+    const handleBodyClick = (event: MouseEvent) => {
+      if (buttonRef.current?.contains(event?.target as Node)) {
+        return;
+      }
+      if (showModalCustomViewRow && !modalRef.current?.contains(event?.target as Node)) {
+        setShowModalCustomViewRow(false);
+        return;
+      }
+    };
+    document.body.addEventListener('click', handleBodyClick);
+    return () => {
+      document.body.removeEventListener('click', handleBodyClick);
+    };
+  }, [showModalCustomViewRow]);
   const saveHeader = (data: ITableHeader) => {
     const cloneData = {} as {
       [key: string]: boolean;
@@ -97,7 +110,7 @@ function WarehouseList() {
     });
     localStorage.setItem('warehouse_table-header_list', JSON.stringify(cloneData));
   };
-  console.log(tableHeader);
+
   return (
     <div className="mt-5">
       <div className="mt-3">
@@ -109,6 +122,7 @@ function WarehouseList() {
       </div>
       <div className="relative mt-5 w-full flex justify-between">
         <Button
+          ref={buttonRef}
           variant={'outline'}
           startIcon={<EyeOffIcon />}
           className="border-secondaryColorDark/30 dark:border-white/30 text-secondaryColorDark dark:text-white"
@@ -321,9 +335,7 @@ function WarehouseList() {
                     ) : null}
                     {!tableHeader.report?.hidden ? (
                       <td className="px-2">
-                        <div className="flex justify-center">
-                          <ReportIcon />
-                        </div>
+                        <ReportsButton data={data} />
                       </td>
                     ) : null}
                     {!tableHeader.view?.hidden ? (

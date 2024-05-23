@@ -20,8 +20,12 @@ export const getTimeAgo = (date: Date): string => {
   const hoursDifference = Math.floor(minutesDifference / 60);
   const daysDifference = Math.floor(hoursDifference / 24);
   const monthDifference = Math.floor(daysDifference / 30);
-  if (monthDifference > 12)
+  const yearDifference = Math.floor(monthDifference / 12);
+  if (yearDifference > 10)
     return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
+  if (yearDifference > 1) {
+    return `${yearDifference} năm trước`;
+  }
   if (monthDifference > 1) {
     return `${monthDifference} tháng trước`;
   } else if (daysDifference > 1) {

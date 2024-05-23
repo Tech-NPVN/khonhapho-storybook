@@ -6,6 +6,7 @@ export interface ITabList {
   items: ReactNode[] | string[];
   defaultIndex?: number;
   className?: string;
+  onChange?: (index: number) => void;
 }
 
 export interface ITabPanel {
@@ -14,7 +15,7 @@ export interface ITabPanel {
   tabIndex: number;
 }
 
-export function TabList({ name, items, defaultIndex, className }: Readonly<ITabList>) {
+export function TabList({ name, items, defaultIndex, className, onChange }: Readonly<ITabList>) {
   const [selected, setSelected] = useState<number>(defaultIndex ?? -1);
 
   const handleChange = (tab: number) => {
@@ -23,6 +24,7 @@ export function TabList({ name, items, defaultIndex, className }: Readonly<ITabL
     });
     document.getElementById(`tab-panel-${name}-${tab}`)?.setAttribute('data-display', 'true');
     setSelected(tab);
+    onChange?.(tab);
   };
 
   useEffect(() => {
