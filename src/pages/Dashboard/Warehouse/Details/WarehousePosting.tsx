@@ -21,30 +21,27 @@ import {
 } from '@/components/General';
 import { useCopyToClipboard } from '@/hooks/useCopyToClipBoard';
 import { Popover, PopoverButton, PopoverPanel, Transition } from '@headlessui/react';
-import { useState } from 'react';
+import clsx from 'clsx';
 import { StatusTag } from '../List';
-import { IMAGE_URLS, STATUS_LABEL } from '../const';
-export default function Posting() {
+import { Comment_Demo, IPosting } from '../const';
+import { dateToStringDate, dateToStringTime, getTimeAgo } from '../helpers';
+export const WarehousePosting = ({
+  data,
+  type = 'list',
+}: {
+  data: IPosting;
+  type?: 'list' | 'modal';
+}) => {
   const { isCopied, copyToClipboard } = useCopyToClipboard();
-  const [images, setImages] = useState(
-    IMAGE_URLS.slice(0, Math.floor(Math.random() * (IMAGE_URLS.length - 2)) + 1),
-  );
   return (
-    <div className="mt-5 bg-[#FFFFFF] dark:bg-primaryColorDark dark:text-textPrimaryDark min-h-[426px] rounded-md ">
+    <div className="bg-[#FFFFFF] dark:bg-primaryColorDark dark:text-textPrimaryDark min-h-[426px] h-full rounded-md relative">
       <div className="flex justify-between px-3 py-2">
         <div className="text-[12px] flex gap-1">
           <span className="mt-[2px]">
             <ClockIcon />
           </span>
-          <span>
-            {new Date().getDate().toString().padStart(2, '0')}/
-            {(new Date().getMonth() + 1).toString().padStart(2, '0')}/{new Date().getFullYear()}
-          </span>
-          <span>
-            {new Date().getHours().toString().padStart(2, '0')}/
-            {new Date().getMinutes().toString().padStart(2, '0')}/
-            {new Date().getSeconds().toString().padStart(2, '0')}
-          </span>
+          <span>{dateToStringDate(new Date(data.updated_ad))}</span>
+          <span>{dateToStringTime(new Date(data.updated_ad))}</span>
         </div>
         <div className="text-[12px] flex gap-1">
           <span>Mã số:</span>
@@ -62,14 +59,18 @@ export default function Posting() {
               src="https://s3-alpha-sig.figma.com/img/206c/4897/28b7b0c60958131808a8471ce60ce66c?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ddKWmEtLX2W-UyEi6HzRg~HaaYN6KsDFuEAOu7Vl4brlTWYIttWq4LSRBkJTkmn6GALE0V2Fhik2kdPjAo~aAnLugu0zjNHEWrKHKTwCH3XaUjYGk4rX3o~xS8eiFrRUxSxklglUV3nUfLMTs0TGwt4OP8mOH9Q7jgTnHTTwsN2RRBOEHLIIm0T4PR25hWEh7WOGnLPnRTb~2ivohTt~IM3I4NunbrvT~nUKG1PYZGvPigJDRn2G4JkaRt4oEHjdEYjFC1UFnLEq59bnvOzgfumKkwGEv4pioqeL6lofZc2hbudFf8aV1VHmBXaLIb9Q42~a~dOO5SrSk3L9XfIUeg__"
             />
             <div className="">
-              <h3 className="text-[14px] dark:text-[#74CF5A]">Nhà Phố Việt Nam</h3>
+              <h3 className="text-[14px] font-medium dark:text-[#74CF5A]">
+                {data?.owner.fullName}
+              </h3>
               <div className="flex md:hidden gap-2 items-center">
                 <Rate rating={5} /> <Typography variant="span">5,0</Typography>
               </div>
               <div className="md:flex gap-2 items-center text-textSecondaryLight text-[14px] hidden">
-                <span className="dark:text-textSecondaryDark">8 giờ trước</span>
+                <span className="dark:text-textSecondaryDark">
+                  {getTimeAgo(new Date(data?.last_online))}
+                </span>
                 <span className="dark:text-linkDark">·</span>
-                <span className="dark:text-linkDark">Quy định và Hướng dẫn</span>
+                <span className="dark:text-linkDark">{data?.categories}</span>
               </div>
             </div>
           </div>
@@ -77,49 +78,42 @@ export default function Posting() {
           <div className="flex flex-col gap-1">
             <div className="flex gap-2 items-center ">
               <div className="rounded text-[12px] px-1 border hidden md:block text-[#FF4D4F] bg-white border-[#D4390F]">
-                Sổ đỏ/sổ hồng
+                {data?.legal_status.label}
               </div>
-              <StatusTag
-                status={Math.floor(Math.random() * 7) as keyof typeof STATUS_LABEL}
-              ></StatusTag>
+              <StatusTag status={data.status}></StatusTag>
             </div>
             <Typography
               variant="span"
               className="text-[12px] text-textSecondaryLight dark:text-textSecondaryDark flex justify-end"
             >
-              2 tháng trước
+              {getTimeAgo(new Date(data?.updated_ad))}
             </Typography>
           </div>
         </div>
 
         <div className="mt-3">
           <Typography variant="p">
-            5.75 tỷ -
+            {data?.spec.price} -{' '}
             <Typography variant="span" className="text-red-300">
-              79tr/m²
+              {data?.spec.price_unit}
             </Typography>
-            - Mặt phố, Thuê ở, Dòng tiền
+            - {data?.property_feature}
           </Typography>
 
-          <p className="mt-4">Coffin Dance</p>
+          <p className="mt-4">{data?.content}</p>
 
           <div className="flex gap-2 text-linkLight dark:text-linkDark flex-wrap">
-            <span>#ctnnguyenphuongnam</span>
-            <span>#nphn</span>
-            <span>#khoi</span>
-            <span>#khoi</span>
-            <span>#khoi</span>
-            <span>#khoi</span>
-            <span>#khoi</span>
-            <span>#khoi</span>
-            <span>#khoi</span>
-            <span>#khoi</span>
+            {data?.tags.map((tag, i) => (
+              <span key={'tag-' + i} className="cursor-pointer hover:underline">
+                #{tag}
+              </span>
+            ))}
           </div>
 
           <div className="flex justify-between items-center">
             <Tag
               className={`[&>span]:flex [&>span]:gap-0.5 [&>span]:text-[12px] min-w-[56px]  [&>span]:items-center ${isCopied ? '[&>span]:cursor-not-allowed' : '[&>span]:cursor-pointer'}`}
-              onClick={() => copyToClipboard('Coffin Dance')}
+              onClick={() => copyToClipboard(data?.content)}
             >
               {isCopied ? (
                 <>
@@ -146,41 +140,47 @@ export default function Posting() {
           </div>
         </div>
       </div>
-
-      <div className="relative h-[300px] px-3">
-        <div className="absolute inset-0 ">
-          <div
-            // className="flex flex-wrap justify-between"
-            className="grid md:grid-cols-4 grid-cols-2 gap-1"
-          >
-            {images.map((url: string, index) => {
-              return index < 4 ? (
-                <a href="#!" className={` ${index === 3 ? 'relative' : ''}`}>
-                  <img key={index} src={url} className={`h-[300px] object-cover w-full`} />
-                  {images.length > 4 && index === 3 && (
-                    <>
-                      <div className="absolute inset-0 hover:bg-black/50"></div>
-                      <div className="absolute  inset-0 flex justify-center gap-2 items-center text-slate-200 text-[40px] font-semibold bg-black/50 cursor-pointer">
-                        +{images.length - 4} <span className="md:hidden"> Ảnh</span>
-                      </div>
-                    </>
-                  )}
-                </a>
-              ) : null;
-            })}
+      {type == 'list' && (
+        <div className="relative h-[300px] px-3">
+          <div className="absolute inset-0 ">
+            <div
+              // className="flex flex-wrap justify-between"
+              className="grid md:grid-cols-4 grid-cols-2 gap-1"
+            >
+              {data?.images.map((url: string, index) => {
+                return index < 4 ? (
+                  <a href="#!" key={url} className={` ${index === 3 ? 'relative' : ''}`}>
+                    <img key={index} src={url} className={`h-[300px] object-cover w-full`} />
+                    {data.images.length > 4 && index === 3 && (
+                      <>
+                        <div className="absolute inset-0 hover:bg-black/50"></div>
+                        <div className="absolute  inset-0 flex justify-center gap-2 items-center text-slate-200 text-[40px] font-semibold bg-black/50 cursor-pointer">
+                          +{data.images.length - 4} <span className="md:hidden"> Ảnh</span>
+                        </div>
+                      </>
+                    )}
+                  </a>
+                ) : null;
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      )}
+
       <div className="px-3">
         <div className="flex justify-between mt-3 text-textSecondaryLight dark:textSecondaryDark pt-[calc(100%_-_30px)] md:pt-[5px]">
           <div className="flex items-center gap-1 md:gap-4 text-[14px]">
             <div className="flex items-center gap-2">
               <EyeIcon color="#1677FF" />
-              <span className="text-textPrimaryLight dark:text-textPrimaryDark">200</span>
+              <span className="text-textPrimaryLight dark:text-textPrimaryDark">
+                {data.view_count}
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <PinSolidIcon color="#FF4D4F" />
-              <span className="text-textPrimaryLight dark:text-textPrimaryDark">200</span>
+              <span className="text-textPrimaryLight dark:text-textPrimaryDark">
+                {data?.save_count}
+              </span>
             </div>
           </div>
 
@@ -268,34 +268,37 @@ export default function Posting() {
       </ul>
 
       <div className="py-5 px-3">
-        <div className="md:flex hidden gap-2 mt-4">
-          <Avatar
-            alt="avatar"
-            height={40}
-            width={40}
-            src="https://s3-alpha-sig.figma.com/img/206c/4897/28b7b0c60958131808a8471ce60ce66c?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ddKWmEtLX2W-UyEi6HzRg~HaaYN6KsDFuEAOu7Vl4brlTWYIttWq4LSRBkJTkmn6GALE0V2Fhik2kdPjAo~aAnLugu0zjNHEWrKHKTwCH3XaUjYGk4rX3o~xS8eiFrRUxSxklglUV3nUfLMTs0TGwt4OP8mOH9Q7jgTnHTTwsN2RRBOEHLIIm0T4PR25hWEh7WOGnLPnRTb~2ivohTt~IM3I4NunbrvT~nUKG1PYZGvPigJDRn2G4JkaRt4oEHjdEYjFC1UFnLEq59bnvOzgfumKkwGEv4pioqeL6lofZc2hbudFf8aV1VHmBXaLIb9Q42~a~dOO5SrSk3L9XfIUeg__"
-          />
-          <div className="flex flex-col ">
-            <div className="px-2 py-2 bg-[#F3F4F6] dark:bg-secondaryColorDark rounded-md">
-              <div>
-                <div className="flex gap-2 items-center text-black text-[14px] font-semibold dark:text-[#74CF5A]">
-                  <h3 className="text-sm font-bold">Nhà Phố Việt Nam</h3>
-                  <span>·</span>
-                  <span>Quy định và Hướng dẫn</span>
+        {Comment_Demo.map((comment, i) => (
+          <div key={'comment-' + i} className="md:flex hidden gap-2 mt-4">
+            <Avatar alt="avatar" height={40} width={40} src={comment?.user?.avatar} />
+            <div className="flex flex-col ">
+              <div className="px-2 py-2 bg-[#F3F4F6] dark:bg-secondaryColorDark rounded-md">
+                <div>
+                  <div className="flex gap-2 items-center text-black text-[14px] font-semibold dark:text-[#74CF5A]">
+                    <h3 className="text-sm font-bold">{comment?.user?.fullName}</h3>
+                    {/* <span>·</span>
+                  <span>Quy định và Hướng dẫn</span> */}
+                  </div>
+                  <p className="text-primaryTextDark">Coffin Dance</p>
                 </div>
-                <p className="text-primaryTextDark">Coffin Dance</p>
+              </div>
+              <div className="flex items-center gap-4 mt-2 dark:text-textSecondaryDark text-[12px]">
+                <button>Thích</button>
+                <button>Trả lời</button>
+                <p>{getTimeAgo(new Date(comment?.created_at))}</p>
+                <p>Đã chỉnh sửa</p>
               </div>
             </div>
-            <div className="flex items-center gap-4 mt-2 dark:text-textSecondaryDark text-[12px]">
-              <button>Thích</button>
-              <button>Trả lời</button>
-              <p>3 ngày trước</p>
-              <p>Đã chỉnh sửa</p>
-            </div>
           </div>
-        </div>
-
-        <div className="flex gap-2 mt-4">
+        ))}
+      </div>
+      <div
+        className={clsx(
+          'py-5 px-3 ',
+          type === 'modal' ? 'absolute bottom-0 left-0 right-0' : 'relative',
+        )}
+      >
+        <div className="flex gap-2 mt-4 ">
           <Avatar
             alt="avatar"
             height={40}
@@ -308,4 +311,4 @@ export default function Posting() {
       </div>
     </div>
   );
-}
+};

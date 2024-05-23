@@ -10,24 +10,24 @@ type RadioProps = {
   name?: string;
   value?: string;
   label?: string;
+  size?: 'sm' | 'md' | 'lg';
   // Event
   onChecked?: () => void;
 };
-function Radio({ checked, name, disabled, label, onChecked, ...props }: RadioProps) {
+function Radio({ checked, name, disabled, label, size = 'sm', onChecked, ...props }: RadioProps) {
   return (
     <label
       className={clsx(
-        'block select-none relative pl-[24px] mb-[12px] text-xl',
-        props.className,
+        'flex select-none relative justify-start items-center dark:text-[#fff]',
         disabled ? 'text-[#cecece] cursor-default' : 'text-[#000] cursor-pointer',
         !disabled && '[&>span]:hover:bg-[#afafaf]',
+        props.className,
       )}
     >
-      {label}
       <input
         type="radio"
         className={clsx(
-          'absolute opacity-0  [&~span]:checked:after:block',
+          'absolute opacity-0 [&~span]:checked:after:block',
           disabled
             ? ' cursor-default [&~span]:checked:bg-[green]/20'
             : ' cursor-pointer [&~span]:checked:bg-[green]',
@@ -39,7 +39,18 @@ function Radio({ checked, name, disabled, label, onChecked, ...props }: RadioPro
         // defaultChecked={defaultChecked}
         readOnly
       />
-      <span className="absolute top-[7px] left-0 w-[16px] h-[16px] rounded-[50%] bg-[#eee] after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:w-[8px] after:hidden after:h-[8px] after:rounded-[50%] after:bg-white " />
+      <span
+        className={clsx(
+          "block relative rounded-[50%] bg-[#eee] after:content-[''] after:absolute after:hidden after:rounded-[50%] after:bg-white ",
+          size === 'sm' &&
+            'me-[6px] text-sm w-[12px] h-[12px] after:top-[3px] after:left-[3px] after:w-[6px] after:h-[6px]',
+          size === 'md' &&
+            'me-[8px] text-md w-[16px] h-[16px] after:top-[4px] after:left-[4px] after:w-[8px] after:h-[8px]',
+          size === 'lg' &&
+            'me-[10px] text-lg w-[18px] h-[18px] after:top-[4px] after:left-[4px] after:w-[10px] after:h-[10px]',
+        )}
+      />
+      <div>{label}</div>
     </label>
   );
 }
@@ -48,12 +59,7 @@ export type radioOption = {
   label: string;
   disabled?: boolean;
 };
-export const radioOptions: radioOption[] = [
-  { value: '1', label: 'One' },
-  { value: '2', label: 'Two' },
-  { value: '3', label: 'Three', disabled: true },
-  { value: '4', label: 'Four' },
-];
+
 export type RadioFormProps<T extends FieldValues> = {
   name: FieldPath<T>;
   description?: string | ReactNode;

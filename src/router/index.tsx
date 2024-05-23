@@ -1,10 +1,11 @@
 import { ADMIN_ROUTE } from '@/constants/menu';
-import { Management } from '@/pages/Admin';
+import { Consignment, Management, Referral, SettingCompany, Users } from '@/pages/Admin';
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Urgently, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
 
 import { FeedAll, FeedBranch, FeedDeal, FeedDepartment, FeedGroup, FeedRegulation } from '@/pages/Dashboard/Feeds';
+
 import {
   LibraryAssistant,
   LibraryKnowledge,
@@ -19,8 +20,13 @@ import {
   StocksOwn,
   StocksReview,
 } from '@/pages/Dashboard/Stocks';
-import { UserCollection, UserProfile, UserReview } from '@/pages/Dashboard/User';
-import { UserAppointment } from '@/pages/Dashboard/User/UserAppointment';
+import {
+  UserAppointment,
+  UserCollection,
+  UserCustomers,
+  UserProfile,
+  UserReview,
+} from '@/pages/Dashboard/User';
 import WarehouseForm from '@/pages/Dashboard/Warehouse/Form';
 import { AdminLayout, AuthLayout, NoAuthLayout } from '@/pages/Layout';
 import { MessagePage } from '@/pages/Message';
@@ -106,7 +112,7 @@ const authRoutes: RouteObject[] = [
           },
           {
             path: 'customers',
-            element: <>QUẢN LÝ KHÁCH HÀNG</>,
+            element: <UserCustomers />,
           },
           {
             path: ':id',
@@ -234,6 +240,22 @@ const adminRoutes: RouteObject[] = [
       {
         path: '',
         element: <Management />,
+      },
+      {
+        path: '/admin/company-setting',
+        element: <SettingCompany />,
+      },
+      {
+        path: 'consignment',
+        element: <Consignment />,
+      },
+      {
+        path: 'referral',
+        element: <Referral />,
+      },
+      {
+        path: 'users',
+        element: <Users />,
       },
     ],
   },
