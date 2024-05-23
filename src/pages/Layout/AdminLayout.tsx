@@ -102,10 +102,7 @@ const AdminSidebar = ({ theme, toggleTheme, openDrawer, setOpenDrawer }: AdminSi
                 Chế độ {theme === 'light' ? 'tối' : 'sáng'}
               </span>
               <div className="text-inherit hover:!text-inherit">
-                <button
-                  type="submit"
-                  className="flex items-center justify-center p-1.5 hover:bg-dividerDark/25 rounded-full transition-all"
-                >
+                <button className="flex items-center justify-center p-1.5 hover:bg-dividerDark/25 rounded-full transition-all">
                   {theme === 'light' ? (
                     <DarkIcon width="16" height="16" color="white" />
                   ) : (
