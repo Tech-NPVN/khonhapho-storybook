@@ -1,8 +1,14 @@
 import { Typography } from '@/components/General';
 
-export const NoResult = ({ title = 'Không tìm thấy dữ liệu' }: { title?: string }) => {
+export const NoResult = ({
+  title = 'Không tìm thấy dữ liệu',
+  className,
+}: {
+  title?: string;
+  className?: string;
+}) => {
   return (
-    <div className="flex flex-col justify-center items-center gap-4 mt-4">
+    <div className={`flex flex-col justify-center items-center gap-4 mt-4 ${className}`}>
       <svg
         width="111"
         height="107"

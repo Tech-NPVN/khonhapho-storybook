@@ -1,25 +1,27 @@
-import { Switch } from '@/components/DataEntry';
+import { IOption, Select, Switch } from '@/components/DataEntry';
 import {
+  ArrowDownArrowUpIcon,
   Button,
   ClockIcon,
-  DeleteIcon,
   EyeOffIcon,
   MessageIcon,
   NotificationIcon,
   PinIcon,
-  ReportIcon,
 } from '@/components/General';
-import { useOutsideClickClose } from '@/hooks/useOutsideClickClose';
 import {
   ITableHeader,
+  LIST_POST_DEMO,
+  SORT_OPTIONS,
   STATUS_LABEL,
-  TABLE_DATA,
-  TABLE_HEADER,
+  TABLE_HEADER_LIST,
 } from '@/pages/Dashboard/Warehouse/const';
 import { useEffect, useRef, useState } from 'react';
 
 import { clsx } from 'clsx';
 import WarehouseFilter from '../Filter';
+import { dateToStringDate } from '../helpers';
+import { ReportsButton } from './ReportsButton';
+import { ViewButton } from './ViewButton';
 
 export const StatusTag = ({ status }: { status: keyof typeof STATUS_LABEL }) => {
   switch (status) {
@@ -71,16 +73,43 @@ function WarehouseList() {
   const [tableHeader, setTableHeader] = useState<ITableHeader>({});
   const [showModalCustomViewRow, setShowModalCustomViewRow] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement>(null);
-  useOutsideClickClose(modalRef, () => {
-    setShowModalCustomViewRow(false);
-  });
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [sort, setSort] = useState<IOption>(SORT_OPTIONS[1]);
   useEffect(() => {
     const tb_header = {
-      ...TABLE_HEADER,
-      ...JSON.parse(localStorage.getItem('warehouse_table-header') || JSON.stringify(TABLE_HEADER)),
+      ...TABLE_HEADER_LIST,
     };
+    const tb_header_local = JSON.parse(localStorage.getItem('warehouse_table-header_list') ?? '{}');
+    Object.entries(tb_header_local).forEach(
+      (header) => (tb_header[header[0]].hidden = header[1] == true),
+    );
     setTableHeader(tb_header);
+    // event
   }, []);
+  useEffect(() => {
+    const handleBodyClick = (event: MouseEvent) => {
+      if (buttonRef.current?.contains(event?.target as Node)) {
+        return;
+      }
+      if (showModalCustomViewRow && !modalRef.current?.contains(event?.target as Node)) {
+        setShowModalCustomViewRow(false);
+        return;
+      }
+    };
+    document.body.addEventListener('click', handleBodyClick);
+    return () => {
+      document.body.removeEventListener('click', handleBodyClick);
+    };
+  }, [showModalCustomViewRow]);
+  const saveHeader = (data: ITableHeader) => {
+    const cloneData = {} as {
+      [key: string]: boolean;
+    };
+    Object.entries(data).forEach((tbh) => {
+      cloneData[tbh[0]] = tbh[1].hidden == true;
+    });
+    localStorage.setItem('warehouse_table-header_list', JSON.stringify(cloneData));
+  };
 
   return (
     <div className="mt-5">
@@ -91,13 +120,14 @@ function WarehouseList() {
           }}
         />
       </div>
-      <div className="relative mt-5">
+      <div className="relative mt-5 w-full flex justify-between">
         <Button
+          ref={buttonRef}
           variant={'outline'}
           startIcon={<EyeOffIcon />}
           className="border-secondaryColorDark/30 dark:border-white/30 text-secondaryColorDark dark:text-white"
           onClick={() => {
-            setShowModalCustomViewRow(true);
+            setShowModalCustomViewRow((prev) => !prev);
           }}
         >
           Ẩn cột
@@ -114,20 +144,20 @@ function WarehouseList() {
               <div className="w-[50%]" key={val[0]}>
                 <Switch
                   id={val[0]}
-                  isChecked={val[1].show ?? false}
+                  isChecked={val[1]?.hidden ? false : true}
                   onChange={() => {
                     setTableHeader((prev) => {
                       const newData = {
                         ...prev,
-                        [val[0]]: { ...val[1], show: !val[1]?.show },
+                        [val[0]]: { ...val[1], hidden: !val[1]?.hidden },
                       };
-                      localStorage.setItem('warehouse_table-header', JSON.stringify(newData));
+                      saveHeader(newData);
                       return newData;
                     });
                   }}
                 />
                 <label className="inline-block ms-2 dark:text-white" htmlFor={val[0]}>
-                  {val[1].title}
+                  {val[1]?.title}
                 </label>
               </div>
             ))}
@@ -138,9 +168,9 @@ function WarehouseList() {
                   const arrTB = Object.entries(tableHeader);
                   const newTableHeader = { ...tableHeader };
                   arrTB.forEach((tb) => {
-                    newTableHeader[tb[0]] = { ...tb[1], show: true };
+                    newTableHeader[tb[0]] = { ...tb[1], hidden: false };
                   });
-                  localStorage.setItem('warehouse_table-header', JSON.stringify(newTableHeader));
+                  saveHeader(newTableHeader);
                   setTableHeader(newTableHeader);
                 }}
               >
@@ -149,6 +179,15 @@ function WarehouseList() {
             </div>
           </div>
         </div>
+        <div className="min-w-[200px]">
+          <Select
+            value={sort}
+            options={SORT_OPTIONS}
+            onChange={(value) => setSort(value as IOption)}
+            placeholder="..."
+            customIcon={<ArrowDownArrowUpIcon width="8" className="me-2" />}
+          ></Select>
+        </div>
       </div>
       <div className="relative mt-5 ">
         <div className="overflow-x-scroll w-[calc(100%_-_40px)]">
@@ -156,150 +195,156 @@ function WarehouseList() {
             <thead>
               <tr className=" bg-[#E5E6E8] dark:bg-[#525354] dark:text-white font-medium">
                 {Object.entries(tableHeader).map((header) =>
-                  header[1]?.show && header[0] != 'view' ? (
+                  !header[1]?.hidden && header[0] != 'view' ? (
                     <td
                       className={clsx(
                         'uppercase font-medium text-nowrap text-[0.75rem] py-2 px-2',
-                        header[1].text_align === 'center' ? 'text-center ' : '',
-                        header[1]?.show ? '' : 'hidden',
+                        header[1]?.text_align === 'center' ? 'text-center ' : '',
+                        header[1]?.hidden ? 'hidden' : '',
                       )}
                       style={{
-                        minWidth: header[1].min_width ? header[1].min_width + 'px' : 'auto',
+                        minWidth: header[1]?.min_width ? header[1]?.min_width + 'px' : 'auto',
                       }}
-                      key={header[1].title}
+                      key={header[1]?.title}
                     >
-                      {header[1].title}
+                      {header[1]?.title}
                     </td>
                   ) : null,
                 )}
-                {tableHeader.view?.show && (
+                {!tableHeader.view?.hidden && (
                   <td
                     className={clsx(
                       'absolute w-[45px] bg-[#E5E6E8] right-[0]  dark:bg-[#525354] dark:text-white',
                       'uppercase font-medium text-nowrap text-[0.75rem] py-2 px-2',
-                      tableHeader.view.text_align === 'center' ? 'text-center ' : '',
+                      tableHeader.view?.text_align === 'center' ? 'text-center ' : '',
                     )}
                   >
-                    {tableHeader.view.title}
+                    {tableHeader.view?.title}
                   </td>
                 )}
               </tr>
             </thead>
             <tbody>
-              {TABLE_DATA.map((data) => (
-                <tr
-                  key={data.id}
-                  className={
-                    ' text-sm h-9 [&>td]:even:bg-[#f0f0f0] dark:text-white dark:[&>td]:bg-black dark:[&>td]:even:bg-[#3A3B3C] '
-                  }
-                >
-                  {tableHeader.save?.show ? (
-                    <td>
-                      <div className="flex justify-center">
-                        <PinIcon />
-                      </div>
-                    </td>
-                  ) : null}
-                  {tableHeader.book?.show ? (
-                    <td>
-                      <div className="flex justify-center">
-                        <ClockIcon />
-                      </div>
-                    </td>
-                  ) : null}
-                  {tableHeader.time?.show ? <td className="text-center">{data.time}</td> : null}
-
-                  {tableHeader.status?.show && (
-                    <td className="flex justify-center items-center h-9 px-2">
-                      <StatusTag status={data.status} />
-                    </td>
-                  )}
-                  {tableHeader.address?.show ? (
-                    <td className="px-2">
-                      <span className="line-clamp-1">{data.address}</span>
-                    </td>
-                  ) : null}
-
-                  {tableHeader.streets?.show ? (
-                    <td className="px-2">
-                      <span className="line-clamp-1">{data.streets}</span>
-                    </td>
-                  ) : null}
-                  {tableHeader.district?.show ? (
-                    <td className="px-2">
-                      <span className="line-clamp-1">{data.district}</span>
-                    </td>
-                  ) : null}
-                  {tableHeader.spec?.show ? (
-                    <td className="px-2">
-                      <span className="line-clamp-1">{data.spec}</span>
-                    </td>
-                  ) : null}
-                  {tableHeader.price?.show ? (
-                    <td className="px-2">
-                      <span className="text-nowrap">{data.price}</span>
-                    </td>
-                  ) : null}
-                  {tableHeader.unit?.show ? (
-                    <td className="px-2">
-                      <span className="text-nowrap">{data.unit}</span>
-                    </td>
-                  ) : null}
-                  {tableHeader.owner?.show ? (
-                    <td className="px-2">
-                      <span className="text-nowrap dark:text-[#74cf5a]">{data.owner}</span>
-                    </td>
-                  ) : null}
-                  {tableHeader.contact?.show ? (
-                    <td className="px-2">
-                      <span className="text-nowrap flex">
-                        <a className="text-linkLight" href={'tel:' + data.contact.phone}>
-                          {data.contact.phone}
-                        </a>
-                        <div className="w-4 text-center mx-2">
-                          {data.contact?.zalo ? (
-                            <a className="text-linkLight" href={data.contact.zalo} target="_blank">
-                              <NotificationIcon />
-                            </a>
-                          ) : (
-                            <span>-</span>
-                          )}
+              {Object.entries(tableHeader).length > 0 &&
+                LIST_POST_DEMO.map((data) => (
+                  <tr
+                    key={data.id}
+                    className={
+                      ' text-sm h-9 [&>td]:even:bg-[#f0f0f0] dark:text-white dark:[&>td]:bg-black dark:[&>td]:even:bg-[#3A3B3C] '
+                    }
+                  >
+                    {!tableHeader.save?.hidden ? (
+                      <td>
+                        <div className="flex justify-center">
+                          <PinIcon />
                         </div>
-                        <div className="w-4 text-center mx-2">
-                          {data.contact?.message ? (
-                            <a
-                              className="text-linkLight"
-                              href={data.contact.message}
-                              target="_blank"
-                            >
-                              <MessageIcon />
-                            </a>
-                          ) : (
-                            <span>-</span>
-                          )}
+                      </td>
+                    ) : null}
+                    {!tableHeader.book?.hidden ? (
+                      <td>
+                        <div className="flex justify-center">
+                          <ClockIcon />
                         </div>
-                      </span>
-                    </td>
-                  ) : null}
-                  {tableHeader.property_feature?.show ? (
-                    <td className="px-2">
-                      <span className="line-clamp-1">{data.property_feature}</span>
-                    </td>
-                  ) : null}
-                  {tableHeader.report?.show ? (
-                    <td className="px-2">
-                      <div className="flex justify-center">
-                        <ReportIcon />
-                      </div>
-                    </td>
-                  ) : null}
-                  {tableHeader.view?.show ? (
-                    <td className="absolute right-0 w-[40px] h-9 flex justify-center items-center px-2">
-                      <DeleteIcon />
-                    </td>
-                  ) : null}
-                </tr>
-              ))}
+                      </td>
+                    ) : null}
+                    {!tableHeader.time?.hidden ? (
+                      <td className="text-center">{dateToStringDate(new Date(data.created_ad))}</td>
+                    ) : null}
+
+                    {!tableHeader.status?.hidden && (
+                      <td className="flex justify-center items-center h-9 px-2">
+                        <StatusTag status={data.status} />
+                      </td>
+                    )}
+                    {!tableHeader.address?.hidden ? (
+                      <td className="px-2">
+                        <span className="line-clamp-1">{data.address.details}</span>
+                      </td>
+                    ) : null}
+
+                    {!tableHeader.streets?.hidden ? (
+                      <td className="px-2">
+                        <span className="line-clamp-1">{data.address.street}</span>
+                      </td>
+                    ) : null}
+                    {!tableHeader.district?.hidden ? (
+                      <td className="px-2">
+                        <span className="line-clamp-1">{data.address.district}</span>
+                      </td>
+                    ) : null}
+                    {!tableHeader.spec?.hidden ? (
+                      <td className="px-2">
+                        <span className="line-clamp-1">
+                          {data.spec.price}
+                          {data.spec.area}
+                        </span>
+                      </td>
+                    ) : null}
+                    {!tableHeader.price?.hidden ? (
+                      <td className="px-2">
+                        <span className="text-nowrap">{data.spec.price}</span>
+                      </td>
+                    ) : null}
+                    {!tableHeader.unit?.hidden ? (
+                      <td className="px-2">
+                        <span className="text-nowrap">{data.spec.price_unit}</span>
+                      </td>
+                    ) : null}
+                    {!tableHeader.owner?.hidden ? (
+                      <td className="px-2">
+                        <span className="text-nowrap dark:text-[#74cf5a]">
+                          {data.owner.fullName}
+                        </span>
+                      </td>
+                    ) : null}
+                    {!tableHeader.contact?.hidden ? (
+                      <td className="px-2">
+                        <span className="text-nowrap flex">
+                          <a className="text-linkLight" href={'tel:' + data.owner.phone}>
+                            {data.owner.phone}
+                          </a>
+                          <div className="w-4 text-center mx-2">
+                            {data.owner?.zalo ? (
+                              <a className="text-linkLight" href={data.owner.zalo} target="_blank">
+                                <NotificationIcon />
+                              </a>
+                            ) : (
+                              <span>-</span>
+                            )}
+                          </div>
+                          <div className="w-4 text-center mx-2">
+                            {data.owner?.message ? (
+                              <a
+                                className="text-linkLight"
+                                href={data.owner.message}
+                                target="_blank"
+                              >
+                                <MessageIcon />
+                              </a>
+                            ) : (
+                              <span>-</span>
+                            )}
+                          </div>
+                        </span>
+                      </td>
+                    ) : null}
+                    {!tableHeader.property_feature?.hidden ? (
+                      <td className="px-2">
+                        <span className="line-clamp-1">{data.property_feature}</span>
+                      </td>
+                    ) : null}
+                    {!tableHeader.report?.hidden ? (
+                      <td className="px-2">
+                        <ReportsButton data={data} />
+                      </td>
+                    ) : null}
+                    {!tableHeader.view?.hidden ? (
+                      <td className="absolute right-0 w-[40px] h-9 flex justify-center items-center px-2">
+                        <ViewButton data={data} />
+                      </td>
+                    ) : null}
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

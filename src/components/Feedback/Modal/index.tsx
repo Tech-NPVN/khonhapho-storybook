@@ -78,7 +78,7 @@ export const Modal = ({
                   <div className="flex flex-col h-full">
                     {/* Title */}
                     <div
-                      className={`mt-4 ${title ? 'mb-4' : 'mb-12'} ${centerTitle && 'flex justify-center'}`}
+                      className={` ${title ? 'mb-4' : 'mb-12'} ${centerTitle && 'flex justify-center'}`}
                     >
                       {title && (
                         <DialogTitle
@@ -88,7 +88,10 @@ export const Modal = ({
                           {title || 'Dialog Title'}
                         </DialogTitle>
                       )}
-                      <button onClick={handleCloseModal} className="absolute top-8 right-8">
+                      <button
+                        onClick={handleCloseModal}
+                        className="absolute top-[23px] right-[20px]"
+                      >
                         <CloseIcon className="dark:[&>path]:fill-white" />
                       </button>
                     </div>

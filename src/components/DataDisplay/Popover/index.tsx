@@ -11,6 +11,7 @@ type PopoverOptionProps = {
   content: string | ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   className?: string;
+  disabled?: boolean;
 };
 
 type PopoverProps = {
@@ -55,7 +56,7 @@ export const Popover = ({
       >
         <PopoverPanel
           anchor={anchor}
-          className={`bg-white dark:bg-secondaryColorDark rounded-lg shadow-lg p-1 ${className}`}
+          className={`bg-white dark:bg-secondaryColorDark rounded-md shadow-lg p-1 ${className}`}
         >
           {itemsPanel ? (
             <div className="flex flex-col gap-1">
@@ -63,7 +64,8 @@ export const Popover = ({
                 <button
                   onClick={item.onClick}
                   key={item.key}
-                  className={`block dark:text-white text-sm px-2 py-1 hover:bg-tertiaryColorLight dark:hover:bg-tertiaryColorDark rounded-lg transition-all ${item.className}`}
+                  className={`block text-left dark:text-white text-sm px-3 py-[5px] hover:bg-tertiaryColorLight dark:hover:bg-tertiaryColorDark rounded-md transition-all disabled:opacity-40 disabled:pointer-events-none ${item.className}`}
+                  disabled={item.disabled}
                 >
                   {item.content}
                 </button>

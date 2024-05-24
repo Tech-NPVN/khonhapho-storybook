@@ -28,11 +28,12 @@ interface ISelect {
   multiple?: boolean;
   limit?: number;
   value?: IOption | IOption[];
+  customIcon?: ReactNode;
   onChange?: (any: IOption | IOption[] | null) => void;
 }
 
 export const Select = forwardRef<HTMLSelectElement, ISelect>(
-  ({ options, value, className, onChange, limit = 9, ...props }, ref) => {
+  ({ options, value, className, onChange, customIcon, limit = 9, ...props }, ref) => {
     return (
       <div>
         <Listbox
@@ -110,14 +111,18 @@ export const Select = forwardRef<HTMLSelectElement, ISelect>(
                 )}
 
                 <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-                  <svg
-                    width={14}
-                    className="fill-black dark:fill-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                  >
-                    <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
-                  </svg>
+                  {customIcon ? (
+                    customIcon
+                  ) : (
+                    <svg
+                      width={14}
+                      className="fill-black dark:fill-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                    >
+                      <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
+                    </svg>
+                  )}
                 </span>
               </ListboxButton>
 

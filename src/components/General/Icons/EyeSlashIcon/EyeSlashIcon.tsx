@@ -2,7 +2,12 @@ import SvgIcon, { TypeIcon } from '../SvgIcon';
 
 const EyeSlashIcon = ({ color = '#333', width, height, viewBox, className = '' }: TypeIcon) => {
   return (
-    <SvgIcon width={width} height={height} viewBox={viewBox} className={className}>
+    <SvgIcon
+      width={width}
+      height={height}
+      viewBox={viewBox}
+      className={`dark:[&>path]:fill-white ${className}`}
+    >
       <path
         d="M7.74914 10.3691C7.69508 10.3691 7.64179 10.3666 7.58898 10.3618L6.76367 11.1871C7.26006 11.3772 7.80089 11.4194 8.32078 11.3087C8.84066 11.198 9.31735 10.9391 9.69321 10.5632C10.0691 10.1873 10.328 9.71066 10.4387 9.19077C10.5494 8.67089 10.5072 8.13006 10.3171 7.63367L9.49179 8.45898C9.49663 8.51179 9.49913 8.56507 9.49913 8.61913C9.49926 8.84898 9.45408 9.0766 9.36617 9.28897C9.27827 9.50135 9.14937 9.69432 8.98685 9.85684C8.82432 10.0194 8.63135 10.1483 8.41898 10.2362C8.2066 10.3241 7.97899 10.3693 7.74914 10.3691Z"
         fill={color}
