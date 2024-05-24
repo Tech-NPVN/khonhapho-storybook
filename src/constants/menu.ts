@@ -61,7 +61,78 @@ export const ADMIN_MENU: TItemMenu[] = [
     name: 'Mã giới thiệu',
   },
   // Dữ liệu kho hàng
-
+  {
+    id: 'admin-data',
+    href: ADMIN_ROUTE + '/data',
+    name: 'Dữ liệu kho hàng',
+    subMenu: [
+      {
+        id: 'admin-data-legal-status',
+        href: ADMIN_ROUTE + '/data/legal-status',
+        name: 'Tình trạng pháp lý',
+      },
+      {
+        id: 'admin-data-price-range',
+        href: ADMIN_ROUTE + '/data/price-range',
+        name: 'Khoảng giá',
+      },
+      {
+        id: 'admin-data-area-range',
+        href: ADMIN_ROUTE + '/data/area-range',
+        name: 'Khoảng diện tích',
+      },
+      {
+        id: 'admin-data-sale-status',
+        href: ADMIN_ROUTE + '/data/sale-status',
+        name: 'Trạng thái mua bán',
+      },
+      {
+        id: 'admin-data-contract-type',
+        href: ADMIN_ROUTE + '/data/contract-type',
+        name: 'Loại hợp đồng',
+      },
+      {
+        id: 'admin-data-property-type',
+        href: ADMIN_ROUTE + '/data/property-type',
+        name: 'Loại hình BĐS',
+      },
+      {
+        id: 'admin-data-purposes',
+        href: ADMIN_ROUTE + '/data/purposes',
+        name: 'Mục đích sử dụng',
+      },
+      {
+        id: 'admin-data-property-feature',
+        href: ADMIN_ROUTE + '/data/property-feature',
+        name: 'Đặc điểm BĐS',
+      },
+      {
+        id: 'admin-data-project',
+        href: ADMIN_ROUTE + '/data/project',
+        name: 'Dự án',
+      },
+      {
+        id: 'admin-data-cities',
+        href: ADMIN_ROUTE + '/data/cities',
+        name: 'Tỉnh/Thành phố',
+      },
+      {
+        id: 'admin-data-districts',
+        href: ADMIN_ROUTE + '/data/districts',
+        name: 'Quận/huyện',
+      },
+      {
+        id: 'admin-data-streets',
+        href: ADMIN_ROUTE + '/data/streets',
+        name: 'Đường',
+      },
+      {
+        id: 'admin-data-consignment',
+        href: ADMIN_ROUTE + '/data/consignment',
+        name: 'Phản hồi Tin chính chủ',
+      },
+    ],
+  },
   // Dữ liệu thành viên
   {
     id: 'admin-member',
