@@ -1,10 +1,18 @@
 import { ADMIN_ROUTE } from '@/constants/menu';
 import { Consignment, Management, Referral, SettingCompany, Users } from '@/pages/Admin';
+import { AreaRange, DataConsignment, LegalStatus, PriceRange } from '@/pages/Admin/Data';
 import { ForgotPassword, Login, SignUp } from '@/pages/Auth';
 import { Home, Urgently, Warehouse } from '@/pages/Dashboard';
 import { CompanyPage } from '@/pages/Dashboard/Company';
 
-import { FeedAll, FeedBranch, FeedDeal, FeedDepartment, FeedGroup, FeedRegulation } from '@/pages/Dashboard/Feeds';
+import {
+  FeedAll,
+  FeedBranch,
+  FeedDeal,
+  FeedDepartment,
+  FeedGroup,
+  FeedRegulation,
+} from '@/pages/Dashboard/Feeds';
 
 import {
   LibraryAssistant,
@@ -182,7 +190,6 @@ const authRoutes: RouteObject[] = [
                 path: 'group',
                 element: <FeedGroup />,
               },
-
             ],
           },
         ],
@@ -242,7 +249,7 @@ const adminRoutes: RouteObject[] = [
         element: <Management />,
       },
       {
-        path: '/admin/company-setting',
+        path: 'company-setting',
         element: <SettingCompany />,
       },
       {
@@ -256,6 +263,67 @@ const adminRoutes: RouteObject[] = [
       {
         path: 'users',
         element: <Users />,
+      },
+      {
+        path: 'data',
+        children: [
+          {
+            index: true,
+            element: <></>,
+          },
+          {
+            path: 'legal-status',
+            element: <LegalStatus />,
+          },
+          {
+            path: 'price-range',
+            element: <PriceRange />,
+          },
+          {
+            path: 'area-range',
+            element: <AreaRange />,
+          },
+          {
+            path: 'sale-status',
+            element: <>Trạng thái mua bán</>,
+          },
+          {
+            path: 'contract-type',
+            element: <>Loại hợp đồng</>,
+          },
+          {
+            path: 'property-type',
+            element: <>Loại hình BĐS</>,
+          },
+          {
+            path: 'purposes',
+            element: <>Mục đích sử dụng</>,
+          },
+          {
+            path: 'property-feature',
+            element: <>Đặc điểm BĐS</>,
+          },
+          {
+            path: 'project',
+            element: <>Dự án</>,
+          },
+          {
+            path: 'cities',
+            element: <>TỈnh / thành phố</>,
+          },
+          {
+            path: 'districts',
+            element: <>Quận/huyệnn</>,
+          },
+          {
+            path: 'streets',
+            element: <>Đường</>,
+          },
+          {
+            path: 'consignment',
+            element: <DataConsignment />,
+          },
+        ],
       },
     ],
   },

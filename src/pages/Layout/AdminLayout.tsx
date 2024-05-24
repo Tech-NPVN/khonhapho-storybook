@@ -56,8 +56,8 @@ const AdminSidebarItem = ({ item }: { item: TItemMenu }) => {
               to={sub.href}
               className={({ isActive }) =>
                 [
-                  'flex-1 p-3 px-5 text-sm font-medium transition-colors rounded-lg cursor-pointer bg-transparent hover:bg-secondaryColorLightD2 hover:text-black',
-                  isActive ? 'bg-secondaryColorLightD2 text-black' : '',
+                  'flex-1 p-3 px-5 text-sm font-medium transition-colors rounded-lg cursor-pointer hover:bg-secondaryColorLightD2 hover:text-black',
+                  isActive ? 'bg-secondaryColorLightD2 text-black' : 'bg-transparent',
                 ].join(' ')
               }
               end
@@ -84,11 +84,11 @@ const AdminSidebar = ({ theme, toggleTheme, openDrawer, setOpenDrawer }: AdminSi
         className={`lg:w-[250px] bottom-0 !bg-primaryColorDark flex-col lg:left-0 nav-mobile lg:flex`}
       >
         <div className="lg:h-[calc(100%_-_88px])] p-0 lg:overflow-y-auto overflow-hidden text-white flex-1">
-          <a href={`${ADMIN_ROUTE}`} className="flex justify-center items-center py-4">
+          <a href={`${ADMIN_ROUTE}`} className="flex items-center justify-center py-4">
             <img
               src="/nhapho-icon-dark.png"
               alt="nhapho-icon-logo"
-              className="h-20 w-20 object-cover"
+              className="object-cover w-20 h-20"
             />
           </a>
           <ul className="h-[calc(100vh_-85px)] p-6 overflow-y-auto lg:h-auto lg:overflow-hidden lg:p-4">
@@ -97,8 +97,8 @@ const AdminSidebar = ({ theme, toggleTheme, openDrawer, setOpenDrawer }: AdminSi
         </div>
         <div className="lg:p-4 h-[88px] lg:block hidden">
           <div className="p-3 transition-colors rounded-lg hover:bg-secondaryColorDark">
-            <button className="flex items-center justify-between w-full" onClick={toggleTheme}>
-              <span className="flex-1 text-sm font-semibold cursor-pointer text-white text-left">
+            <div className="flex items-center justify-between w-full" onClick={toggleTheme}>
+              <span className="flex-1 text-sm font-semibold text-left text-white cursor-pointer">
                 Chế độ {theme === 'light' ? 'tối' : 'sáng'}
               </span>
               <div className="text-inherit hover:!text-inherit">
@@ -110,7 +110,7 @@ const AdminSidebar = ({ theme, toggleTheme, openDrawer, setOpenDrawer }: AdminSi
                   )}
                 </button>
               </div>
-            </button>
+            </div>
           </div>
         </div>
       </aside>
@@ -124,12 +124,12 @@ const AdminSidebar = ({ theme, toggleTheme, openDrawer, setOpenDrawer }: AdminSi
         className={`fixed inset-0 z-50 transform ${openDrawer ? 'translate-x-0 visible' : 'translate-x-full invisible'} transition-transform duration-500 ease-in-out`}
       >
         <div className="fixed right-0 top-0 h-full w-[360px] dark:bg-secondaryColorDark bg-primaryColorDark shadow-xl overflow-y-auto">
-          <div className="py-4 px-5 flex items-center justify-between">
+          <div className="flex items-center justify-between px-5 py-4">
             <button onClick={() => setOpenDrawer(false)}>
               <CloseIcon color="white" />
             </button>
-            <button className="flex items-center justify-between w-fit gap-2" onClick={toggleTheme}>
-              <span className="flex-1 text-sm font-semibold cursor-pointer text-white text-left">
+            <div className="flex items-center justify-between gap-2 w-fit" onClick={toggleTheme}>
+              <span className="flex-1 text-sm font-semibold text-left text-white cursor-pointer">
                 Chế độ {theme === 'light' ? 'tối' : 'sáng'}
               </span>
               <button
@@ -142,7 +142,7 @@ const AdminSidebar = ({ theme, toggleTheme, openDrawer, setOpenDrawer }: AdminSi
                   <LightIcon width="16" height="16" color="white" />
                 )}
               </button>
-            </button>
+            </div>
           </div>
 
           <ul className="px-5 mt-8 text-white">
@@ -162,7 +162,7 @@ const AdminHeader = ({
   setOpenDrawer: (open: boolean) => void;
 }) => {
   return (
-    <header className="fixed left-0 right-0 top-0 h-16 bg-primaryColorDark flex items-center justify-end gap-3 w-full px-4">
+    <header className="fixed top-0 left-0 right-0 flex items-center justify-end w-full h-16 gap-3 px-4 bg-primaryColorDark">
       <div className="flex items-center justify-center w-10 h-10 rounded-full dark:bg-secondaryColorDark bg-secondaryColorLight">
         <Link to="/user/collection">
           <PinIcon width="18" height="18" />
@@ -202,7 +202,7 @@ export const AdminLayout = () => {
       />
       <div className="relative w-screen mx-auto lg:ml-[250px] lg:w-[calc(100vw_-_250px)]">
         <AdminHeader openDrawer={openDrawer} setOpenDrawer={setOpenDrawer} />
-        <main className="ml-0 px-3 mt-16 lg:p-4 p-2">
+        <main className="p-2 px-3 mt-16 ml-0 lg:p-4">
           <Outlet />
         </main>
       </div>
