@@ -699,7 +699,12 @@ const PostDemo: IPosting = {
   },
   last_online: new Date('2024-05-20').toString(),
 };
-
+const getStatus = () => {
+  const rd = Math.floor(Math.random() * 100);
+  const status =
+    rd < 5 ? 6 : rd < 10 ? 5 : rd < 15 ? 4 : rd < 20 ? 3 : rd < 25 ? 2 : rd < 30 ? 1 : 0;
+  return status;
+};
 export const LIST_POST_DEMO: IPosting[] = new Array(50).fill(0).map((_, i) => ({
   id: 'id-' + i,
   categories: 'Quy định và Hướng dẫn',
@@ -724,7 +729,7 @@ export const LIST_POST_DEMO: IPosting[] = new Array(50).fill(0).map((_, i) => ({
     price: `${Math.floor(Math.random() * 300)} ${['Tr', 'Tỷ'][Math.floor(Math.random() * 2)]}`,
     price_unit: '40tr/m²',
   },
-  status: 0,
+  status: getStatus(),
   tags: ['quangtrong', 'nhapho', 'abc', 'test', 'Ha Noi', 'HCM', 'Da Nang', 'Thu Duc'].slice(
     Math.floor(Math.random() * 2),
     Math.floor(Math.random() * 5) + 2,
