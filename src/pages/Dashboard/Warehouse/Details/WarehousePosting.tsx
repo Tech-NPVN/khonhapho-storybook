@@ -219,44 +219,69 @@ export const WarehousePosting = ({
                   </div>
 
                   <div className="flex items-center gap-2 text-[14px]">
-                    <div className="flex items-center gap-2 cursor-pointer">
-                      <PhoneIcon color="#197D16" />
-                      <span
-                        className={clsx(
-                          'hidden dark:text-white',
-                          type === 'modal' ? 'hidden' : 'lg:block',
-                        )}
+                    <div className="flex items-center cursor-pointer">
+                      <a
+                        className="flex items-center gap-2"
+                        href={'tel:' + data.owner.phone}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        Điện thoại
-                      </span>
+                        <PhoneIcon color="#197D16" />
+                        <span
+                          className={clsx(
+                            'hidden dark:text-white',
+                            type === 'modal' ? 'hidden' : 'lg:block',
+                          )}
+                        >
+                          Điện thoại
+                        </span>
+                      </a>
                     </div>
                     <div className="flex items-center gap-2 cursor-pointer">
-                      <img
-                        src="https://s3-alpha-sig.figma.com/img/9d24/9f6c/6b53792649a38af984e3a9140d78d33d?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ka8nQ-MIIIvVwxd8pBj8Vfokpp11zuN1UAQsY5tPxgDU7GAteKYoDrTIngi-SKU5xprHEe0553Fjwp2cmyWPQGyGc7mYj4x3c-tdnAygGkqDq1QIKsSLqNqrYMlgCyOa6-TJ3KcMLZAr5GhCsi70Hy0y~sSoL0nl7F8g9FBQqO03WrVleXPNOXm9FLOd8zAPZX4OQaJVMzlWkJJZ51GStZ8BPWyuJXgXp5a4THcVzNp5CDYbdHJ~Id5AT0-W7GmRhkX6EIU2TrfZlKWXxLkQph60fLXKYWfgTyQxW9-dtXodIx8nm7-gAsxxc5ou~Nx8uupukzBOFUs6JX2Q1L~yGg__"
-                        alt=""
-                        width={16}
-                        height={16}
-                        className="rounded-md"
-                      />
-                      <span
-                        className={clsx(
-                          'hidden dark:text-white',
-                          type === 'modal' ? 'hidden' : 'lg:block',
-                        )}
-                      >
-                        Zalo
-                      </span>
+                      {data.owner.zalo && (
+                        <a
+                          className="flex items-center gap-3"
+                          href={'https://zalo.me/' + data.owner.phone}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            src="https://s3-alpha-sig.figma.com/img/9d24/9f6c/6b53792649a38af984e3a9140d78d33d?Expires=1716768000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ka8nQ-MIIIvVwxd8pBj8Vfokpp11zuN1UAQsY5tPxgDU7GAteKYoDrTIngi-SKU5xprHEe0553Fjwp2cmyWPQGyGc7mYj4x3c-tdnAygGkqDq1QIKsSLqNqrYMlgCyOa6-TJ3KcMLZAr5GhCsi70Hy0y~sSoL0nl7F8g9FBQqO03WrVleXPNOXm9FLOd8zAPZX4OQaJVMzlWkJJZ51GStZ8BPWyuJXgXp5a4THcVzNp5CDYbdHJ~Id5AT0-W7GmRhkX6EIU2TrfZlKWXxLkQph60fLXKYWfgTyQxW9-dtXodIx8nm7-gAsxxc5ou~Nx8uupukzBOFUs6JX2Q1L~yGg__"
+                            alt=""
+                            width={16}
+                            height={16}
+                            className="rounded-md"
+                          />
+                          <span
+                            className={clsx(
+                              'hidden dark:text-white',
+                              type === 'modal' ? 'hidden' : 'lg:block',
+                            )}
+                          >
+                            Zalo
+                          </span>
+                        </a>
+                      )}
                     </div>
                     <div className="flex items-center gap-2 cursor-pointer">
-                      <MessageIcon />
-                      <span
-                        className={clsx(
-                          'hidden dark:text-white',
-                          type === 'modal' ? 'hidden' : 'lg:block',
-                        )}
-                      >
-                        Messenger
-                      </span>
+                      {data.owner.message && (
+                        <a
+                          className="flex items-center gap-3"
+                          href={data.owner.message}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <MessageIcon />
+                          <span
+                            className={clsx(
+                              'hidden dark:text-white',
+                              type === 'modal' ? 'hidden' : 'lg:block',
+                            )}
+                          >
+                            Messenger
+                          </span>
+                        </a>
+                      )}
                     </div>
                     <div className="flex items-center gap-2 cursor-pointer">
                       <AlarmClock />
@@ -284,7 +309,7 @@ export const WarehousePosting = ({
                       <ReportsButton data={data}>
                         <span
                           className={clsx(
-                            'hidden dark:text-white',
+                            'hidden dark:text-white ms-1',
                             type === 'modal' ? 'hidden' : 'lg:block',
                           )}
                         >
