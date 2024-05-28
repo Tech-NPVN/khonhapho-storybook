@@ -1,6 +1,8 @@
 import { Form, Input, InputForm, RequiredSymbolLabel } from '@/components/DataEntry';
 import { Modal } from '@/components/Feedback';
 import { AddIcon, Button, SearchIcon, Typography } from '@/components/General';
+import Pagination from '@/components/Navigation/Pagination';
+import useCustomPagination from '@/hooks/UsePagination';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -15,6 +17,11 @@ const formLegalStatus = z.object({
 
 export const LegalStatus = () => {
   const [showModalAdd, setshowModalAdd] = useState<boolean>(false);
+  const {
+    pagination: { activePage, itemsPerPage },
+    setPage,
+    setPageSize,
+  } = useCustomPagination('0', 20);
 
   const form = useForm<z.infer<typeof formLegalStatus>>({
     resolver: zodResolver(formLegalStatus),
@@ -124,6 +131,14 @@ export const LegalStatus = () => {
             </button>
           </div>
         </div>
+
+        <Pagination
+          current={Number(activePage)}
+          itemPerPage={itemsPerPage}
+          onChangePage={(e) => setPage(String(e))}
+          totalCount={20}
+          onChangePageSize={(e) => setPageSize(e)}
+        />
         <table></table>
       </div>
     </div>
